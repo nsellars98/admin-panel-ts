@@ -4,7 +4,7 @@ import Link from "next/link";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../lib/firebase";
 import { useState } from 'react';
-import Menu from "./menu";
+import Menu from "./Menu";
 import { TopBar } from "./TopBar";
 
 const authState = auth;
