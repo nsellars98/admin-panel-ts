@@ -1,10 +1,10 @@
 .row {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-between;
     justify-items: flex-start;
-    align-content: center;
-    align-items: center;
+    align-content: flex-start;
+    align-items: flex-start;
 }
 
 .col {
@@ -12,31 +12,162 @@
     flex-direction: column;
     justify-content: flex-start;
     justify-items: flex-start;
-    align-content: center;
-    align-items: center;
+    align-content: flex-start;
+    align-items: flex-start;
+}
+
+.mainContainer {
+    overflow: scroll;
+    /* min-height: 100vh; */
 }
 
 .container {
     padding: 0 2rem;
   }
+  .sideBar {
+    min-height: 100vh;
+    height: 100%;
+    background: var(--darkBackground) !important;
+  }
+  .topBar {
+    display: flex;
+    padding: 10px 15px;
+    justify-content: space-between;
+    align-items: center;
+    background: rgb(38, 38, 38);
+    width: 100%;
+  }
+
+  .topLeft,
+  .topRight {
+    align-items: center;
+    position: relative;
+  }
+
+  .topLeft > div,
+  .topRight > div {
+    margin-left: 15px;
+    position: relative;
+  }
+
+  
+  .topLeft:first-child {
+    justify-content: flex-start;
+  }
+
+  
+  .topRight h5:hover {
+    cursor: pointer;
+    color: var(--accent);
+  }
+  
+  .userIcon {
+    border-radius: 50%;
+    box-shadow: 0px 0px 11px 0px dimgrey;
+  }
+
+  .userIcon:hover {
+    cursor: pointer;
+    border-radius: 50%;
+    border: 1px solid black;
+    box-shadow: 0px 0px 11px 0px rgb(69, 69, 69);
+  }
+
+  .underlineAnimate {
+    height: 3px;
+    width: 0%;
+    background: #ffffff;
+  }
+
+  .underlineAnimate {
+    transition: width 450ms;
+    will-change: width;
+    background: deeppink;
+  }
+  .topRight > div:hover .underlineAnimate,
+  .topRight  > div:focus .underlineAnimate{
+    width: 100%;
+  }
+
+  /* 
+      INPUT FORM
+    =============================================================================================================
+  */
+
+  .form-item{
+    position: relative;
+    margin-bottom: 15px;
+    position: relative;
+  }
+
+    .formItem input{
+        display: block;
+        width: 400px;
+        height: 40px;
+        border-radius: 4px;
+        background: transparent;
+        border: solid 1px #ccc;
+        transition: all .3s ease;
+        padding: 0 15px
+    }
+    .formItem input:focus{
+        border-color: var(--accent) !important;
+    }
+    .formItem label{
+        position: absolute;
+        cursor: text;
+        z-index: 2;
+        top: 11px;
+        left: 10px;
+        font-size: 12px;
+        font-weight: bold;
+        background: var(--darkBackground);
+        padding: 0 10px;
+        color: var(--lightBackground);
+        transition: all .3s ease
+    }
+
+    .formItem input:focus + label{
+        color: var(--accent);
+        top: -5px;
+        font-size: 10px;
+    }
+
+  .underlineAnimate:hover {
+    animation: underLine 1s ease-in-out;
+    animation-fill-mode: both; 
+  }
+
+    @keyframes underLine {
+        0% { width: 0; }
+        100% { width: 100%; }
+    }
   
   .main {
-    min-height: 100vh;
+    /* min-height: 100vh; */
     padding: 4rem 0;
-    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
+  .header_nav {
+    display: flex;
+    padding: 2rem 0;
+    justify-content: space-between;
+    align-items: center;
+    background: #222;
+    width: 100%;
+  }
   
   .footer {
     display: flex;
-    flex: 1;
     padding: 2rem 0;
     border-top: 1px solid #eaeaea;
     justify-content: center;
     align-items: center;
+    background: #222;
+    width: 100%;
   }
   
   .footer a {
@@ -143,6 +274,12 @@
     }
     .logo img {
       filter: invert(1);
+    }
+  }
+
+  @media screen and (max-width: 719) {
+    .sideBar {
+        display: block;
     }
   }
   
