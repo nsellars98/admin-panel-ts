@@ -3,7 +3,14 @@
   --darkBackground: rgb(38, 38, 38);
   --lightBackground: rgb(255, 255, 255);
 }
+input:focus {
+  outline:none;
+}
 
+li {
+  text-decoration: none;
+  list-style: none;
+}
 html,
 body {
   padding: 0;

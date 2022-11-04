@@ -30,19 +30,27 @@ export const Layout: FunctionComponent<Props> = (props) => {
     
     return (
         <div style={{
-            minWidth: "100vh",
+            minHeight: "100vh",
+            maxHeight: "100vh",
             overflow: "hidden"
         }} className={`${styles.row}`}>
 
             {/* TODO: SIDE NAV COMP */}
             <Menu />
            
-            <main className={`${styles.col} ${styles.mainContainer}`}style={{width: "70%", background: "blue"}}>
-                <TopBar state={props.state} />
-                {props.children}
-                <footer  className={`${styles.row} ${styles.footer}`}>
+            <main 
+                className={`${styles.col} ${styles.mainContainer}`}
+                style={{
+                    width: "80%",
+                    justifyContent: "space-between"
+                }}>
+                <div className={`${styles.col}`}>
+                    <TopBar state={props.state} />
+                    {props.children}
+                </div>
+                {/* <footer  className={`${styles.row} ${styles.footer}`}>
                     Bigly 
-                </footer>
+                </footer> */}
             </main>
 
         </div>

@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Main.module.css'
 
 export default function Home() {
 
@@ -15,9 +15,36 @@ export default function Home() {
           
       </header>
 
-      <main className={`${styles.col}`}>
-        <section className={`${styles.row}`}>
-
+      <main className={`${styles.row} ${styles.container}`}>
+        <section className={`${styles.col} ${styles.oneThird}`}>
+          <div className={`${styles.card}`}>
+            <header>
+              <h4>Test Card One</h4>
+            </header>
+            <main>
+              <p>Lorum Ipsum . . .</p>
+            </main>
+          </div>
+        </section>
+        <section className={`${styles.col} ${styles.oneThird}`}>
+          <div className={`${styles.card}`}>
+            <header>
+              <h4>Test Card Two</h4>
+            </header>
+            <main>
+              <p>Lorum Ipsum . . .</p>
+            </main>
+          </div>
+        </section>
+        <section className={`${styles.col} ${styles.oneThird}`}>
+          <div className={`${styles.card}`}>
+            <header>
+              <h4>Test Card Three</h4>
+            </header>
+            <main>
+              <p>Lorum Ipsum . . .</p>
+            </main>
+          </div>
         </section>
       </main>
 

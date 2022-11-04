@@ -5,6 +5,8 @@
     justify-items: flex-start;
     align-content: flex-start;
     align-items: flex-start;
+    width: 100%;
+    padding: 0;
 }
 
 .col {
@@ -14,27 +16,79 @@
     justify-items: flex-start;
     align-content: flex-start;
     align-items: flex-start;
+    width: 100%;
+    padding: 0;
+}
+
+.oneThird {
+  width: 33%;
+}
+
+.oneThird:nth-child(1) {
+  padding-right: 0.5rem;
+}
+
+.oneThird:nth-child(2) {
+  padding-right: 0.5rem;
+  padding-left:  0.5rem;
+}
+
+.oneThird:nth-child(3) {
+  padding-left:  0.5rem;
 }
 
 .mainContainer {
     overflow: scroll;
-    /* min-height: 100vh; */
+    background-color: var(--lightBackground);
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 .container {
-    padding: 0 2rem;
-  }
+    padding: 1rem  1rem;;
+}
   .sideBar {
     min-height: 100vh;
     height: 100%;
     background: var(--darkBackground) !important;
+  }
+  .menuItem {
+    padding: 1rem 2rem;
+    width: 100%;
+    border-left: 4px solid transparent;
+    justify-content: flex-start;
+  }
+  .menuItem:hover,
+  .menuItem:focus {
+    padding: 1rem 2rem;
+    width: 100%;
+    border-left: 4px solid white;
+  }
+
+  .menuItem:hover i,
+  .menuItem:focus i,
+  .menuItem:hover span,
+  .menuItem:focus span {
+    color: wheat;
+  }
+  .menuItem i {
+    margin-right: 1.5rem;
+  }
+  .menuItem span,
+  .menuItem i {
+    color: rgba(128, 128, 128, 0.485);
+  }
+  .topHeaderMobile > div{
+    width: 100%;
+    padding: 0.5rem 2rem;
   }
   .topBar {
     display: flex;
     padding: 10px 15px;
     justify-content: space-between;
     align-items: center;
-    background: rgb(38, 38, 38);
+    background: var(--lightBackground) !important;
     width: 100%;
   }
 
@@ -54,7 +108,9 @@
   .topLeft:first-child {
     justify-content: flex-start;
   }
-
+  .topRight h5 {
+    color: var(--darkBackground);
+  }
   
   .topRight h5:hover {
     cursor: pointer;
@@ -69,8 +125,8 @@
   .userIcon:hover {
     cursor: pointer;
     border-radius: 50%;
-    border: 1px solid black;
-    box-shadow: 0px 0px 11px 0px rgb(69, 69, 69);
+    border: 1px solid rgb(216, 216, 216);
+    box-shadow: 0px 0px 11px 0px rgb(216, 216, 216);
   }
 
   .underlineAnimate {
@@ -83,6 +139,10 @@
     transition: width 450ms;
     will-change: width;
     background: deeppink;
+  }
+  .topRight {
+    width: 15%;
+
   }
   .topRight > div:hover .underlineAnimate,
   .topRight  > div:focus .underlineAnimate{
@@ -121,9 +181,9 @@
         left: 10px;
         font-size: 12px;
         font-weight: bold;
-        background: var(--darkBackground);
+        background: var(--lightBackground);
         padding: 0 10px;
-        color: var(--lightBackground);
+        color: var(--darkBackground);
         transition: all .3s ease
     }
 
@@ -223,22 +283,25 @@
   }
   
   .card {
-    margin: 1rem;
+    width: 100%;
+    margin: 0px;
     padding: 1.5rem;
     text-align: left;
-    color: inherit;
+    color:  var(--darkBackground);
     text-decoration: none;
     border: 1px solid #eaeaea;
     border-radius: 10px;
     transition: color 0.15s ease, border-color 0.15s ease;
-    max-width: 300px;
+    box-shadow: 0px 0px 6px #22222223;
   }
   
   .card:hover,
   .card:focus,
   .card:active {
-    color: #0070f3;
-    border-color: #0070f3;
+    color: var(--darkBackground);
+    text-shadow: 1px 1px 6px #22222223;
+    border-color: rgba(245, 89, 81, 0.038);
+    box-shadow: 0px 0px 16px 0px #3f3f3f1a;
   }
   
   .card h2 {
@@ -264,7 +327,7 @@
     }
   }
   
-  @media (prefers-color-scheme: dark) {
+  /* @media (prefers-color-scheme: dark) {
     .card,
     .footer {
       border-color: #222;
@@ -275,7 +338,7 @@
     .logo img {
       filter: invert(1);
     }
-  }
+  } */
 
   @media screen and (max-width: 719) {
     .sideBar {
