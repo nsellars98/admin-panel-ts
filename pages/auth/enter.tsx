@@ -6,8 +6,33 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "../../styles/Main.module.css";
 import auth_styles from '../../styles/Auth.module.css';
+import {
+    faEyeSlash,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+// Fonts? 
+import { 
+    Merienda_One,
+    Saira_Extra_Condensed,
+    Anonymous_Pro,
+} from '@next/font/google'
+
+const meriendaOne = Merienda_One({
+  weight: '400',
+})
+
+const saira = Saira_Extra_Condensed({
+    weight: "400",
+})
+
+const anonPro = Anonymous_Pro({
+    weight: "400",
+})
 
 const IMG_URL = "https://cdn.dribbble.com/assets/auth/sign-in-a63d9cf6c1f626ccbde669c582b10457b07523adb58c2a4b46833b7b4925d9a3.jpg"
+const IMG_NFT = "https://vagazine.com/vaga_v3/wp-content/uploads/2022/04/ezgif.com-gif-maker-1.gif";
+const LOGO = "https://cdn.shopify.com/s/files/1/0574/9263/5817/files/bigly_logo_art_file.png?v=1626380659&width=300";
 
 const authUser = auth;
 export default function Enter() {
@@ -15,6 +40,7 @@ export default function Enter() {
     const [password, setPassword] = useState("");
     const [authState, toggleState] = useState(false);
     const [user, setUser] = useState({} as User);
+    const [showPass, hidePass] = useState(false);
     const [error, setErr] = useState("")
 
     const signIn = (e: any) => {
@@ -56,32 +82,37 @@ export default function Enter() {
     } 
 
     return (
-        <div className={`${styles.row} ${auth_styles.authPage}`}>
+        <div className={` ${styles.row} ${auth_styles.authPage}`}>
             <section className={`${styles.col} ${auth_styles.leftSide}`}>
                 <header className={`${styles.col}`}>
                     <div>
                         <Image 
-                            src={IMG_URL} 
+                            src={LOGO} 
                             alt="imPowered Logo" 
                             width={50}
                             height={50}
                         />
                     </div>
-                    <h4>Lorum ipsum...</h4>
+                    <h4 className={`${saira.className} ${auth_styles.moto}`}>Lorum ipsum...</h4>
                 </header>
-                <div className={`${styles.col}`}>
-                    <div>
-                        <Image 
-                            src={IMG_URL} 
-                            alt="Art for enter now page." 
-                            width={150}
-                            height={100}/>
+                <div className={`${styles.col} ${auth_styles.colRight}`}>
+
+                    <div className={`${styles.col}`}>
+                        <div>
+                            <Image 
+                                src={IMG_NFT} 
+                                alt="Art for enter now page." 
+                                width={250}
+                                height={200}/>
+                        </div>
                     </div>
+                    <footer  className={`${saira.className}`}>
+                        <p>Art by</p>
+                        <Link
+                            className={`${auth_styles.artistList}`}
+                            href={"/"}><b>lorum ipsum</b></Link> 
+                    </footer>
                 </div>
-                <footer>
-                    <p>Art by</p>
-                    <Link href={"/"}><b>lorum ipsum</b></Link> 
-                </footer>
             </section>
             <section className={`${styles.col} ${auth_styles.rightSide}`}>
                 <header className={`${styles.row}`}>
@@ -93,7 +124,10 @@ export default function Enter() {
                     </div>
                 </div>
                 <form className={`${styles.col} ${styles.formItem} ${auth_styles.authForm}`}>
-                    <h3>Sign In to imPowered</h3>
+                    <h3 className={`${saira.className}`}>Sign In to </h3>
+                    <div className={`${styles.row}`}>
+                        <h2 className={`${meriendaOne.className} ${auth_styles.imPowered}`}>imPowered</h2>
+                    </div>
                     <div className={`${styles.row} ${styles.topLeft}`}>
                         <label 
                             className={`${styles.formItem} ${styles.row}`}
@@ -112,10 +146,11 @@ export default function Enter() {
                             htmlFor="password">
                             <input
                                 onChange={(e) => setPassword(e.target.value)}
-                                type="current-password"
+                                type="password"
                                 name="password"
                                 placeholder="" />
                             <label>Password </label>
+                            {/* <span><FontAwesomeIcon icon={faEyeSlash} /></span> */}
                         </label>
                     </div>
                     {/* <label 
@@ -131,7 +166,7 @@ export default function Enter() {
                             placeholder="B.Yoda@GoBigly.com"
                             onChange={(e) => setPassword(e.target.value)}/>
                     </label> */}
-                    <div className={`${styles.row}`}>
+                    <div className={`${styles.row} ${auth_styles.btnRow}`}>
                         {   
                             !authState ? 
                             <button 
@@ -143,10 +178,10 @@ export default function Enter() {
                         }
                     </div>
 
-                    <div className={`${styles.row}`}>
+                    <div className={`${styles.row}  ${auth_styles.errMsgRow} ${anonPro.className}`}>
                         {   authState ? 
-                            <div>LOGGED IN</div>  : 
-                            <div>NOT ACIVE USER</div> 
+                            <div><p>LOGGED IN</p></div>  : 
+                            <div><p>NOT ACIVE USER</p></div> 
                         }
                     </div>
                 </form>

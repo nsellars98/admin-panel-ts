@@ -6,6 +6,7 @@ import { auth } from "../lib/firebase";
 import { useState } from 'react';
 import Enter from './auth/enter';
 
+
 const AUTH = auth;
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -32,8 +33,16 @@ export default function App({ Component, pageProps }: AppProps) {
   }
 
   return (
+    <>
+    <head>
+      {/* <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet" /> */}
+      {/* <style>
+        @import url('https://fonts.googleapis.com/css2?family=Merienda+One&display=swap');
+      </style> */}
+    </head>
     <Layout state={authState}>
       <Component {...pageProps} />
     </Layout>
+    </>
   )
 }

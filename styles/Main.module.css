@@ -222,6 +222,7 @@
       INPUT FORM
     =============================================================================================================
   */
+  
 
   .formItem{
     position: relative;
@@ -258,6 +259,7 @@
 
     .formItem input:focus + label{
         color: var(--accent);
+        background: var(--lightBackground);
         top: -5px;
         font-size: 10px;
     }
@@ -469,6 +471,20 @@
     .topLeft > div {
       margin: 0;
       padding-right: 5px;
+    }
+    .formItem input {
+      border: 1px solid rgba(0, 0, 0, 0.595) ;
+    }
+
+    .formItem label {
+      background: wheat;
+      transition: all .3s ease;
+    }
+
+    .formItem input:focus + label{
+      color: var(--accent);
+      top: -5px;
+      font-size: 10px;
     }
   }
   

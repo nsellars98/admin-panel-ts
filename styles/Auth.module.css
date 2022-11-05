@@ -3,6 +3,15 @@
     min-height: 100vh;
     max-height: 100vh;
 }
+.authPage h5,
+.authPage h4,
+.authPage h3,
+.authPage h2,
+.authPage h1,
+.authPage p,
+.authPage span {
+    color: rgb(109, 109, 109) !important;
+}
 
 .authPage .leftSide {
     width: 20%;
@@ -10,6 +19,7 @@
     background-color: wheat;
     justify-content: space-between;
     padding: 1rem 2rem;
+    color: aliceblue;
 }
 
 .authPage .rightSide {
@@ -28,10 +38,86 @@
 .authForm h3 {
     padding: 0rem 1.5rem;
     color: var(--darkBackground);
+    margin-bottom: 0;
 }
 
 
 
 .authForm > div {
     height: 60px;
+}
+
+.authPage > section > div img {
+    color: transparent;
+    margin-bottom: 2rem;
+    border-radius: 6px;
+    box-shadow: 1px 1px 18px #00000040;
+    border: var(--accent);
+}
+
+.imPowered {
+    margin-top: 0;
+    padding-left: 1.5rem;
+    position: absolute;
+    transform: rotate(-8deg);
+    text-shadow: 1px 1px rgba(165, 165, 165, 0.3);
+}
+.moto {
+    margin-top: 0;
+    font-size: 2rem;
+    font-weight: 400;
+}
+.errMsgRow,
+.btnRow {
+    padding: 0 1.5rem !important;
+}
+
+.btnRow button {
+    background-color: var(--accent);
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.394);
+    box-shadow: 0px 0px rgba(0, 0, 0, 0.5);
+    color: wheat;
+}
+.errMsgRow {
+    font-size: 8px;
+}
+.btnRow button:hover {
+    color: white;
+}
+
+.authPage .leftSide footer p{
+    margin: 0;
+}
+
+.artistList {
+    font-weight: 800;
+    border-bottom: 1px solid #00000033
+}
+
+.artistList:hover { 
+    border-bottom: 1px solid #00000079;
+    color: white
+}
+
+@media only screen and (max-width: 700px) {
+    .authPage .rightSide {
+        position: absolute;
+        width: 100%;
+    }
+    .authPage .leftSide > img {
+    }
+    .authPage .leftSide {
+        width: 100%;
+    }
+    .authPage {
+        flex-direction: column;
+    }
+    .moto {
+        display: none;
+    }
+    .colRight,
+    .colRight > div {
+        align-items: flex-end;
+    }
 }
