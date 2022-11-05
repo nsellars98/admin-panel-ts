@@ -2,9 +2,12 @@ import Image from "next/image";
 import { Dispatch, FunctionComponent, SetStateAction } from "react";
 import styles from "../../styles/Main.module.css";
 import {
-    faBars
+    faBars, faLongArrowAltUp
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { signOut } from "firebase/auth";
+import { auth } from "../../lib/firebase";
+const authState = auth;
 
 const URL = "https://cdn.shopify.com/s/files/1/0574/9263/5817/files/bigly_logo_art_file.png?v=1626380659&width=300";
 type Props = {
@@ -14,6 +17,16 @@ type Props = {
 }
 
 export const TopBar: FunctionComponent<Props> = ({state, openState, toggleMenu}) => {
+    const logOut = () => {
+        signOut(authState)
+            .then(() => {
+                // Sign-out successful.
+                console.log("Signed Out");
+            }).catch((error) => {
+            // An error happened.
+                console.log("Signed Out");
+            })
+    }
     return (
         <header className={`${styles.row} ${styles.topBar} `}>
             <div className={`${styles.row} ${styles.topLeftMobile}`}>
@@ -35,7 +48,7 @@ export const TopBar: FunctionComponent<Props> = ({state, openState, toggleMenu})
             {   
                 state ? <>
                     <div className={`${styles.col} `}>
-                        <h5>Logout</h5>
+                        <h5 onClick={() => logOut()}>Logout</h5> 
 
                         <div className={`${styles.row} ${styles.underlineAnimate}`}>
                             <div className={``}></div>

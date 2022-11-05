@@ -5,6 +5,7 @@ import {User} from "@firebase/auth-types"
 import Image from "next/image";
 import Link from "next/link";
 import styles from "../../styles/Main.module.css";
+import auth_styles from '../../styles/Auth.module.css';
 
 const IMG_URL = "https://cdn.dribbble.com/assets/auth/sign-in-a63d9cf6c1f626ccbde669c582b10457b07523adb58c2a4b46833b7b4925d9a3.jpg"
 
@@ -55,8 +56,8 @@ export default function Enter() {
     } 
 
     return (
-        <div className={`${styles.row}`}>
-            <section className={`${styles.col}}`}>
+        <div className={`${styles.row} ${auth_styles.authPage}`}>
+            <section className={`${styles.col} ${auth_styles.leftSide}`}>
                 <header className={`${styles.col}`}>
                     <div>
                         <Image 
@@ -82,7 +83,7 @@ export default function Enter() {
                     <Link href={"/"}><b>lorum ipsum</b></Link> 
                 </footer>
             </section>
-            <section className={`${styles.col}`}>
+            <section className={`${styles.col} ${auth_styles.rightSide}`}>
                 <header className={`${styles.row}`}>
                     
                 </header>
@@ -91,19 +92,33 @@ export default function Enter() {
                         {/* Holding the GUI for [email-privider] auth */}
                     </div>
                 </div>
-                <form className={`${styles.col}`}>
+                <form className={`${styles.col} ${styles.formItem} ${auth_styles.authForm}`}>
                     <h3>Sign In to imPowered</h3>
-                    <label 
-                        className={`${styles.col}`}
-                        htmlFor="email">
-                        <span>Email</span>
-                        <input 
-                            type="email"
-                            name="email"
-                            placeholder="B.Yoda@GoBigly.com"
-                            onChange={(e) => setEmail(e.target.value)}/>
-                    </label>
-                    <label 
+                    <div className={`${styles.row} ${styles.topLeft}`}>
+                        <label 
+                            className={`${styles.formItem} ${styles.row}`}
+                            htmlFor="email">
+                            <input
+                                onChange={(e) => setEmail(e.target.value)}
+                                type="email"
+                                name="email"
+                                placeholder="" />
+                            <label>Email </label>
+                        </label>
+                    </div>
+                    <div className={`${styles.row} ${styles.topLeft}`}>
+                        <label 
+                            className={`${styles.formItem} ${styles.row}`}
+                            htmlFor="password">
+                            <input
+                                onChange={(e) => setPassword(e.target.value)}
+                                type="current-password"
+                                name="password"
+                                placeholder="" />
+                            <label>Password </label>
+                        </label>
+                    </div>
+                    {/* <label 
                         className={`${styles.col}`}
                         htmlFor="password">
                         <div>
@@ -115,11 +130,15 @@ export default function Enter() {
                             name="password"
                             placeholder="B.Yoda@GoBigly.com"
                             onChange={(e) => setPassword(e.target.value)}/>
-                    </label>
+                    </label> */}
                     <div className={`${styles.row}`}>
                         {   
                             !authState ? 
-                            <button onClick={(e) => signIn(e)}>LOG IN</button> :  
+                            <button 
+                                style={{
+                                    padding: "0.5rem 1.2rem"
+                                }}
+                                onClick={(e) => signIn(e)}>LOG IN</button> :  
                             <button disabled={true}>LOGGING IN</button> 
                         }
                     </div>

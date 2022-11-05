@@ -1,0 +1,37 @@
+.authPage {
+    background-color: var(--lightBackground);
+    min-height: 100vh;
+    max-height: 100vh;
+}
+
+.authPage .leftSide {
+    width: 20%;
+    height: 100vh;
+    background-color: wheat;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+}
+
+.authPage .rightSide {
+    width: 80%;
+    height: 100vh;
+    justify-content: center;
+    justify-items: flex-start;
+    align-content: flex-start;
+    align-items: center;
+}
+
+.authForm {
+    width: 60%;
+}
+
+.authForm h3 {
+    padding: 0rem 1.5rem;
+    color: var(--darkBackground);
+}
+
+
+
+.authForm > div {
+    height: 60px;
+}
