@@ -15,6 +15,7 @@ type Props = {
 }
 
 export const Layout: FunctionComponent<Props> = (props) => {
+    const [openState, toggleMenu] = useState(false);
     
     // Check status of FB User
     // onAuthStateChanged(authState, (user) => {
@@ -33,19 +34,28 @@ export const Layout: FunctionComponent<Props> = (props) => {
             minHeight: "100vh",
             maxHeight: "100vh",
             overflow: "hidden"
-        }} className={`${styles.row}`}>
+        }} className={`${styles.row} `}>
+            <div
+                style={{
+                    display: !openState ? "" : "none"
+                }} 
+                className={styles.mainLayout}></div>
+            <div
+                style={{
+                    display: !openState ? "" : "none"
+                }} 
+                className={styles.blur}></div>
 
             {/* TODO: SIDE NAV COMP */}
-            <Menu />
+            <Menu openState={openState} toggleMenu={toggleMenu} />
            
             <main 
                 className={`${styles.col} ${styles.mainContainer}`}
                 style={{
-                    width: "80%",
-                    justifyContent: "space-between"
+                    justifyContent: "space-between",
                 }}>
                 <div className={`${styles.col}`}>
-                    <TopBar state={props.state} />
+                    <TopBar openState={openState} toggleMenu={toggleMenu} state={props.state} />
                     {props.children}
                 </div>
                 {/* <footer  className={`${styles.row} ${styles.footer}`}>
