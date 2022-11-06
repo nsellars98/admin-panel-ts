@@ -150,7 +150,7 @@ export default function Enter() {
                                 name="password"
                                 placeholder="" />
                             <label>Password </label>
-                            {/* <span><FontAwesomeIcon icon={faEyeSlash} /></span> */}
+                            {/* <span onClick={() => hidePass(!showPass)}><FontAwesomeIcon icon={faEyeSlash} /></span> */}
                         </label>
                     </div>
                     {/* <label 
