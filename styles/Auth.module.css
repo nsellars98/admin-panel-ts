@@ -112,7 +112,7 @@
     cursor: pointer;
 }
 .formToggle:hover h5 {
-    color: white
+    color: rgb(55, 55, 55)
 }
 
 .showPass {
@@ -123,6 +123,10 @@
     .authPage .rightSide {
         position: absolute;
         width: 100%;
+    }
+
+    .formToggle:hover h5 {
+        color: white
     }
     .authPage .leftSide > img {
     }

@@ -154,7 +154,9 @@ export default function Enter() {
                                 type="email"
                                 name="email"
                                 placeholder="" />
-                            <label>Email </label>
+                            <label style={{ 
+                                top: email != "" ? "-5px" : "", 
+                                fontSize: email != "" ? "10px" : ""}}>Email </label>
                         </label>
                     </div>
                     <div className={`${styles.row} ${styles.topLeft}`}>
@@ -166,7 +168,11 @@ export default function Enter() {
                                 type={showPass ? "text" : "password" }
                                 name="password"
                                 placeholder="" />
-                            <label onClick={() => hidePass(!showPass)}>Password <FontAwesomeIcon icon={showPass ? faEyeSlash : faEye } /> </label>
+                            <label 
+                                style={{ 
+                                    top: password != "" ? "-5px" : "", 
+                                    fontSize: password != "" ? "10px" : ""}}
+                                onClick={() => hidePass(!showPass)}>Password <FontAwesomeIcon icon={showPass ? faEyeSlash : faEye } /> </label>
                             {/* <span onClick={() => hidePass(!showPass)}><FontAwesomeIcon icon={faEyeSlash} /></span> */}
                         </label>
                     </div>

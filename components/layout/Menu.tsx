@@ -134,7 +134,7 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                             style={{
                                 borderLeft: router.pathname.includes("/products") ? "4px solid white" : "4px solid transparent"
                             }}
-                            href={'/'}>
+                            href={'/products/all'}>
                             <div className={`${styles.row} ${styles.menuItem} `}>
                                 <i
                                     style={{
@@ -232,7 +232,7 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                         </li>
                         <li 
                             onClick={(e) => logOut(e)}
-                            className={`${styles.menuSettingItem}`}>
+                            className={`${styles.mobileLogout} ${styles.menuSettingItem}`}>
                             <Link  
                                 className={`${styles.row}`}
                                 style={{
