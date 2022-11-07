@@ -15,7 +15,11 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Underline from "../ui/Underline";
-import { Dispatch, FC, FunctionComponent, SetStateAction, useState } from "react";
+import { Dispatch, FC, FunctionComponent, MouseEvent, SetStateAction, useState } from "react";
+import { auth } from "../../lib/firebase";
+import { signOut } from "firebase/auth";
+
+const authState = auth;
 
 const URL = "https://cdn.shopify.com/s/files/1/0574/9263/5817/files/bigly_logo_art_file.png?v=1626380659&width=300";
 type Props = {
@@ -25,7 +29,20 @@ type Props = {
 export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
 
     const router = useRouter();
-    console.log(router.pathname)
+    console.log(router.pathname);
+
+
+    const logOut = (e: MouseEvent<any>) => {
+        e.preventDefault();
+        signOut(authState)
+            .then(() => {
+                // Sign-out successful.
+                console.log("Signed Out");
+            }).catch((error) => {
+            // An error happened.
+                console.log("Signed Out");
+            })
+    };
 
     return (
         <nav 
@@ -210,6 +227,21 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                                         style={{
                                             color: router.pathname.includes("/fullfilment") ? "white" : ""
                                         }}>Settings</span>
+                                </div>
+                            </Link>
+                        </li>
+                        <li 
+                            onClick={(e) => logOut(e)}
+                            className={`${styles.menuSettingItem}`}>
+                            <Link  
+                                className={`${styles.row}`}
+                                style={{
+                                    borderLeft: router.pathname.includes("/fullfilment") ? "4px solid white" : "4px solid transparent"
+                                }}
+                                href={'/'}>
+                                <div className={`${styles.row}`}>
+                                    <i><FontAwesomeIcon icon={faSliders} /></i>
+                                    <span>log Out</span>
                                 </div>
                             </Link>
                         </li>

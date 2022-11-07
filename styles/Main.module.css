@@ -256,7 +256,9 @@
         color: var(--darkBackground);
         transition: all .3s ease
     }
-
+    .formItem input:active + label,
+    .formItem input:focus-visible + label,
+    .formItem input:visited + label,
     .formItem input:focus + label{
         color: var(--accent);
         background: var(--lightBackground);

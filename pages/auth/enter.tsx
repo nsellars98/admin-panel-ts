@@ -1,5 +1,5 @@
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
-import { useState } from "react";
+import { use, useState } from "react";
 import { auth } from "../../lib/firebase";
 import {User} from "@firebase/auth-types"
 import Image from "next/image";
@@ -8,6 +8,7 @@ import styles from "../../styles/Main.module.css";
 import auth_styles from '../../styles/Auth.module.css';
 import {
     faEyeSlash,
+    faEye
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -39,30 +40,30 @@ export default function Enter() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [authState, toggleState] = useState(false);
-    const [user, setUser] = useState({} as User);
     const [showPass, hidePass] = useState(false);
     const [error, setErr] = useState("")
+    const [FORM_STATE, setFormState] = useState<"SIGN_UP" | "SIGN_IN" | "">("SIGN_UP");
+    const [loading, setLoading] = useState(false)
 
     const signIn = (e: any) => {
         e.preventDefault();
-        console.log("Signed Up");
-        console.log(email);
-        console.log(password);
 
-        console.log(authUser)
-        
-        // signInWithEmailAndPassword(authUser, email, password)
-        //     .then((userCredential) => {
-        //         const user = userCredential.user;
-        //         console.log(user)
-        //         toggleState(true);
-        //     })
-        //     .catch((err) => {
-        //         const errCode = err.code;
-        //         const errMsg = err.message;
-        //         console.log(" => ERROR")
-        //         console.log(errCode + " " + errMsg)
-        //     });
+        signInWithEmailAndPassword(authUser, email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                console.log(user)
+                toggleState(true);
+            })
+            .catch((err) => {
+                const errCode = err.code;
+                const errMsg = err.message;
+                console.log(" => ERROR")
+                console.log(errCode + " " + errMsg)
+            });
+    } 
+
+    const signUp = (e: any) => {
+        e.preventDefault();
         createUserWithEmailAndPassword(authUser, email, password)
             .then((userCredential) => {
                 // Signed in 
@@ -79,7 +80,7 @@ export default function Enter() {
                 const errorMessage = error.message;
                 setErr(errorCode + " " + errorMessage);
             });
-    } 
+    }
 
     return (
         <div className={` ${styles.row} ${auth_styles.authPage}`}>
@@ -115,14 +116,9 @@ export default function Enter() {
                 </div>
             </section>
             <section className={`${styles.col} ${auth_styles.rightSide}`}>
-                <header className={`${styles.row}`}>
-                    
+                <header className={`${styles.row} ${auth_styles.formToggle}`}>
+                    {FORM_STATE ? <h5 onClick={() => setFormState("SIGN_UP")}>Sign Up</h5> : <h5 onClick={() => setFormState("SIGN_IN")}>Sign In</h5>}         
                 </header>
-                <div>
-                    <div>
-                        {/* Holding the GUI for [email-privider] auth */}
-                    </div>
-                </div>
                 <form className={`${styles.col} ${styles.formItem} ${auth_styles.authForm}`}>
                     <h3 className={`${saira.className}`}>Sign In to </h3>
                     <div className={`${styles.row}`}>
@@ -146,10 +142,10 @@ export default function Enter() {
                             htmlFor="password">
                             <input
                                 onChange={(e) => setPassword(e.target.value)}
-                                type="password"
+                                type={showPass ? "text" : "password" }
                                 name="password"
                                 placeholder="" />
-                            <label>Password </label>
+                            <label onClick={() => hidePass(!showPass)}>Password <FontAwesomeIcon icon={showPass ? faEyeSlash : faEye } /> </label>
                             {/* <span onClick={() => hidePass(!showPass)}><FontAwesomeIcon icon={faEyeSlash} /></span> */}
                         </label>
                     </div>
@@ -168,19 +164,25 @@ export default function Enter() {
                     </label> */}
                     <div className={`${styles.row} ${auth_styles.btnRow}`}>
                         {   
-                            !authState ? 
+                            !authState && FORM_STATE == "SIGN_UP" ? 
                             <button 
                                 style={{
                                     padding: "0.5rem 1.2rem"
                                 }}
-                                onClick={(e) => signIn(e)}>LOG IN</button> :  
-                            <button disabled={true}>LOGGING IN</button> 
+                                onClick={(e) => signUp(e)}>Sign Up </button> :  
+                            !authState && FORM_STATE == "SIGN_IN" ? 
+                            <button 
+                                style={{
+                                    padding: "0.5rem 1.2rem"
+                                }}
+                                onClick={(e) => signIn(e)}>Sign In</button> : 
+                            <button disabled={true}>Loading . . .</button> 
                         }
                     </div>
 
                     <div className={`${styles.row}  ${auth_styles.errMsgRow} ${anonPro.className}`}>
-                        {   authState ? 
-                            <div><p>LOGGED IN</p></div>  : 
+                        {   !authState && !loading ? 
+                            null  : 
                             <div><p>NOT ACIVE USER</p></div> 
                         }
                     </div>

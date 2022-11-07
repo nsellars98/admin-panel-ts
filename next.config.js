@@ -22,13 +22,13 @@ const nextConfig = {
     FIREBASE_APIKEY: 'AIzaSyDegK-SUXxGM5KJlTtlcCBQqKdkNk6n9SU',
     FIREBASE_APP_ID: '1:637236465117:web:e0c30f8f817d0be9303a34',
   },
-  experimental: {
-    fontLoaders: [
-      { loader: '@next/font/google', options: { subsets: ['Merienda_One'] } },
-      { loader: '@next/font/google', options: { subsets: ['Saira_Extra_Condensed'] } },
-      { loader: '@next/font/google', options: { subsets: ['Anonymous_Pro'] } },
-    ],
-  },
+  // experimental: {
+  //   fontLoaders: [
+  //     { loader: '@next/font/google', options: { subsets: ['Merienda_One'] } },
+  //     { loader: '@next/font/google', options: { subsets: ['Saira_Extra_Condensed'] } },
+  //     { loader: '@next/font/google', options: { subsets: ['Anonymous_Pro'] } },
+  //   ],
+  // },
 
 }
 

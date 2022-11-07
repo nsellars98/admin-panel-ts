@@ -100,6 +100,17 @@
     color: white
 }
 
+.formToggle {
+    justify-content:flex-end;
+    position: absolute;
+    top: 0;
+    right: 2rem;
+}
+
+.showPass {
+
+}
+
 @media only screen and (max-width: 700px) {
     .authPage .rightSide {
         position: absolute;
@@ -114,7 +125,7 @@
         flex-direction: column;
     }
     .moto {
-        display: none;
+        /* display: none; */
     }
     .colRight,
     .colRight > div {
