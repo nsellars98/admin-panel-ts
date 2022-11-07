@@ -241,7 +241,7 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                                 href={'/'}>
                                 <div className={`${styles.row}`}>
                                     <i><FontAwesomeIcon icon={faSliders} /></i>
-                                    <span>log Out</span>
+                                    <span>Logout</span>
                                 </div>
                             </Link>
                         </li>

@@ -43,7 +43,20 @@ export default function Enter() {
     const [showPass, hidePass] = useState(false);
     const [error, setErr] = useState("")
     const [FORM_STATE, setFormState] = useState<"SIGN_UP" | "SIGN_IN" | "">("SIGN_UP");
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
+    const [text, setText] = useState("");
+
+    // let text = ""
+    let i = 0;
+    const words = ["Site", "App", "Blog", "Store", "NFT"];
+
+    setInterval(() => {
+        // console.log("interval")
+        if (i)
+        i = i+1;
+        // setText(words[(i % words.length)]);
+        console.log(text)
+    }, 500)
 
     const signIn = (e: any) => {
         e.preventDefault();
@@ -94,7 +107,9 @@ export default function Enter() {
                             height={50}
                         />
                     </div>
-                    <h4 className={`${saira.className} ${auth_styles.moto}`}>Lorum ipsum...</h4>
+                    <h4 className={`${saira.className} ${auth_styles.moto}`}> Bring your next big idea to life with our
+                    <span> {text} </span>
+                    builder </h4>
                 </header>
                 <div className={`${styles.col} ${auth_styles.colRight}`}>
 
@@ -111,16 +126,16 @@ export default function Enter() {
                         <p>Art by</p>
                         <Link
                             className={`${auth_styles.artistList}`}
-                            href={"/"}><b>lorum ipsum</b></Link> 
+                            href={"/"}>Lorem Ipsum</Link> 
                     </footer>
                 </div>
             </section>
             <section className={`${styles.col} ${auth_styles.rightSide}`}>
                 <header className={`${styles.row} ${auth_styles.formToggle}`}>
-                    {FORM_STATE ? <h5 onClick={() => setFormState("SIGN_UP")}>Sign Up</h5> : <h5 onClick={() => setFormState("SIGN_IN")}>Sign In</h5>}         
+                    {FORM_STATE == "SIGN_UP" ? <h5 onClick={() => setFormState("SIGN_IN")}>Sign Up</h5> : <h5 onClick={() => setFormState("SIGN_UP")}>Sign In</h5>}         
                 </header>
                 <form className={`${styles.col} ${styles.formItem} ${auth_styles.authForm}`}>
-                    <h3 className={`${saira.className}`}>Sign In to </h3>
+                    <h3 className={`${saira.className}`}>  {FORM_STATE == "SIGN_UP"  ? "Sign up to" : "Sign in to"} </h3>
                     <div className={`${styles.row}`}>
                         <h2 className={`${meriendaOne.className} ${auth_styles.imPowered}`}>imPowered</h2>
                     </div>

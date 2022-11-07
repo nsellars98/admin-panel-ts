@@ -105,6 +105,11 @@
   .menuTitle {
     padding: 0rem 2rem;
   }
+
+  .menuSettingItem div {
+    justify-content: flex-start !important;
+    margin-top: 1rem;
+  }
   .menuSettingItem span,
   .menuSettingItem i {
     font-size: 15px;
@@ -436,6 +441,7 @@
         margin: 0;
         position: absolute;
     }
+    
     .mainLayout {
       flex-direction: column !important;
       background-image: url(https://nftcalendar.io/storage/uploads/events/2022/2/1Ocid2DOBGl6Hc0ABqHradG4zwXP6SdkOZPEoPjv.gif);
@@ -487,6 +493,7 @@
       color: var(--accent);
       top: -5px;
       font-size: 10px;
+      background-color: wheat;
     }
   }
   

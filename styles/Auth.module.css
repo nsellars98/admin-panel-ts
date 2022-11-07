@@ -10,7 +10,7 @@
 .authPage h1,
 .authPage p,
 .authPage span {
-    color: rgb(109, 109, 109) !important;
+    color: rgb(109, 109, 109);
 }
 
 .authPage .leftSide {
@@ -105,6 +105,14 @@
     position: absolute;
     top: 0;
     right: 2rem;
+
+}
+
+.formToggle:hover {
+    cursor: pointer;
+}
+.formToggle:hover h5 {
+    color: white
 }
 
 .showPass {
