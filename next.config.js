@@ -26,7 +26,8 @@ const nextConfig = {
     fontLoaders: [
       { loader: '@next/font/google', options: { subsets: ['Merienda_One'] } },
       { loader: '@next/font/google', options: { subsets: ['Saira_Extra_Condensed'] } },
-      { loader: '@next/font/google', options: { subsets: ['Anonymous_Pro'] } },
+      { loader: '@next/font/google', options: { subsets: ['Anonymous_Pro'] } }, 
+      { loader: '@next/font/google', options: { subsets: ['Bungee_Shade'] } }, 
     ],
   },
 

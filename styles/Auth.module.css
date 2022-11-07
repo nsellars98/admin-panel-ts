@@ -132,8 +132,9 @@
     .authPage {
         flex-direction: column;
     }
+    .art,
     .moto {
-        /* display: none; */
+        display: none;
     }
     .colRight,
     .colRight > div {

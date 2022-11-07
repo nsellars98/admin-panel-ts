@@ -17,6 +17,7 @@ import {
     Merienda_One,
     Saira_Extra_Condensed,
     Anonymous_Pro,
+    Bungee_Shade,
 } from '@next/font/google'
 
 const meriendaOne = Merienda_One({
@@ -25,6 +26,10 @@ const meriendaOne = Merienda_One({
 
 const saira = Saira_Extra_Condensed({
     weight: "400",
+})
+
+const bungee = Bungee_Shade({
+    weight: '400'
 })
 
 const anonPro = Anonymous_Pro({
@@ -44,19 +49,19 @@ export default function Enter() {
     const [error, setErr] = useState("")
     const [FORM_STATE, setFormState] = useState<"SIGN_UP" | "SIGN_IN" | "">("SIGN_UP");
     const [loading, setLoading] = useState(false);
-    const [text, setText] = useState("");
+    // const [text, setText] = useState("");
 
-    // let text = ""
-    let i = 0;
-    const words = ["Site", "App", "Blog", "Store", "NFT"];
+    let text = "app"
+    // let i = 0;
+    // const words = ["Site", "App", "Blog", "Store", "NFT"];
 
-    setInterval(() => {
-        // console.log("interval")
-        if (i)
-        i = i+1;
-        // setText(words[(i % words.length)]);
-        console.log(text)
-    }, 500)
+    // setInterval(() => {
+    //     // console.log("interval")
+    //     if (i)
+    //     i = i+1;
+    //     // setText(words[(i % words.length)]);
+    //     console.log(text)
+    // }, 500)
 
     const signIn = (e: any) => {
         e.preventDefault();
@@ -108,14 +113,15 @@ export default function Enter() {
                         />
                     </div>
                     <h4 className={`${saira.className} ${auth_styles.moto}`}> Bring your next big idea to life with our
-                    <span> {text} </span>
+                    {/* <span> {text} </span> */}
                     builder </h4>
                 </header>
                 <div className={`${styles.col} ${auth_styles.colRight}`}>
 
-                    <div className={`${styles.col}`}>
+                    <div className={`${styles.col} ${auth_styles.art}`}>
                         <div>
                             <Image 
+                                className={`${auth_styles.className}`}
                                 src={IMG_NFT} 
                                 alt="Art for enter now page." 
                                 width={250}
@@ -137,7 +143,7 @@ export default function Enter() {
                 <form className={`${styles.col} ${styles.formItem} ${auth_styles.authForm}`}>
                     <h3 className={`${saira.className}`}>  {FORM_STATE == "SIGN_UP"  ? "Sign up to" : "Sign in to"} </h3>
                     <div className={`${styles.row}`}>
-                        <h2 className={`${meriendaOne.className} ${auth_styles.imPowered}`}>imPowered</h2>
+                        <h2 className={`${bungee.className} ${auth_styles.imPowered}`}>imPowered</h2>
                     </div>
                     <div className={`${styles.row} ${styles.topLeft}`}>
                         <label 
