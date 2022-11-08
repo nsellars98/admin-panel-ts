@@ -1,6 +1,10 @@
+import { FunctionComponent } from "react";
 import styles from "../../styles/Main.module.css";
+interface Props {
+    width: number
+}
 
-export const Underline = () => {
+export const Underline: FunctionComponent<Props> = ({width}) => {
     return (
         <div 
             className={`${styles.row}`}
@@ -11,7 +15,7 @@ export const Underline = () => {
                 className={`${styles.underline}`} 
                 style={{
                     padding: "0 2rem",
-                    width: "40%"
+                    width: "" + width + "%"
                 }}></div>
         </div>
     )

@@ -11,7 +11,8 @@ import {
     faMoneyBillTransfer,
     faTruckFast,
     faSliders,
-    faArrowRightFromBracket
+    faArrowRightFromBracket,
+    faPersonThroughWindow
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Underline from "../ui/Underline";
@@ -65,7 +66,7 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                 </div>
             </header>
             <div className={`${styles.col} ${styles.menu} `}>
-                <Underline />
+                <Underline width={40} />
                 <ul className={`${styles.col}`}>
                     <li className={`${styles.menuItem} ${styles.menuTitle}`}>
                         <p>Menu</p>
@@ -153,7 +154,7 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                             style={{
                                 borderLeft: router.pathname.includes("/customers") ? "4px solid white" : "4px solid transparent"
                             }}
-                            href={'/'}>
+                            href={'/customers/all'}>
                             <div className={`${styles.row} ${styles.menuItem} `}>
                                 <i
                                     style={{
@@ -206,7 +207,7 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                     </li>
                 </ul>
                 <div className={`${styles.col} `}>
-                    <Underline />
+                    <Underline width={40} />
                     <ul>
                         <li className={`${styles.menuSettingItem}`}>
                             <p>Bigly Store</p>
@@ -240,7 +241,7 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                                 }}
                                 href={'/'}>
                                 <div className={`${styles.row}`}>
-                                    <i><FontAwesomeIcon icon={faSliders} /></i>
+                                    <i><FontAwesomeIcon icon={faPersonThroughWindow} /></i>
                                     <span>Logout</span>
                                 </div>
                             </Link>
