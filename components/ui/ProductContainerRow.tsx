@@ -28,7 +28,7 @@ export const ProductContainerRow: FunctionComponent<any>  = ({p }) => {
                 style={{
                     width: "5%",
                     alignItems: "center"
-                }} className={`${styles.col}`}>
+                }} className={`${styles.col} ${styles.checkboxMobile}`}>
                 <input type="checkbox" name="" id="" />
             </div>
             <div 
@@ -36,7 +36,7 @@ export const ProductContainerRow: FunctionComponent<any>  = ({p }) => {
                     width: "30%",
                     justifyContent: "flex-start"
                 }} 
-                className={`${styles.col}`}>
+                className={`${styles.col} ${styles.rowOneMobile}`}>
                 <span 
                     style={{
                         fontSize: "1rem",
@@ -55,7 +55,7 @@ export const ProductContainerRow: FunctionComponent<any>  = ({p }) => {
                     width: "15%",
                     justifyContent: "flex-start"
                 }} 
-                className={`${styles.col}`}>
+                className={`${styles.col} ${styles.rowTwoMobile}`}>
                 <span 
                 style={{
                     fontSize: "1rem"
@@ -73,7 +73,7 @@ export const ProductContainerRow: FunctionComponent<any>  = ({p }) => {
                     justifyContent: "flex-start",
                     overflow: "hidden"
                 }} 
-                className={`${styles.row}`}>
+                className={`${styles.row} ${styles.noneMobile}`}>
                 {collections?.map((collection, i) => (<p className={`${styles.tagRowItem}`}>{collection}{i != collections.length-1 ? ", " : ""}</p>) )}
             </div>
             <div 
@@ -81,7 +81,7 @@ export const ProductContainerRow: FunctionComponent<any>  = ({p }) => {
                     width: "20%",
                     justifyContent: "flex-start"
                 }} 
-                className={`${styles.row}`}>
+                className={`${styles.row} ${styles.noneMobile}`}>
                 {tags?.map((tag, i) => (<p>{tag}{i != tags.length-1 ? ", " : ""}</p>) )}
             </div>
         </div>

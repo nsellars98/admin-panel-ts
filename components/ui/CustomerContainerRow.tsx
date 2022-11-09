@@ -29,7 +29,7 @@ export const CustomerContainerRow: FunctionComponent<any> = ({c}) => {
                 style={{
                     width: "5%",
                     alignItems: "center"
-                }} className={`${styles.col}`}>
+                }} className={`${styles.col} ${styles.checkboxMobile}`}>
                 <input type="checkbox" name="" id="" />
             </div>
             <div 
@@ -37,7 +37,7 @@ export const CustomerContainerRow: FunctionComponent<any> = ({c}) => {
                     width: "30%",
                     justifyContent: "flex-start"
                 }} 
-                className={`${styles.col}`}>
+                className={`${styles.col} ${styles.rowOneMobile}`}>
                 <span 
                     style={{
                         fontSize: "1rem",
@@ -47,8 +47,8 @@ export const CustomerContainerRow: FunctionComponent<any> = ({c}) => {
                         fontSize: "0.7rem",
                         justifyContent: "flex-start"
                     }}
-                    className={`${styles.row}`}>
-                    {email}
+                    className={`${styles.row} `}>
+                    <span>{email}</span>
                 </div>
             </div>
             <div 
@@ -56,7 +56,7 @@ export const CustomerContainerRow: FunctionComponent<any> = ({c}) => {
                     width: "15%",
                     justifyContent: "flex-start"
                 }} 
-                className={`${styles.col}`}>
+                className={`${styles.col} ${styles.rowTwoMobile}`}>
                 <span 
                 style={{
                     fontSize: "1rem"
@@ -67,7 +67,7 @@ export const CustomerContainerRow: FunctionComponent<any> = ({c}) => {
                         background: "#aff2af",
                         border: "1px solid #7aff7a",
                         color: "gray"
-                    }} className={`${styles.statusSubHead}`}>Active</p> : 
+                    }} className={`${styles.statusSubHead} `}>Active</p> : 
                     <p className={`${styles.statusSubHead}`}>Drafted</p>
                 }
             </div>
@@ -77,7 +77,7 @@ export const CustomerContainerRow: FunctionComponent<any> = ({c}) => {
                     justifyContent: "flex-start",
                     overflow: "hidden"
                 }} 
-                className={`${styles.row}`}>
+                className={`${styles.row} ${styles.noneMobile}`}>
                 {total_value}
             </div>
             <div 
@@ -85,7 +85,7 @@ export const CustomerContainerRow: FunctionComponent<any> = ({c}) => {
                     width: "20%",
                     justifyContent: "flex-start"
                 }} 
-                className={`${styles.row}`}>
+                className={`${styles.row} ${styles.noneMobile}`}>
                 {tags?.map((tag, i) => (<p>{tag}{i != tags.length-1 ? ", " : ""}</p>) )}
             </div>
         </div>

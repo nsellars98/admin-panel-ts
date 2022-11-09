@@ -74,7 +74,7 @@ export default function  AllProducts(props: Prop) {
                 />
             <main className={`${styles.col} ${styles.container}`}>
                 <div className={`${styles.col} ${styles.card}`}>
-                    <div style={{ alignItems: "center"}} className={`${styles.row}`}>
+                    <div style={{ alignItems: "center"}} className={`${styles.row} ${styles.itemRowHContainer}`}>
                         <div  className={`${styles.row} ${styles.itemsCardHeader}`}>
                             <div><h5>ALL</h5></div>
                             <div><h5>Draft</h5></div>

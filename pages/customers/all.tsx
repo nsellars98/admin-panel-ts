@@ -73,6 +73,26 @@ const customers: Customer[] = [
         total_orders: 100,
         total_value: 10000,
         tags: ["VIP_MEMBER"]
+    },
+    {
+        id: "9q2b92br",
+        first_name: "Darth",
+        last_name: "Vader",
+        email: "vader@gobigly.com",
+        status: true,
+        total_orders: 100,
+        total_value: 1000,
+        tags: ["VIP_MEMBER"]
+    },
+    {
+        id: "o23i023",
+        first_name: "Luke",
+        last_name: "Skywalker",
+        email: "luke@gobigly.com",
+        status: false,
+        total_orders: 100,
+        total_value: 10000,
+        tags: ["VIP_MEMBER"]
     }
 ]
 
@@ -94,7 +114,7 @@ export default function AllCustomers(props: Prop) {
                 />
             <main className={`${styles.col} ${styles.container}`}>
                 <div className={`${styles.col} ${styles.card}`}>
-                    <div style={{ alignItems: "center"}} className={`${styles.row}`}>
+                    <div style={{ alignItems: "center"}} className={`${styles.row} ${styles.itemRowHContainer}`}>
                         <div  className={`${styles.row} ${styles.itemsCardHeader}`}>
                             <div><h5>ALL</h5></div>
                             <div><h5>Draft</h5></div>
@@ -116,7 +136,7 @@ export default function AllCustomers(props: Prop) {
                             </div>
                             <div className={`${styles.row} ${styles.itemsFilterBtn}`}>
                                 <FontAwesomeIcon icon={faFilter} />
-                                <h5>Active</h5>
+                                <h5>Filter</h5>
                             </div>
                         </div>
                     </div>

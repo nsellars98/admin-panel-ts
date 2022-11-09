@@ -38,11 +38,14 @@
 }
 
 .mainContainer {
-    background-color: var(--lightBackground);
-    min-height: 100vh;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    width: 80%;
+  background-color: var(--lightBackground);
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  width: 80%;
+}
+.mainContainer {
+  display: flex;
 }
 
 .container {
@@ -590,7 +593,11 @@
 
 
 
-
+  @media only screen and (min-width: 700px) {
+    .sideBar {
+      display: flex !important;
+    }
+  }
 
   /* 
     =============================================================================================================
@@ -638,6 +645,7 @@
     .mobileExit {
       display: flex;
     }
+    .noneMobile,
     .topRight {
       display: none;
     }
@@ -672,6 +680,43 @@
     .mobileLogout {
       display: flex;
     }
+    .checkboxMobile {
+      width: 10% !important;
+    }
+    .rowOneMobile {
+      width: 50% !important;
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .rowOneMobile > div{
+      flex: 1;
+      min-width: 0;
+    }
+    .rowTwoMobile {
+      width: 40% !important;
+      padding-left: 10px;
+    }
+    .itemsCardSearch {
+      width: 100%;
+      overflow: hidden;
+      padding: 1rem 0;
+    }
+    .itemsCardSearch > div:first-child {
+      width: 70%;
+    }
+    .itemsCardSearch > div label {
+      background-color: white;
+    }
+    .itemRowHContainer {
+      flex-direction: column;
+    }
+    .rowOneMobile span,
+    .rowTwoMobile span {
+      font-size: 0.9rem !important;
+    }
+
   }
   
 /* 

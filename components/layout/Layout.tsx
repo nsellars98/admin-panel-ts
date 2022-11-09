@@ -38,7 +38,8 @@ export const Layout: FunctionComponent<Props> = (props) => {
                 className={`${styles.col} ${styles.mainContainer}`}
                 style={{
                     justifyContent: "space-between",
-                    overflowY: "hidden"
+                    overflowY: "hidden",
+                    display: (window.innerWidth > 700) ?  "" : !openState ?   "none" : ""
                 }}>
                 <div 
                     style={{

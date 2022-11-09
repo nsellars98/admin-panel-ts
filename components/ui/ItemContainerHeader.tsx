@@ -22,14 +22,14 @@ export const ItemContainerHeader: FunctionComponent<any> = ({
                 style={{
                     width: "5%",
                     alignItems: "center"
-                }} className={`${styles.col}`}>
+                }} className={`${styles.col} ${styles.checkboxMobile}`}>
                 <input type="checkbox" name="" id="" />
             </div>
             <div 
                 style={{
                     width: "30%"
                 }} 
-                className={`${styles.col}`}>
+                className={`${styles.col} ${styles.rowOneMobile}`}>
                 <span 
                 style={{
                     fontSize: "1rem"
@@ -40,7 +40,7 @@ export const ItemContainerHeader: FunctionComponent<any> = ({
                 style={{
                     width: "15%"
                 }} 
-                className={`${styles.col}`}>
+                className={`${styles.col} ${styles.rowTwoMobile}`}>
                 <span 
                 style={{
                     fontSize: "1rem"
@@ -51,14 +51,14 @@ export const ItemContainerHeader: FunctionComponent<any> = ({
                 style={{
                     width: "30%"
                 }} 
-                className={`${styles.col}`}>
+                className={`${styles.col} ${styles.noneMobile}`}>
                 <p>{rowThree}</p>
             </div>
             <div 
                 style={{
                     width: "20%"
                 }} 
-                className={`${styles.col}`}>
+                className={`${styles.col} ${styles.noneMobile}`}>
                 <p>{rowFour}</p>
             </div>
         </div>
