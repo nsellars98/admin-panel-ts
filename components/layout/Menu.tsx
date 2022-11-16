@@ -50,6 +50,7 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
             className={`${styles.col} ${styles.sideBar} `} 
             style={{
                 marginLeft: openState ? "-600px" : "0",
+                height: "" + window.innerHeight + "px"
             }}>
             <header className={`${styles.col} ${styles.topHeaderMobile}`}>
                 <div className={`${styles.row}`}>
@@ -64,9 +65,13 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                         <div><FontAwesomeIcon icon={faArrowRightFromBracket} /></div>
                     </div>
                 </div>
+                    <Underline width={40} />
             </header>
-            <div className={`${styles.col} ${styles.menu} `}>
-                <Underline width={40} />
+            <div 
+                style={{
+                    height: "" + window.innerHeight + "px"
+                }}
+                className={`${styles.col} ${styles.menu} `}>
                 <ul className={`${styles.col}`}>
                     <li className={`${styles.menuItem} ${styles.menuTitle}`}>
                         <p>Menu</p>

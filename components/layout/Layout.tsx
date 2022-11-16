@@ -18,7 +18,6 @@ export const Layout: FunctionComponent<Props> = (props) => {
     return (
         <div style={{
             minHeight: "100vh",
-            maxHeight: "100vh",
         }} className={`${styles.row} `}>
             <div
                 style={{
@@ -38,14 +37,12 @@ export const Layout: FunctionComponent<Props> = (props) => {
                 className={`${styles.col} ${styles.mainContainer}`}
                 style={{
                     justifyContent: "space-between",
-                    overflowY: "hidden",
-                    display: (window.innerWidth > 700) ?  "" : !openState ?   "none" : ""
+                    display: (window.innerWidth > 700) ?  "" : !openState ?   "none" : "",
+                    height: "" + window.innerHeight + "px"
                 }}>
                 <div 
                     style={{
                         justifyContent: "space-between",
-                        overflowY: "hidden",
-                        overflowX: "hidden"
                     }}className={`${styles.col}`}>
                     <TopBar openState={openState} toggleMenu={toggleMenu} state={props.state} />
                     {props.children}

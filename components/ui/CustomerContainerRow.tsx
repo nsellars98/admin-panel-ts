@@ -18,6 +18,7 @@ export const CustomerContainerRow: FunctionComponent<any> = ({c}) => {
 
     return (
         <div 
+            key={id}
             style={{
                 justifyContent: "flex-start",
                 alignItems: "center",

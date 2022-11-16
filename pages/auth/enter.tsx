@@ -172,23 +172,12 @@ export default function Enter() {
                                 style={{ 
                                     top: password != "" ? "-5px" : "", 
                                     fontSize: password != "" ? "10px" : ""}}
-                                onClick={() => hidePass(!showPass)}>Password <FontAwesomeIcon icon={showPass ? faEyeSlash : faEye } /> </label>
-                            {/* <span onClick={() => hidePass(!showPass)}><FontAwesomeIcon icon={faEyeSlash} /></span> */}
+                                onClick={() => hidePass(!showPass)}>
+                                    Password 
+                                    <FontAwesomeIcon icon={showPass ? faEyeSlash : faEye } />
+                            </label>
                         </label>
                     </div>
-                    {/* <label 
-                        className={`${styles.col}`}
-                        htmlFor="password">
-                        <div>
-                            <span>Password</span>
-                            <Link href={"/"}><b>Forgot password?</b></Link>
-                        </div>
-                        <input
-                            type="current-password"
-                            name="password"
-                            placeholder="B.Yoda@GoBigly.com"
-                            onChange={(e) => setPassword(e.target.value)}/>
-                    </label> */}
                     <div className={`${styles.row} ${auth_styles.btnRow}`}>
                         {   
                             !authState && FORM_STATE == "SIGN_UP" ? 
