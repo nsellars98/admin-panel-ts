@@ -1,5 +1,5 @@
-import styles from "../../styles/Main.module.css";
-import AllItemHeader from "../../components/ui/AllItemHeader";
+import styles from "../../../styles/Main.module.css";
+import AllItemHeader from "../../../components/ui/AllItemHeader";
 import { FunctionComponent, useState } from "react";
 import {
     faFilter,
@@ -7,17 +7,17 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     ProductContainerRow
-} from "../../components/ui/ProductContainerRow";
+} from "../../../components/ui/ProductContainerRow";
 import {
     ItemContainerHeader
-} from "../../components/ui/ItemContainerHeader";
-import { Product } from "../../lib/types/products";
-import Underline from "../../components/ui/Underline";
+} from "../../../components/ui/ItemContainerHeader";
+import { Product } from "../../../lib/types/products";
+import Underline from "../../../components/ui/Underline";
 import * as crypto from "crypto"
 
 const products: Product[] = [
     {
-        title: "1776 Hoodie",
+        title: "RAM + 10k -- Evergreen",
         status: false,
         id: crypto.randomBytes(10).toString("hex"),
         price: "$68.00",
@@ -26,7 +26,7 @@ const products: Product[] = [
         options: ["Color", "Size"]
     },
     {
-        title: "Desantis Land Hoodie",
+        title: "Thug Nasty - Fight Bundle Pack",
         status: true,
         id: crypto.randomBytes(10).toString("hex"),
         price: "$72.00",
@@ -69,9 +69,9 @@ export default function  AllProducts(props: Prop) {
     return (
         <div className={`${styles.col}`}>
             <AllItemHeader 
-                title={"Products"}
-                createTxt={"Create Product"}
-                createPage={"/products/create"}
+                title={"Funnel Analytics"}
+                createTxt={"Create Report"}
+                createPage={"/analytics/reports/create"}
                 />
             <main className={`${styles.col} ${styles.container}`}>
                 <div className={`${styles.col} ${styles.card}`}>
@@ -87,8 +87,8 @@ export default function  AllProducts(props: Prop) {
                                     className={`${styles.formItem} ${styles.row}`} >
                                     <input
                                         onChange={(e) => setItemSearch(e.target.value)}
-                                        type="email"
-                                        name="email"
+                                        type="cardSearch"
+                                        name="cardSearch"
                                         placeholder="" />
                                     <label style={{ 
                                         top: itemSearch != "" ? "-5px" : "", 

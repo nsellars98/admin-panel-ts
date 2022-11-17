@@ -57,7 +57,7 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                     <Image
                     src={URL}
                     alt="imPowered Logo"
-                    width={90}
+                    width={90} 
                     height={90}/>
                     <div 
                         onClick={(e) => toggleMenu(!openState)}
@@ -76,7 +76,7 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                     <li className={`${styles.menuItem} ${styles.menuTitle}`}>
                         <p>Menu</p>
                     </li>
-                    <li className={`${styles.row}`}>
+                    <li className={`${styles.col}`}>
                         <Link  
                             className={`${styles.row}`}
                             style={{
@@ -84,8 +84,7 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                             }}
                             href={'/'}>
                             <div className={`${styles.row} ${styles.menuItem} `}>
-                                <i
-                                    style={{
+                                <i style={{
                                         color: router.pathname == "/" ? "white" : ""
                                     }}><FontAwesomeIcon icon={faGauge}/></i>
                                 <span 
@@ -95,7 +94,7 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                             </div>
                         </Link>
                     </li>
-                    <li className={`${styles.row}`}>
+                    <li className={`${styles.col}`}>
                         <Link  
                             className={`${styles.row}`}
                             style={{
@@ -105,15 +104,35 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                             <div className={`${styles.row} ${styles.menuItem} `}>
                                 <i 
                                     style={{
-                                        color: router.pathname.includes("/analytics") ? "white" : ""
+                                        color: router.pathname.includes("/analytics") ? "" : ""
                                     }}>
                                     <FontAwesomeIcon icon={faMagnifyingGlassChart} /></i>
                                 <span 
                                     style={{
-                                        color: router.pathname.includes("/analytics") ? "white" : ""
+                                        color: router.pathname.includes("/analytics") ? "" : ""
                                     }}>Analytics</span>
                             </div>
                         </Link>
+                        <ul className={`${styles.col}`}>
+                            <li className={`${styles.col} ${styles.indentedMenuItem}`}>
+                                <Link  
+                                    className={`${styles.row}`}
+                                    href={'/analytics/funnels/all'}>
+                                    <div className={`${styles.row} ${styles.menuItem} `}>
+                                        <i
+                                            style={{
+                                                color: router.pathname == "/" ? "" : "",
+                                                fontSize: "0.8rem",
+                                                padding: "0.1rem 0",
+                                            }}><FontAwesomeIcon icon={faGauge}/></i>
+                                        <span 
+                                            style={{
+                                                color: router.pathname == "/" ? "" : ""
+                                            }}>Funnel</span>
+                                    </div>
+                                </Link>
+                            </li>
+                        </ul>
                     </li>
                     <li className={`${styles.row}`}>
                         <Link  
@@ -134,7 +153,7 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                             </div>
                         </Link>
                     </li>
-                    <li className={`${styles.row}`}>
+                    <li className={`${styles.col}`}>
                         <Link  
                             className={`${styles.row}`}
                             style={{
@@ -152,8 +171,82 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                                     }}>Products</span>
                             </div>
                         </Link>
+                        <ul className={`${styles.col}`}>
+                            <li className={`${styles.col} ${styles.indentedMenuItem}`}>
+                                <Link  
+                                    className={`${styles.row}`}
+                                    href={'/'}>
+                                    <div className={`${styles.row} ${styles.menuItem} `}>
+                                        <i
+                                            style={{
+                                                color: router.pathname == "/" ? "" : "",
+                                                fontSize: "0.8rem",
+                                                padding: "0.1rem 0",
+                                            }}><FontAwesomeIcon icon={faGauge}/></i>
+                                        <span 
+                                            style={{
+                                                color: router.pathname == "/" ? "" : ""
+                                            }}>Subscriptions</span>
+                                    </div>
+                                </Link>
+                            </li>
+                            <li className={`${styles.col} ${styles.indentedMenuItem}`}>
+                                <Link  
+                                    className={`${styles.row}`}
+                                    href={'/'}>
+                                    <div className={`${styles.row} ${styles.menuItem} `}>
+                                        <i
+                                            style={{
+                                                color: router.pathname == "/" ? "" : "",
+                                                fontSize: "0.8rem",
+                                                padding: "0.1rem 0",
+                                            }}><FontAwesomeIcon icon={faGauge}/></i>
+                                        <span 
+                                            style={{
+                                                color: router.pathname == "/" ? "" : ""
+                                            }}>Bundles</span>
+                                    </div>
+                                </Link>
+                            </li>
+                            <li className={`${styles.col} ${styles.indentedMenuItem}`}>
+                                <Link  
+                                    className={`${styles.row}`}
+                                    href={'/'}>
+                                    <div className={`${styles.row} ${styles.menuItem} `}>
+                                        <i
+                                            style={{
+                                                color: router.pathname == "/" ? "" : "",
+                                                fontSize: "0.8rem",
+                                                padding: "0.1rem 0",
+                                            }}><FontAwesomeIcon icon={faGauge}/></i>
+                                        <span 
+                                            style={{
+                                                color: router.pathname == "/" ? "" : ""
+                                            }}>Collections</span>
+                                    </div>
+                                </Link>
+                            </li>
+                            <li className={`${styles.col} ${styles.indentedMenuItem}`}>
+                                <Link  
+                                    className={`${styles.row}`}
+                                    href={'/'}>
+                                    <div className={`${styles.row} ${styles.menuItem} `}>
+                                        <i
+                                            style={{
+                                                color: router.pathname == "/" ? "" : "",
+                                                fontSize: "0.8rem",
+                                                padding: "0.1rem 0",
+                                            }}><FontAwesomeIcon icon={faGauge}/></i>
+                                        <span 
+                                            style={{
+                                                color: router.pathname == "/" ? "" : ""
+                                            }}>Gift Cards</span>
+                                    </div>
+                                </Link>
+                            </li>
+                        </ul>
                     </li>
-                    <li className={`${styles.row}`}>
+                    <li className={`${styles.col}`}>
                         <Link  
                             className={`${styles.row}`}
                             style={{
@@ -172,7 +265,7 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                             </div>
                         </Link>
                     </li>
-                    <li className={`${styles.row}`}>
+                    <li className={`${styles.col}`}>
                         <Link  
                             className={`${styles.row}`}
                             style={{
@@ -190,6 +283,44 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                                     }}>Orders</span>
                             </div>
                         </Link>
+                        <ul className={`${styles.col}`}>
+                            <li className={`${styles.col} ${styles.indentedMenuItem}`}>
+                                <Link  
+                                    className={`${styles.row}`}
+                                    href={'/'}>
+                                    <div className={`${styles.row} ${styles.menuItem} `}>
+                                        <i
+                                            style={{
+                                                color: router.pathname == "/" ? "" : "",
+                                                fontSize: "0.8rem",
+                                                padding: "0.1rem 0",
+                                            }}><FontAwesomeIcon icon={faGauge}/></i>
+                                        <span 
+                                            style={{
+                                                color: router.pathname == "/" ? "" : ""
+                                            }}>Carts</span>
+                                    </div>
+                                </Link>
+                            </li>
+                            <li className={`${styles.col} ${styles.indentedMenuItem}`}>
+                                <Link  
+                                    className={`${styles.row}`}
+                                    href={'/'}>
+                                    <div className={`${styles.row} ${styles.menuItem} `}>
+                                        <i
+                                            style={{
+                                                color: router.pathname == "/" ? "" : "",
+                                                fontSize: "0.8rem",
+                                                padding: "0.1rem 0",
+                                            }}><FontAwesomeIcon icon={faGauge}/></i>
+                                        <span 
+                                            style={{
+                                                color: router.pathname == "/" ? "" : ""
+                                            }}>Draft Orders</span>
+                                    </div>
+                                </Link>
+                            </li>
+                        </ul>
                     </li>
                     <li className={`${styles.row}`}>
                         <Link  
@@ -213,43 +344,51 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                 </ul>
                 <div className={`${styles.col} `}>
                     <Underline width={40} />
-                    <ul>
-                        <li className={`${styles.menuSettingItem}`}>
+                    <ul style={{
+                            width: "100%",
+                            paddingLeft: 0
+                        }}>
+                        <li 
+                            className={`${styles.menuSettingItem}`}
+                            style={{
+                                width: "100%",
+                                padding: "1rem 2rem"
+                            }}>
                             <p>Bigly Store</p>
                         </li>
                         <li className={`${styles.menuSettingItem}`}>
                             <Link  
                                 className={`${styles.row}`}
-                                style={{
-                                    borderLeft: router.pathname.includes("/fullfilment") ? "4px solid white" : "4px solid transparent"
-                                }}
                                 href={'/'}>
-                                <div className={`${styles.row}`}>
+                                <div className={`${styles.row} ${styles.menuItem} `}>
                                     <i
                                         style={{
-                                            color: router.pathname.includes("/fullfilment") ? "white" : ""
-                                        }}><FontAwesomeIcon icon={faSliders} /></i>
-                                    <span
+                                            color: router.pathname == "/" ? "" : "",
+                                            fontSize: "0.8rem",
+                                            padding: "0.1rem 0",
+                                        }}><FontAwesomeIcon icon={faGauge}/></i>
+                                    <span 
                                         style={{
-                                            color: router.pathname.includes("/fullfilment") ? "white" : ""
-                                        }}>Settings</span>
+                                            color: router.pathname == "/" ? "" : ""
+                                        }}>Draft Orders</span>
                                 </div>
                             </Link>
                         </li>
                         <li 
                             onClick={(e) => logOut(e)}
-                            className={`${styles.mobileLogout} ${styles.menuSettingItem}`}>
-                            <Link  
-                                className={`${styles.row}`}
-                                style={{
-                                    borderLeft: router.pathname.includes("/fullfilment") ? "4px solid white" : "4px solid transparent"
-                                }}
-                                href={'/'}>
-                                <div className={`${styles.row}`}>
-                                    <i><FontAwesomeIcon icon={faPersonThroughWindow} /></i>
-                                    <span>Logout</span>
-                                </div>
-                            </Link>
+                            className={`${styles.menuSettingItem}`}>
+                            <div className={`${styles.row} ${styles.menuItem} `}>
+                                <i
+                                    style={{
+                                        color: router.pathname == "/" ? "" : "",
+                                        fontSize: "0.8rem",
+                                        padding: "0.1rem 0",
+                                    }}><FontAwesomeIcon icon={faGauge}/></i>
+                                <span 
+                                    style={{
+                                        color: router.pathname == "/" ? "" : ""
+                                    }}>Logout</span>
+                            </div>
                         </li>
                     </ul>
                 </div>

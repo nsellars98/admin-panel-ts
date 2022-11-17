@@ -80,10 +80,30 @@
   .menu {
     justify-content: space-between;
   }
+
+  .menu li:hover {
+    background-color: #424242;
+    border-radius: 6px;
+  }
+  .menu > ul > li > ul {
+    display: none;
+  }
+
+  .menu > ul > li:hover ul {
+    display: flex;
+  }
+
   .menuItem p,
   .menuSettingItem p {
     font-size: 10px;
     color: #c2c2c268;
+  }
+  .indentedMenuItem {
+    padding-left: 1rem;
+  }
+
+  .indentedMenuItem path {
+    padding-left: 1rem;
   }
   .menuTitle p {
     margin: 0;
