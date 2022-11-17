@@ -539,6 +539,12 @@
     width: auto !important;
     margin-left: 1rem;
   }
+
+  .allItemHeader > div:nth-last-child(1) > .analytics{
+    align-items: flex-end;
+    width: -webkit-fill-available !important;
+    margin-left: 1rem;
+  }
   .allItemHeader > div:nth-last-child(2) {
     width: 30%;
   }

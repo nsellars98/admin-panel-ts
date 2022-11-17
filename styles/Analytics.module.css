@@ -1,0 +1,17 @@
+.funnelQuickStats {
+
+}
+
+.funnelQuickStatsHeader {
+    padding: 1rem 0 0rem 0rem;
+    /* border-top-left-radius: 6px; */
+}   
+
+.funnelQuickStatsHeader > div{
+    margin-top: 0rem;
+    padding: 1rem 0.5rem 1rem 1rem;
+}
+
+.funnelQuickStatsHeader > h5 {
+    padding-left: 1rem;
+}
