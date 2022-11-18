@@ -28,8 +28,6 @@ const upsellEarning = "$4.17";
 const upsellEarningUnique = "$5.56";
 
 
-
-
 export const FunnelStats = () => {
     return (
         <div style={{ marginTop: "1rem" }} className={`${styles.col} ${styles.card}`}>
