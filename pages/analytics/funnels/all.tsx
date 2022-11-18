@@ -15,6 +15,7 @@ import { Product } from "../../../lib/types/products";
 import Underline from "../../../components/ui/Underline";
 import * as crypto from "crypto"
 import { AnalyticsContainerRow } from "../../../components/ui/AnalyticsContainerRow";
+import { MainRowContainerHeader } from "../../../components/ui/MainRowContainerHeader";
 
 const funnels = [
     {
@@ -66,6 +67,8 @@ interface Prop {
 
 export default function  AllProducts(props: Prop) {
     const [itemSearch, setItemSearch] = useState("");
+    const [list, setProducts] = useState<any[]>(funnels);
+    const [filterState, setFilter] = useState<"" | "INACTIVE" | "ACTIVE">("");
 
     return (
         <div className={`${styles.col}`}>
@@ -77,11 +80,11 @@ export default function  AllProducts(props: Prop) {
             <main className={`${styles.col} ${styles.container}`}>
                 <div className={`${styles.col} ${styles.card}`}>
                     <div style={{ alignItems: "center"}} className={`${styles.row} ${styles.itemRowHContainer}`}>
-                        <div  className={`${styles.row} ${styles.itemsCardHeader}`}>
-                            <div><h5>ALL</h5></div>
-                            <div><h5>Draft</h5></div>
-                            <div><h5>Active</h5></div>
-                        </div>
+                        <MainRowContainerHeader
+                            list={funnels}
+                            type={filterState}
+                            setState={setProducts}
+                            setFilter={setFilter} />
                         <div className={`${styles.row}  ${styles.itemsCardSearch}`}>
                             <div className={`${styles.row}`}>
                                 <div
@@ -111,7 +114,7 @@ export default function  AllProducts(props: Prop) {
                             rowTwoLower={"Status"}
                             rowThree={"Total Sales"}
                             rowFour={"Total Orders"}/>
-                        {funnels && funnels.map((p) => {
+                        {list && list.map((p) => {
                             console.log(p.id);
                                 return (
                                     <div key={p.id} className={`${styles.col} ${styles.itemRow}`}>
@@ -129,8 +132,6 @@ export default function  AllProducts(props: Prop) {
                                 );
                         })}
                     </div>
-                </div>
-                <div  className={`${styles.row} ${styles.card}`}>
                 </div>
             </main>
         </div>

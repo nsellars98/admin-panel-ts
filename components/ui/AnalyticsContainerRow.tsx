@@ -37,7 +37,7 @@ export const AnalyticsContainerRow: FunctionComponent<Props>  = ({
             }}
             key={id}
             className={`${styles.row}`}
-            href={`/funnels/${id}`}>
+            href={`/analytics/funnels/${id}`}>
             <div 
                 style={{
                     justifyContent: "flex-start",

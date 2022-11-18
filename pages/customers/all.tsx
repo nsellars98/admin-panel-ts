@@ -7,6 +7,7 @@ import { CustomerContainerRow } from "../../components/ui/CustomerContainerRow";
 import Underline from "../../components/ui/Underline";
 import styles from "../../styles/Main.module.css";
 import { Customer } from "../../lib/types/customers";
+import { MainRowContainerHeader } from "../../components/ui/MainRowContainerHeader";
 
 interface Prop {
     itemTxt: string
@@ -104,6 +105,8 @@ const cols = [
 
 export default function AllCustomers(props: Prop) {
     const [itemSearch, setItemSearch] = useState("");
+    const [list, setProducts] = useState<any[]>(customers);
+    const [filterState, setFilter] = useState<"" | "INACTIVE" | "ACTIVE">("");
 
     return (
         <div className={`${styles.col}`}>
@@ -115,11 +118,11 @@ export default function AllCustomers(props: Prop) {
             <main className={`${styles.col} ${styles.container}`}>
                 <div className={`${styles.col} ${styles.card}`}>
                     <div style={{ alignItems: "center"}} className={`${styles.row} ${styles.itemRowHContainer}`}>
-                        <div  className={`${styles.row} ${styles.itemsCardHeader}`}>
-                            <div><h5>ALL</h5></div>
-                            <div><h5>Draft</h5></div>
-                            <div><h5>Active</h5></div>
-                        </div>
+                        <MainRowContainerHeader
+                            list={customers}
+                            type={filterState}
+                            setState={setProducts}
+                            setFilter={setFilter} />
                         <div className={`${styles.row}  ${styles.itemsCardSearch}`}>
                             <div className={`${styles.row}`}>
                                 <div
@@ -149,7 +152,7 @@ export default function AllCustomers(props: Prop) {
                             rowTwoLower={"Status"}
                             rowThree={"Total Value"}
                             rowFour={"Tags"} />
-                        {customers && customers.map((c) => {
+                        {list && list.map((c) => {
                             console.log("test");
                                 return (
                                     <div key={c.id} className={`${styles.col} ${styles.itemRow}`}>
@@ -160,8 +163,6 @@ export default function AllCustomers(props: Prop) {
                                 );
                         })}
                     </div>
-                </div>
-                <div  className={`${styles.row} ${styles.card}`}>
                 </div>
             </main>
 

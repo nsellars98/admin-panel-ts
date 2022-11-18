@@ -1,6 +1,6 @@
 import styles from "../../styles/Main.module.css";
 import AllItemHeader from "../../components/ui/AllItemHeader";
-import { FunctionComponent, useState } from "react";
+import { Dispatch, FunctionComponent, SetStateAction, useState } from "react";
 import {
     faFilter,
 } from '@fortawesome/free-solid-svg-icons';
@@ -14,6 +14,8 @@ import {
 import { Product } from "../../lib/types/products";
 import Underline from "../../components/ui/Underline";
 import * as crypto from "crypto"
+import { filterActive, filterAll } from "../../lib/helpers/ActiveFilter";
+import { MainRowContainerHeader } from "../../components/ui/MainRowContainerHeader";
 
 const products: Product[] = [
     {
@@ -36,35 +38,14 @@ const products: Product[] = [
     }
 ]
 
-const cols = [
-    {
-        width: "10%",
-        html: '<input type="checkbox" name="" id="" />',
-        id: 0
-    },
-    {
-        width: "10%",
-        html: '<input type="checkbox" name="" id="" />',
-        id: 1
-    },
-    {
-        width: "10%",
-        html: '<h4>{title}</h4>',
-        id: 2
-    },
-    {
-        width: "10%",
-        html: '<input type="checkbox" name="" id="" />',
-        id: 2
-    }
-]
-
 interface Prop {
     itemTxt: string
 }
 
 export default function  AllProducts(props: Prop) {
     const [itemSearch, setItemSearch] = useState("");
+    const [list, setProducts] = useState<any[]>(products);
+    const [filterState, setFilter] = useState<"" | "INACTIVE" | "ACTIVE">("");
 
     return (
         <div className={`${styles.col}`}>
@@ -76,11 +57,11 @@ export default function  AllProducts(props: Prop) {
             <main className={`${styles.col} ${styles.container}`}>
                 <div className={`${styles.col} ${styles.card}`}>
                     <div style={{ alignItems: "center"}} className={`${styles.row} ${styles.itemRowHContainer}`}>
-                        <div  className={`${styles.row} ${styles.itemsCardHeader}`}>
-                            <div><h5>ALL</h5></div>
-                            <div><h5>Draft</h5></div>
-                            <div><h5>Active</h5></div>
-                        </div>
+                        <MainRowContainerHeader 
+                            list={products}
+                            type={filterState}
+                            setState={setProducts}
+                            setFilter={setFilter} />
                         <div className={`${styles.row}  ${styles.itemsCardSearch}`}>
                             <div className={`${styles.row}`}>
                                 <div
@@ -92,7 +73,7 @@ export default function  AllProducts(props: Prop) {
                                         placeholder="" />
                                     <label style={{ 
                                         top: itemSearch != "" ? "-5px" : "", 
-                                        fontSize: itemSearch != "" ? "10px" : ""}}>{` 🔍 Search ${props.itemTxt}` }</label>
+                                        fontSize: itemSearch != "" ? "10px" : ""}}>{` 🔍 Search Products` }</label>
                                 </div>
                             </div>
                             <div className={`${styles.row} ${styles.itemsFilterBtn}`}>
@@ -110,21 +91,18 @@ export default function  AllProducts(props: Prop) {
                             rowTwoLower={"Status"}
                             rowThree={"Collections"}
                             rowFour={"Tags"}/>
-                        {products && products.map((p) => {
+                        {list && list.map((p) => {
                             console.log(p.id);
                                 return (
                                     <div key={p.id} className={`${styles.col} ${styles.itemRow}`}>
                                         <Underline width={100} />
                                         <ProductContainerRow 
                                             key={p.id}
-                                            cols={cols}
                                             p={p} />
                                     </div>
                                 );
                         })}
                     </div>
-                </div>
-                <div  className={`${styles.row} ${styles.card}`}>
                 </div>
             </main>
         </div>
