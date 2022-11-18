@@ -9,12 +9,12 @@ export const Underline: FunctionComponent<Props> = ({width}) => {
         <div 
             className={`${styles.row}`}
             style={{
-                padding: "0 2rem",
+                // padding: "0 2rem",
             }}>
             <div 
                 className={`${styles.underline}`} 
                 style={{
-                    padding: "0 2rem",
+                    // padding: "0 2rem",
                     width: "" + width + "%"
                 }}></div>
         </div>

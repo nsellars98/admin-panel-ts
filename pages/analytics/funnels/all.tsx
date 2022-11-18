@@ -14,25 +14,26 @@ import {
 import { Product } from "../../../lib/types/products";
 import Underline from "../../../components/ui/Underline";
 import * as crypto from "crypto"
+import { AnalyticsContainerRow } from "../../../components/ui/AnalyticsContainerRow";
 
-const products: Product[] = [
+const funnels = [
     {
         title: "RAM + 10k -- Evergreen",
         status: false,
         id: crypto.randomBytes(10).toString("hex"),
-        price: "$68.00",
-        collections: ["SALE", "Shirts"],
-        tags: ["VIP_ONLY"],
-        options: ["Color", "Size"]
+        aov: "$29.94",
+        total_sales: "$22,872.94",
+        total_orders: "159",
+        sales_rate: "8.59%",
     },
     {
         title: "Thug Nasty - Fight Bundle Pack",
         status: true,
         id: crypto.randomBytes(10).toString("hex"),
-        price: "$72.00",
-        collections: ["Best Sellers", "Hoodie"],
-        tags: ["VIP_ONLY" ],
-        options: ["Color", "Size"]
+        aov: "$29.94",
+        total_sales: "$22,872.94",
+        total_orders: "159",
+        sales_rate: "8.59%",
     }
 ]
 
@@ -70,8 +71,8 @@ export default function  AllProducts(props: Prop) {
         <div className={`${styles.col}`}>
             <AllItemHeader 
                 title={"Funnel Analytics"}
+                createPage={"/analytics/funnels/create"}
                 createTxt={"Create Report"}
-                createPage={"/analytics/reports/create"}
                 />
             <main className={`${styles.col} ${styles.container}`}>
                 <div className={`${styles.col} ${styles.card}`}>
@@ -105,20 +106,25 @@ export default function  AllProducts(props: Prop) {
                     <div className={`${styles.col} ${styles.itemsContainer}`}>
                         <ItemContainerHeader 
                             rowOneUpper={"Title"}
-                            rowOneLower={"Options"}
-                            rowTwoUpper={"Price"}
+                            rowOneLower={"First Sales Rate"}
+                            rowTwoUpper={"AOV"}
                             rowTwoLower={"Status"}
-                            rowThree={"Collections"}
-                            rowFour={"Tags"}/>
-                        {products && products.map((p) => {
+                            rowThree={"Total Sales"}
+                            rowFour={"Total Orders"}/>
+                        {funnels && funnels.map((p) => {
                             console.log(p.id);
                                 return (
                                     <div key={p.id} className={`${styles.col} ${styles.itemRow}`}>
                                         <Underline width={100} />
-                                        <ProductContainerRow 
+                                        <AnalyticsContainerRow 
                                             key={p.id}
-                                            cols={cols}
-                                            p={p} />
+                                            id={p.id}
+                                            colOneTop={p.title}
+                                            colOneBottom={p.sales_rate}
+                                            colTwoTop={p.aov}
+                                            colTwoBottom={p.status}
+                                            colThree={p.total_sales}
+                                            colFour={p.total_orders} />
                                     </div>
                                 );
                         })}
