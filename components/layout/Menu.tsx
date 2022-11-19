@@ -140,7 +140,7 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                             style={{
                                 borderLeft: router.pathname.includes("/discounts") ? "4px solid white" : "4px solid transparent"
                             }}
-                            href={'/'}>
+                            href={'/discounts/all'}>
                             <div className={`${styles.row} ${styles.menuItem} `}>
                                 <i
                                     style={{
@@ -175,7 +175,7 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                             <li className={`${styles.col} ${styles.indentedMenuItem}`}>
                                 <Link  
                                     className={`${styles.row}`}
-                                    href={'/'}>
+                                    href={'/products/subscriptions'}>
                                     <div className={`${styles.row} ${styles.menuItem} `}>
                                         <i
                                             style={{
@@ -193,7 +193,7 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                             <li className={`${styles.col} ${styles.indentedMenuItem}`}>
                                 <Link  
                                     className={`${styles.row}`}
-                                    href={'/'}>
+                                    href={'/products/bundles'}>
                                     <div className={`${styles.row} ${styles.menuItem} `}>
                                         <i
                                             style={{
@@ -211,7 +211,7 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                             <li className={`${styles.col} ${styles.indentedMenuItem}`}>
                                 <Link  
                                     className={`${styles.row}`}
-                                    href={'/'}>
+                                    href={'/products/collections'}>
                                     <div className={`${styles.row} ${styles.menuItem} `}>
                                         <i
                                             style={{
@@ -229,7 +229,7 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                             <li className={`${styles.col} ${styles.indentedMenuItem}`}>
                                 <Link  
                                     className={`${styles.row}`}
-                                    href={'/'}>
+                                    href={'/products/gift_cards'}>
                                     <div className={`${styles.row} ${styles.menuItem} `}>
                                         <i
                                             style={{
@@ -271,7 +271,7 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                             style={{
                                 borderLeft: router.pathname.includes("/orders") ? "4px solid white" : "4px solid transparent"
                             }}
-                            href={'/'}>
+                            href={'/orders/all'}>
                             <div className={`${styles.row} ${styles.menuItem} `}>
                                 <i
                                     style={{
@@ -287,7 +287,7 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                             <li className={`${styles.col} ${styles.indentedMenuItem}`}>
                                 <Link  
                                     className={`${styles.row}`}
-                                    href={'/'}>
+                                    href={'/orders/carts'}>
                                     <div className={`${styles.row} ${styles.menuItem} `}>
                                         <i
                                             style={{
@@ -305,7 +305,7 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                             <li className={`${styles.col} ${styles.indentedMenuItem}`}>
                                 <Link  
                                     className={`${styles.row}`}
-                                    href={'/'}>
+                                    href={'/orders/draft_orders'}>
                                     <div className={`${styles.row} ${styles.menuItem} `}>
                                         <i
                                             style={{
@@ -328,7 +328,7 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                             style={{
                                 borderLeft: router.pathname.includes("/fullfilment") ? "4px solid white" : "4px solid transparent"
                             }}
-                            href={'/'}>
+                            href={'/fullfilment/all'}>
                             <div className={`${styles.row} ${styles.menuItem} `}>
                                 <i
                                     style={{
@@ -359,18 +359,18 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                         <li className={`${styles.menuSettingItem}`}>
                             <Link  
                                 className={`${styles.row}`}
-                                href={'/'}>
+                                href={'/settings'}>
                                 <div className={`${styles.row} ${styles.menuItem} `}>
                                     <i
                                         style={{
                                             color: router.pathname == "/" ? "" : "",
                                             fontSize: "0.8rem",
                                             padding: "0.1rem 0",
-                                        }}><FontAwesomeIcon icon={faGauge}/></i>
+                                        }}><FontAwesomeIcon icon={faSliders}/></i>
                                     <span 
                                         style={{
                                             color: router.pathname == "/" ? "" : ""
-                                        }}>Draft Orders</span>
+                                        }}>Settings</span>
                                 </div>
                             </Link>
                         </li>
@@ -383,7 +383,7 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                                         color: router.pathname == "/" ? "" : "",
                                         fontSize: "0.8rem",
                                         padding: "0.1rem 0",
-                                    }}><FontAwesomeIcon icon={faGauge}/></i>
+                                    }}><FontAwesomeIcon icon={faPersonThroughWindow}/></i>
                                 <span 
                                     style={{
                                         color: router.pathname == "/" ? "" : ""
