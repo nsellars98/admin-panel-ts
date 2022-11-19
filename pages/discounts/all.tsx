@@ -26,64 +26,76 @@ import Underline from "../../components/ui/Underline";
 import * as crypto from "crypto"
 import { MainRowContainerHeader } from "../../components/ui/MainRowContainerHeader";
 import { MainRowContainer } from "../../components/ui/MainRowContainer";
-import { Subscriptions } from "../../lib/types/products";
+import { Discounts } from "../../lib/types/discounts";
+import { numberFormat } from "../../lib/helpers/formatters";
 
-const subscriptions: Subscriptions[] = [
+const discounts: Discounts[] = [
     {
-        title: "#SH-912398982",
-        status: false,
-        id: crypto.randomBytes(10).toString("hex"),
-        product_id:  crypto.randomBytes(10).toString("hex"),
-        tags: ["SALE", "Shirts"],
-        email: "allMight@gobigly.com",
-        first_name: "All",
-        last_name: "Might",
-        schedule: {
-            frequency: "MONTHLY",
-            date: String(1),
-            trial: 0
-        },
-        value: "$30.00"
+        status: true, 
+        title: "SUMMERSALE",
+        value_type: "PERCENTAGE",
+        value: 40,
+        type: "CODE" ,
+        code: "HIUYU2887",
+        id: "dis_" + crypto.randomBytes(10).toString('hex'),
+        automatic_type: "",
     },
     {
-        title: "#SH-92834592454",
-        status: true,
-        id: crypto.randomBytes(10).toString("hex"),
-        product_id:  crypto.randomBytes(10).toString("hex"),
-        tags: ["VIP_ONLY", "CLICK_FUNNEL"],
-        email: "allMight@gobigly.com",
-        first_name: "All",
-        last_name: "Might",
-        schedule: {
-            frequency: "TRIAL",
-            date: String(1),
-            trial: 7
+        status: true, 
+        title: "SIGN UP",
+        value_type: "FIXED",
+        value: 500,
+        type: "CODE" ,
+        code: "81be10123",
+        id: "dis_" + crypto.randomBytes(10).toString('hex'),
+        automatic_type: "",
+    },
+    {
+        status: true, 
+        title: "VIP Member",
+        value_type: "PERCENTAGE",
+        value: 40,
+        type: "AUTOMATIC" ,
+        code: "",
+        id: "dis_" + crypto.randomBytes(10).toString('hex'),
+        automatic_type: "TAGS",
+        requirement: {
+            customers: ["VIP"],
+            products: [],
+            collections: [],
         },
-        value: "$30.00"
-    }
+        exclude: {
+            customers: [],
+            products: ["EXCLUDE_VIP"],
+            collections: [],
+        },
+    },
 ]
 
 interface Prop {
     itemTxt: string
 }
 
-const Subscriptions = (props: Prop) => {
+const Discounts = (props: Prop) => {
     const [itemSearch, setItemSearch] = useState("");
-    const [list, setOrders] = useState<any[]>(subscriptions);
+    const [list, setOrders] = useState<Discounts[]>(discounts);
     const [filterState, setFilter] = useState<"" | "INACTIVE" | "ACTIVE">("");
+
+
+    let tag_list: string[] = [];
 
     return (
         <div className={`${styles.col}`}>
             <AllItemHeader 
-                title={"Subscriptions"}
-                createPage={"/products/subscriptions/create"}
-                createTxt={"Create Subscriptions"}
+                title={"Discounts"}
+                createPage={"/discounts/create"}
+                createTxt={"Create Discount"}
                 />
             <main className={`${styles.col} ${styles.container}`}>
                 <div className={`${styles.col} ${styles.card}`}>
                     <div style={{ alignItems: "center"}} className={`${styles.row} ${styles.itemRowHContainer}`}>
                         <MainRowContainerHeader
-                            list={subscriptions}
+                            list={discounts}
                             type={filterState}
                             setState={setOrders}
                             setFilter={setFilter} />
@@ -110,26 +122,50 @@ const Subscriptions = (props: Prop) => {
 
                     <div className={`${styles.col} ${styles.itemsContainer}`}>
                         <ItemContainerHeader 
-                            rowOneUpper={"Subscription ID"}
-                            rowOneLower={"Full Name"}
+                            rowOneUpper={"Title"}
+                            rowOneLower={"Discount Code"}
                             rowTwoUpper={"Order Value"}
                             rowTwoLower={"Status"}
-                            rowThree={"Schedule"}
+                            rowThree={"Value Type / Code Type"}
                             rowFour={"Tags"}/>
-                        {list && list.map((s: Subscriptions) => {
+
+                        {list && list.map((s: Discounts) => {
+
+
+                            if (s.requirement) {
+                                tag_list = [
+                                    ...tag_list,
+                                    ...s.requirement?.products,
+                                    ...s.requirement?.collections,
+                                    ...s.requirement?.customers
+                                ]
+                            }
+
+                            console.log(tag_list);
+
+                            if (s.exclude) {
+                                tag_list = [
+                                    ...tag_list,
+                                    ...s.exclude?.products,
+                                    ...s.exclude?.collections,
+                                    ...s.exclude?.customers
+                                ]
+                            }
+                            console.log(tag_list);
+
                             console.log(s.id);
                                 return (
                                     <div key={s.id} className={`${styles.col} ${styles.itemRow}`}>
                                         <Underline width={100} />
                                         <MainRowContainer
-                                            href={`/products/subscriptions/${s.id}`} 
+                                            href={`/discounts/${s.id}`} 
                                             id={s.id}
                                             colOneTop={s.title}
-                                            colOneBottom={s.first_name + " " + s.last_name}
-                                            colTwoTop={s.value}
+                                            colOneBottom={s.code}
+                                            colTwoTop={s.value_type == "FIXED" ? numberFormat(s.value / 100) : s.value + "%"}
                                             colTwoBottom={s.status}
-                                            colThree={s.schedule}
-                                            colFour={s.tags} />
+                                            colThree={s.value_type + " / " + s.automatic_type}
+                                            colFour={tag_list} />
                                     </div>
                                 );
                         })}
@@ -140,4 +176,4 @@ const Subscriptions = (props: Prop) => {
     )
 }
 
-export default Subscriptions;
+export default Discounts;

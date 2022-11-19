@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { FunctionComponent } from "react";
+import { numberFormat } from "../../lib/helpers/formatters";
 import { Product } from "../../lib/types/products";
 
 // styling
@@ -60,7 +61,7 @@ export const ProductContainerRow: FunctionComponent<any>  = ({p}) => {
                             justifyContent: "flex-start"
                         }}
                         className={`${styles.row}`}>
-                        {options?.map((option, i) => (<p className={`${styles.rowSubHead}`}>{option} {i != options.length-1 ? ", " : ""}</p>) )}
+                        {options?.map((option, i) => (<p key={option} className={`${styles.rowSubHead}`}>{option} {i != options.length-1 ? ", " : ""}</p>) )}
                     </div>
                 </div>
                 <div 
@@ -72,7 +73,7 @@ export const ProductContainerRow: FunctionComponent<any>  = ({p}) => {
                     <span 
                     style={{
                         fontSize: "1rem"
-                    }}>{price}</span>
+                    }}>{numberFormat(Number(price))}</span>
                     {status ? <p
                         style={{
                             background: "#aff2af",
@@ -87,7 +88,7 @@ export const ProductContainerRow: FunctionComponent<any>  = ({p}) => {
                         overflow: "hidden"
                     }} 
                     className={`${styles.row} ${styles.noneMobile}`}>
-                    {collections?.map((collection, i) => (<p className={`${styles.tagRowItem}`}>{collection}{i != collections.length-1 ? ", " : ""}</p>) )}
+                    {collections?.map((collection, i) => (<p key={collection} className={`${styles.tagRowItem}`}>{collection}{i != collections.length-1 ? ", " : ""}</p>) )}
                 </div>
                 <div 
                     style={{
@@ -95,7 +96,7 @@ export const ProductContainerRow: FunctionComponent<any>  = ({p}) => {
                         justifyContent: "flex-start"
                     }} 
                     className={`${styles.row} ${styles.noneMobile}`}>
-                    {tags?.map((tag, i) => (<p>{tag}{i != tags.length-1 ? ", " : ""}</p>) )}
+                    {tags?.map((tag, i) => (<p key={tag}>{tag}{i != tags.length-1 ? ", " : ""}</p>) )}
                 </div>
             </div>
         </Link>

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { FunctionComponent } from "react";
-import { Product } from "../../lib/types/products";
+import { Product, Scheudle } from "../../lib/types/products";
 
 // styling
 import styles from "../../styles/Main.module.css";
@@ -9,9 +9,9 @@ import Underline from "./Underline";
 export interface Props {
     colOneTop: string,
     colOneBottom: string,
-    colTwoTop: string,
+    colTwoTop: string | number,
     colTwoBottom: boolean,
-    colThree: string,
+    colThree: Scheudle | string,
     colFour: string | string[]
     id: string,
     href: string
@@ -27,6 +27,8 @@ export const MainRowContainer: FunctionComponent<Props>  = ({
     colFour,
     href
 }) => {
+
+    console.log(colThree)
 
 
     return (
@@ -99,7 +101,17 @@ export const MainRowContainer: FunctionComponent<Props>  = ({
                         overflow: "hidden"
                     }} 
                     className={`${styles.row} ${styles.noneMobile}`}>
-                    <p>{colThree}</p>
+                    {typeof(colThree) == "string" ?  <p>{colThree == "" ? "-" : colThree}</p>  : 
+                        colThree.trial > 0 ?  <p>{
+                            colThree.frequency + " " + 
+                            colThree.trial 
+                        }</p>   : colThree.frequency == "DAILY" ||
+                            colThree.frequency == "ANNUALLY" || 
+                            colThree.frequency == "MONTHLY" ?  <p>{
+                            colThree.frequency + " " + 
+                            colThree.date 
+                        }</p> : <div>TEST</div> }
+                    {/* <p>{colThree}</p> */}
                 </div>
                 <div 
                     style={{
@@ -107,7 +119,7 @@ export const MainRowContainer: FunctionComponent<Props>  = ({
                         justifyContent: "flex-start"
                     }} 
                     className={`${styles.row} ${styles.noneMobile}`}>
-                    {typeof(colFour) != "string" ? colFour?.map((tag, i) => (<p>{tag}{i != colFour.length-1 ? ", " : ""}</p>) ) : <p>{colFour}</p>}
+                    {typeof(colFour) != "string" ? colFour?.map((tag, i) => (<p key={tag}>{tag}{i != colFour.length-1 ? ", " : ""}</p>) ) : <p>{colFour}</p>}
                 </div>
             </div>
         </Link>

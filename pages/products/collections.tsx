@@ -1,15 +1,3 @@
-// import styles from "../../styles/Main.module.css";
-
-// export const AllCart = () => {
-//     return (
-//         <div className={`${styles.col}`}>
-//             hello
-//         </div>
-//     );
-// }
-
-// export default AllCart;
-
 import styles from "../../styles/Main.module.css";
 
 // export const AllOrders = () => {
@@ -38,51 +26,50 @@ import Underline from "../../components/ui/Underline";
 import * as crypto from "crypto"
 import { MainRowContainerHeader } from "../../components/ui/MainRowContainerHeader";
 import { MainRowContainer } from "../../components/ui/MainRowContainer";
-import { Carts } from "../../lib/types/orders";
+import { Collections } from "../../lib/types/products";
 
-const carts: Carts[] = [
+const collections: Collections[] = [
     {
-        title: "#SH-912398982",
+        collections: [],
+        products: [],
+        title: "T-Shirts",
         status: false,
-        id: crypto.randomBytes(10).toString("hex"),
-        total_price: "$29.94",
-        tags: ["SALE", "Shirts"],
-        email: "",
-        first_name: "",
-        last_name: "",
+        id: "col_" + crypto.randomBytes(10).toString("hex"),
+        tags: ["SALE", "Shirts"]
     },
     {
-        title: "#SH-92834592454",
-        status: true,
+        collections: [],
+        products: [
+            "pro_" + crypto.randomBytes(10).toString("hex")
+        ],
+        title: "T-Shirts",
+        status: false,
         id: crypto.randomBytes(10).toString("hex"),
-        total_price: "$164.91",
-        tags: ["VIP_ONLY", "CLICK_FUNNEL"],
-        email: "allMight@gobigly.com",
-        first_name: "All",
-        last_name: "Might",
+        tags: ["SALE", "Shirts"]
     }
 ]
 
 interface Prop {
     itemTxt: string
 }
-export default function AllCart(props: Prop) {
+
+const Collections = (props: Prop) => {
     const [itemSearch, setItemSearch] = useState("");
-    const [list, setOrders] = useState<Carts[]>(carts);
+    const [list, setOrders] = useState<any[]>(collections);
     const [filterState, setFilter] = useState<"" | "INACTIVE" | "ACTIVE">("");
 
     return (
         <div className={`${styles.col}`}>
             <AllItemHeader 
-                title={"Carts"}
-                createPage={"/orders/draft_orders/create"}
-                createTxt={"Create Order"}
+                title={"Collections"}
+                createPage={"/products/collections/create"}
+                createTxt={"Create Collection"}
                 />
             <main className={`${styles.col} ${styles.container}`}>
                 <div className={`${styles.col} ${styles.card}`}>
                     <div style={{ alignItems: "center"}} className={`${styles.row} ${styles.itemRowHContainer}`}>
                         <MainRowContainerHeader
-                            list={carts}
+                            list={collections}
                             type={filterState}
                             setState={setOrders}
                             setFilter={setFilter} />
@@ -109,26 +96,26 @@ export default function AllCart(props: Prop) {
 
                     <div className={`${styles.col} ${styles.itemsContainer}`}>
                         <ItemContainerHeader 
-                            rowOneUpper={"Order ID"}
-                            rowOneLower={"Full Name"}
-                            rowTwoUpper={"Order Value"}
-                            rowTwoLower={"Payment Status"}
-                            rowThree={"Email"}
+                            rowOneUpper={"Collection Name"}
+                            rowOneLower={""}
+                            rowTwoUpper={"Product Count"}
+                            rowTwoLower={"Status"}
+                            rowThree={""}
                             rowFour={"Tags"}/>
-                        {list && list.map((p: Carts) => {
-                            console.log(p.id);
+                        {list && list.map((s: Collections) => {
+                            console.log(s.id);
                                 return (
-                                    <div key={p.id} className={`${styles.col} ${styles.itemRow}`}>
+                                    <div key={s.id} className={`${styles.col} ${styles.itemRow}`}>
                                         <Underline width={100} />
                                         <MainRowContainer
-                                            href={`/orders/carts/${p.id}`} 
-                                            id={p.id}
-                                            colOneTop={p.title}
-                                            colOneBottom={p.first_name + " " + p.last_name}
-                                            colTwoTop={p.total_price}
-                                            colTwoBottom={p.status}
-                                            colThree={p.email}
-                                            colFour={p.tags} />
+                                            href={`/products/collections/${s.id}`} 
+                                            id={s.id}
+                                            colOneTop={s.title}
+                                            colOneBottom={""}
+                                            colTwoTop={s.products.length}
+                                            colTwoBottom={s.status}
+                                            colThree={""}
+                                            colFour={s.tags} />
                                     </div>
                                 );
                         })}
@@ -138,3 +125,5 @@ export default function AllCart(props: Prop) {
         </div>
     )
 }
+
+export default Collections;
