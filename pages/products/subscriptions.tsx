@@ -78,7 +78,7 @@ interface Prop {
     itemTxt: string
 }
 
-export default function Subscriptions(props: Prop) {
+const Subscriptions = (props: Prop) => {
     const [itemSearch, setItemSearch] = useState("");
     const [list, setOrders] = useState<any[]>(subscriptions);
     const [filterState, setFilter] = useState<"" | "INACTIVE" | "ACTIVE">("");
@@ -150,3 +150,5 @@ export default function Subscriptions(props: Prop) {
         </div>
     )
 }
+
+export default Subscriptions;

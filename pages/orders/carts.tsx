@@ -66,8 +66,7 @@ const orders: Carts[] = [
 interface Prop {
     itemTxt: string
 }
-
-export default function  AllCart(props: Prop) {
+export default function AllCart(props: Prop) {
     const [itemSearch, setItemSearch] = useState("");
     const [list, setOrders] = useState<Carts[]>(orders);
     const [filterState, setFilter] = useState<"" | "INACTIVE" | "ACTIVE">("");
