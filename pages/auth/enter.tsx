@@ -1,6 +1,11 @@
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
-import { use, useState } from "react";
-import { auth } from "../../lib/firebase";
+import {
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+    getAuth,
+    updateProfile
+} from "firebase/auth";
+import { SetStateAction, useState } from "react";
+// import { auth } from "../../lib/firebase";
 import {User} from "@firebase/auth-types"
 import Image from "next/image";
 import Link from "next/link";
@@ -20,6 +25,39 @@ import {
     Bungee_Shade,
 } from '@next/font/google'
 
+
+const auth = getAuth();
+const updateUser = async (
+    toggleState: SetStateAction<any>,
+    loadingState: SetStateAction<any>,
+    setErr: SetStateAction<any>,
+    first_name: string
+) => {
+    console.log(first_name);
+
+    await updateProfile(auth.currentUser as User, {
+        displayName: first_name,
+        photoURL: "https://preview.redd.it/do-people-still-like-deku-i-mean-with-the-multiple-quirks-v0-0n2llx05e5p91.jpg?auto=webp&s=de896ef0fd36735be9ff048149135fa39f723f84",
+    }).then(() => {
+
+        // Update states
+        toggleState(true);
+        loadingState(false);
+        console.log("SUCCESS");
+
+    }).catch((error) => {
+
+        // Update states
+        loadingState(false);
+        setErr("Profile not updated succesfully.");
+        console.log("SUCCESS");
+
+        // Debug
+        console.log(error.code);
+    });
+}
+        
+
 const meriendaOne = Merienda_One({
   weight: '400',
 })
@@ -36,67 +74,108 @@ const anonPro = Anonymous_Pro({
     weight: "400",
 })
 
-const IMG_URL = "https://cdn.dribbble.com/assets/auth/sign-in-a63d9cf6c1f626ccbde669c582b10457b07523adb58c2a4b46833b7b4925d9a3.jpg"
+const IMG_URL = "https://cdn.dribbble.com/assets/auth/sign-in-a63d9cf6c1f626ccbde669c582b10457b07523adb58c2a4b46833b7b4925d9a3.jpg";
 const IMG_NFT = "https://vagazine.com/vaga_v3/wp-content/uploads/2022/04/ezgif.com-gif-maker-1.gif";
 const LOGO = "https://cdn.shopify.com/s/files/1/0574/9263/5817/files/bigly_logo_art_file.png?v=1626380659&width=300";
 
 const authUser = auth;
 export default function Enter() {
+
+    // Input State
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [first_name, setFirstName] = useState("");
+
+    // Auth State
     const [authState, toggleState] = useState(false);
+
+    // Toggle password view
     const [showPass, hidePass] = useState(false);
+
+    // err handling state
     const [error, setErr] = useState("")
+
+    // Form type 
     const [FORM_STATE, setFormState] = useState<"SIGN_UP" | "SIGN_IN" | "">("SIGN_UP");
+
+    // async loading handling for UI
     const [loading, setLoading] = useState(false);
-    // const [text, setText] = useState("");
+
 
     let text = "app"
-    // let i = 0;
-    // const words = ["Site", "App", "Blog", "Store", "NFT"];
-
-    // setInterval(() => {
-    //     // console.log("interval")
-    //     if (i)
-    //     i = i+1;
-    //     // setText(words[(i % words.length)]);
-    //     console.log(text)
-    // }, 500)
 
     const signIn = (e: any) => {
         e.preventDefault();
+        setLoading(true);
 
         signInWithEmailAndPassword(authUser, email, password)
             .then((userCredential) => {
+                // Signed in 
                 const user = userCredential.user;
-                console.log(user)
+
+                // Update states
                 toggleState(true);
+                setLoading(false);
+
+                // Debug
+                console.log(user)
             })
             .catch((err) => {
-                const errCode = err.code;
-                const errMsg = err.message;
-                console.log(" => ERROR")
-                console.log(errCode + " " + errMsg)
+                // Update states
+                setLoading(false);
+                setErr("Email or password did not match. Reset password?");
+
+                // Debug
+                console.log(err.code);
             });
     } 
 
     const signUp = (e: any) => {
         e.preventDefault();
+
+        // Start Loading
+        setLoading(true);
+
+        // Create account & send POST to create database || LINK
         createUserWithEmailAndPassword(authUser, email, password)
-            .then((userCredential) => {
-                // Signed in 
+            .then( async (userCredential) => {
+                // Signed Up
                 const user = userCredential.user;
-                toggleState(true);
-                console.log("Signed Up -- Created");
-                console.log(user)
-                // setUser(user)
-                // ...
+
+                if (user !== null) {
+                  user.providerData.forEach((profile) => {
+                    console.log(" => Sign-in provider: " + profile);
+                    console.log("Sign-in provider: " + profile.providerId);
+                    console.log("  Provider-specific UID: " + profile.uid);
+                    console.log("  Name: " + profile.displayName);
+                    console.log("  Email: " + profile.email);
+                    console.log("  Photo URL: " + profile.photoURL);
+                  });
+                }
+
+                // Update user Auth Profile
+                await updateUser(
+                    toggleState,
+                    setLoading,
+                    setErr,
+                    first_name);
+
+                // Debug
+                console.log("Signed Up -- Created - FN: " + first_name);
+                console.log("  UUID: " + user.uid);
+                console.log("  TOKEN: " + await user.getIdToken());
+                console.log("  VERIFIED: " + user.emailVerified);
+                console.log("  VERIFIED: " +  user.email);
+                console.log("  NAME: " +  user.displayName);
+                console.log("  IS ANON: " +  user.isAnonymous);
             })
             .catch((error) => {
-                console.log("Signed Up Error");
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                setErr(errorCode + " " + errorMessage);
+                // Update states
+                setErr("Email already exists. Sign in?");
+                setLoading(false);
+
+                // Debug
+                console.log(error.code);
             });
     }
 
@@ -138,13 +217,27 @@ export default function Enter() {
             </section>
             <section className={`${styles.col} ${auth_styles.rightSide}`}>
                 <header className={`${styles.row} ${auth_styles.formToggle}`}>
-                    {FORM_STATE == "SIGN_UP" ? <h5 onClick={() => setFormState("SIGN_IN")}>Sign Up</h5> : <h5 onClick={() => setFormState("SIGN_UP")}>Sign In</h5>}         
+                    {FORM_STATE == "SIGN_UP" ? <h5 onClick={() => setFormState("SIGN_IN")}>Have an account? Log in</h5> : <h5 onClick={() => setFormState("SIGN_UP")}>Sign Up Now 🆕</h5>}         
                 </header>
                 <form className={`${styles.col} ${styles.formItem} ${auth_styles.authForm}`}>
                     <h3 className={`${saira.className}`}>  {FORM_STATE == "SIGN_UP"  ? "Sign up to" : "Sign in to"} </h3>
                     <div className={`${styles.row}`}>
                         <h2 className={`${bungee.className} ${auth_styles.imPowered}`}>imPowered</h2>
                     </div>
+                   {FORM_STATE == "SIGN_UP" ? <div className={`${styles.row} ${styles.topLeft}`}>
+                        <label 
+                            className={`${styles.formItem} ${styles.row}`}
+                            htmlFor="first_name">
+                            <input
+                                onChange={(e) => setFirstName(e.target.value)}
+                                type="first_name"
+                                name="first_name"
+                                placeholder="" />
+                            <label style={{ 
+                                top: first_name != "" ? "-5px" : "", 
+                                fontSize: first_name != "" ? "10px" : ""}}>First Name </label>
+                        </label>
+                    </div> : null}
                     <div className={`${styles.row} ${styles.topLeft}`}>
                         <label 
                             className={`${styles.formItem} ${styles.row}`}
@@ -185,21 +278,20 @@ export default function Enter() {
                                 style={{
                                     padding: "0.5rem 1.2rem"
                                 }}
-                                onClick={(e) => signUp(e)}>Sign Up </button> :  
+                                onClick={(e) => signUp(e)}>{loading ? "Loading . . ." : "Sign Up"}</button> :  
                             !authState && FORM_STATE == "SIGN_IN" ? 
                             <button 
                                 style={{
                                     padding: "0.5rem 1.2rem"
                                 }}
-                                onClick={(e) => signIn(e)}>Sign In</button> : 
+                                onClick={(e) => signIn(e)}>{loading ? "Loading . . ." : "Sign In"}</button> : 
                             <button disabled={true}>Loading . . .</button> 
                         }
                     </div>
 
                     <div className={`${styles.row}  ${auth_styles.errMsgRow} ${anonPro.className}`}>
-                        {   !authState && !loading ? 
-                            null  : 
-                            <div><p>NOT ACIVE USER</p></div> 
+                        {
+                            error != "" ? <div><p>{error}</p></div> : null
                         }
                     </div>
                 </form>

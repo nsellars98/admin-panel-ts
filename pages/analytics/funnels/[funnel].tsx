@@ -9,7 +9,7 @@ const ACV = "$29.33";
 export  const FunnelDailyAnalytics =  () => {
     return (
         <div className={`${styles.col}`}>
-            <AnalyticsHeader title="" createTxt="" createPage=""/> 
+            <AnalyticsHeader title="Funnel Analytics" createTxt="" createPage=""/> 
             <main className={`${styles.col} ${styles.container}`}>
                 <div className={`${styles.col} ${styles.card}`}>
                     <div className={`${styles.row}`}>

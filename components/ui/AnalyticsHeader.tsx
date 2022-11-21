@@ -29,7 +29,7 @@ export const AnalyticsHeader: FunctionComponent<Props> = ({
     return (
         <header className={`${styles.row} ${styles.allItemHeader}`}>
             <div className={`${styles.row}`}>
-                <h2 className={`${saira.className} ${styles.allItemHeaderText}`}>Daily Analytics</h2>
+                <h2 className={`${saira.className} ${styles.allItemHeaderText}`}>{title}</h2>
             </div>
             <div className={`${styles.row}`}
                     style={{
