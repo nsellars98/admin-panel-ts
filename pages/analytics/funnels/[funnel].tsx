@@ -47,7 +47,7 @@ export  const FunnelDailyAnalytics = (props: any) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-    const url = "https://us-central1-impowered-funnel.cloudfunctions.net/funnel";
+    const url = "https://us-central1-impowered-funnel.cloudfunctions.net/funnel/analytics/funnels";
     const result = await impoweredRequest(url, "GET", null);
 
     if (!result) {
