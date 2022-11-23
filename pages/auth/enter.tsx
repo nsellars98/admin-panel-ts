@@ -1,12 +1,11 @@
 import {
     signInWithEmailAndPassword,
     createUserWithEmailAndPassword,
-    getAuth,
-    updateProfile
+    updateProfile,
 } from "firebase/auth";
 import { SetStateAction, useState } from "react";
-// import { auth } from "../../lib/firebase";
-import {User} from "@firebase/auth-types"
+import { auth } from "../../lib/firebase";
+import {User} from "@firebase/auth/dist/auth-public";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "../../styles/Main.module.css";
@@ -26,7 +25,7 @@ import {
 } from '@next/font/google'
 
 
-const auth = getAuth();
+// const auth = getAuth();
 const updateUser = async (
     toggleState: SetStateAction<any>,
     loadingState: SetStateAction<any>,
@@ -35,7 +34,9 @@ const updateUser = async (
 ) => {
     console.log(first_name);
 
-    await updateProfile(auth.currentUser as User, {
+    const user = auth?.currentUser as User;
+
+    await updateProfile(user, {
         displayName: first_name,
         photoURL: "https://preview.redd.it/do-people-still-like-deku-i-mean-with-the-multiple-quirks-v0-0n2llx05e5p91.jpg?auto=webp&s=de896ef0fd36735be9ff048149135fa39f723f84",
     }).then(() => {
