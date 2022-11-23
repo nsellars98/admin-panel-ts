@@ -7,7 +7,7 @@ import styles from "../../styles/Main.module.css";
 const TOTAL_SALES = "420069.89";
 const PREV_TOTAL_SALES = "410000.89";
 let T_SALES_DIFF = 1 - (Number(PREV_TOTAL_SALES) / Number(TOTAL_SALES));
-T_SALES_DIFF = percentageFormatter(T_SALES_DIFF);
+T_SALES_DIFF = Number(percentageFormatter(T_SALES_DIFF));
 
 
 const TOTAL_ORDERS = "159";
@@ -23,7 +23,7 @@ const RETURNS = "-173.31"
 const TOTAL_AOV = "28.78"
 const PREV_TOTAL_AOV = "36.56"
 let T_AOV_DIFF = 1 - (Number(PREV_TOTAL_AOV) / Number(TOTAL_AOV));
-T_AOV_DIFF = percentageFormatter(T_AOV_DIFF);
+T_AOV_DIFF = Number(percentageFormatter(T_AOV_DIFF));
 
 const TOTAL_ORDERS_ONLINE = "98";
 const TOTAL_SALES_ONLINE = "23150.93";

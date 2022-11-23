@@ -6,6 +6,6 @@ export const numberFormat = (value: number) =>{
 }
 
 export const percentageFormatter = (value: number) =>{
-    return Math.round(value*10000)/100;
+    return (Math.round(value*10000)/100).toFixed(2) +"%";
 }
 
