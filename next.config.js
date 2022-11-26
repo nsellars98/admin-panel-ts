@@ -15,6 +15,10 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'vagazine.com'
+      },
+      {
+        protocol: 'https',
+        hostname: 'boltagency.ca'
       }
     ],
   },

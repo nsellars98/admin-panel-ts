@@ -31,3 +31,18 @@ export interface Carts {
     first_name: string,
     last_name: string
 }
+
+
+export interface LineItem {
+    title: string,
+    status: boolean,
+    id: string,
+    url: string,
+    price: number,
+    tags: string[],
+    compare_at_price: number,
+    option1: string,
+    option2: string,
+    option3: string,
+    quantity: number
+}

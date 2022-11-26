@@ -394,10 +394,10 @@
   
   .card {
     width: 100%;
-    margin: 0px;
+    margin: 0px 0px 1rem 0px;
     padding: 1.5rem;
     text-align: left;
-    color:  var(--darkBackground);
+    color: var(--darkBackground);
     text-decoration: none;
     border: 1px solid #eaeaea;
     border-radius: 10px;
@@ -455,6 +455,17 @@
     font-size: 0.8rem;
     line-height: 1.5;
   }
+
+  .varRowContainer:hover {
+    background-color: #8b8b8b05;
+    border-radius: 20px;
+    color: var(--accent)
+  }
+
+  /* .varRowContainer:hover  {
+    background-color: #0000000a;
+    border-radius: 6px;
+  } */
 
   .itemsCardHeader {
     width: auto;
@@ -562,6 +573,11 @@
     margin: 0.5rem 0 0 0 !important;
     font-size: 40px;
   }
+
+  .detailPageItemHeaderText {
+    margin: 0rem 0 0 0.6rem !important;
+    font-size: 40px;
+  }
   .allItemHeader > div:nth-last-child(1) {
     width: 30%;
     justify-content: flex-end;
@@ -643,6 +659,25 @@
     grid-gap: 10px;
     grid-template-columns: repeat(auto-fill, minmax(400px,1fr));
     grid-auto-rows: 200px;
+ }
+
+ .tag {
+  padding: 5px 7px;
+  border-radius: 6px;
+  background-color: var(--accent);
+  background-color: var(--accent);
+  color: rgb(246, 246, 246);
+  font-size: 12px !important;
+ }
+
+ .imgPlaceHolder {
+  border: 0.5px solid rgb(245 89 81 / 26%);
+  margin-right: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-direction: row;
  }
 
   /* 

@@ -133,7 +133,7 @@ export default function  AllOrders(props: Prop) {
                                     <div key={p.id} className={`${styles.col} ${styles.itemRow}`}>
                                         <Underline width={100} />
                                         <MainRowContainer
-                                            href={`/orders/${p.id}`} 
+                                            href={`/orders/o/${p.id}`} 
                                             id={p.id}
                                             colOneTop={p.title}
                                             colOneBottom={p.first_name + " " + p.last_name}

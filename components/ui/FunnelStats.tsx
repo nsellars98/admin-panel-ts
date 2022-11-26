@@ -64,6 +64,15 @@ export const FunnelStats: FunctionComponent<Props> = ({ANALYTICS}) => {
         confirm_unique_page_view
     } = ANALYTICS;
 
+    const urr = upsell_recurring_value != undefined ? (upsell_recurring_value/100) : 0;
+    const orr = order_recurring_value != undefined ? (order_recurring_value/100) : 0;
+
+    const osv = order_sales_value != undefined ? (order_sales_value/100) : 0;
+    const usv = upsell_sales_value != undefined ? (upsell_sales_value/100) : 0;
+
+    const usr = upsell_sales_rate != undefined ? (upsell_sales_rate/100) : 0;
+    const uor = upsell_opt_in_rate != undefined ? (upsell_opt_in_rate/100) : 0;
+
     return (
         <div style={{ marginTop: "1rem" }} className={`${styles.col} ${styles.card}`}>
             <header className={`${styles.row}`}>
@@ -97,26 +106,26 @@ export const FunnelStats: FunctionComponent<Props> = ({ANALYTICS}) => {
                         </div>
                         <div className={`${styles.row}`} style={{background: "rgb(141 92 107)", borderBottomLeftRadius: "6px"}}>
                             <div className={`${styles.col}`}>
-                                <h4>{order_page_views}</h4>
+                                <h4>{order_page_views ? order_page_views : "0"}</h4>
                             </div>
                             <div className={`${styles.col}`}>
-                                <h4>{order_unique_page_views}</h4>
-                            </div>
-                        </div>
-                        <div className={`${styles.row}`} style={{background: "rgb(141 92 107)", borderBottomLeftRadius: "6px"}}>
-                            <div className={`${styles.col}`}>
-                                <h4>{upsell_page_views}</h4>
-                            </div>
-                            <div className={`${styles.col}`}>
-                                <h4>{upsell_unique_page_views}</h4>
+                                <h4>{order_unique_page_views ? order_unique_page_views : "0"}</h4>
                             </div>
                         </div>
                         <div className={`${styles.row}`} style={{background: "rgb(141 92 107)", borderBottomLeftRadius: "6px"}}>
                             <div className={`${styles.col}`}>
-                                <h4>{confirm_page_view?confirm_page_view : '-'}</h4>
+                                <h4>{upsell_page_views ? upsell_page_views : "0"}</h4>
                             </div>
                             <div className={`${styles.col}`}>
-                                <h4>{confirm_unique_page_view ? confirm_unique_page_view : "-"}</h4>
+                                <h4>{upsell_unique_page_views ? upsell_unique_page_views : "0"}</h4>
+                            </div>
+                        </div>
+                        <div className={`${styles.row}`} style={{background: "rgb(141 92 107)", borderBottomLeftRadius: "6px"}}>
+                            <div className={`${styles.col}`}>
+                                <h4>{confirm_page_view ? confirm_page_view : '0'}</h4>
+                            </div>
+                            <div className={`${styles.col}`}>
+                                <h4>{confirm_unique_page_view ? confirm_unique_page_view : "0"}</h4>
                             </div>
                         </div>
                     </div>
@@ -132,7 +141,7 @@ export const FunnelStats: FunctionComponent<Props> = ({ANALYTICS}) => {
                         </div>
                         <div className={`${styles.row}`} style={{background: "rgb(142 157 123)"}}>
                             <div className={`${styles.col}`}>
-                                <h4>{order_opt_ins}</h4>
+                                <h4>{order_opt_ins ? order_opt_ins : "0"}</h4>
                             </div>
                             <div className={`${styles.col}`}>
                                 <h4>{percentageFormatter(order_opt_in_rate)}</h4>
@@ -140,10 +149,10 @@ export const FunnelStats: FunctionComponent<Props> = ({ANALYTICS}) => {
                         </div>
                         <div className={`${styles.row}`} style={{background: "rgb(142 157 123)"}}>
                             <div className={`${styles.col}`}>
-                                <h4>{upsell_opt_ins}</h4>
+                                <h4>{upsell_opt_ins ? upsell_opt_ins : "0"}</h4>
                             </div>
                             <div className={`${styles.col}`}>
-                                <h4>{percentageFormatter(upsell_opt_in_rate)}</h4>
+                                <h4>{percentageFormatter(uor)}</h4>
                             </div>
                         </div>
                         <div className={`${styles.row}`} style={{background: "rgb(142 157 123)"}}>
@@ -170,24 +179,24 @@ export const FunnelStats: FunctionComponent<Props> = ({ANALYTICS}) => {
                         </div>
                         <div className={`${styles.row}`} style={{background: "rgb(157 215 169)"}}>
                             <div className={`${styles.col}`}>
-                                <h4>{order_sales_count}</h4>
+                                <h4>{order_sales_count ? order_sales_count : "0"}</h4>
                             </div>
                             <div className={`${styles.col}`}>
                                 <h4>{percentageFormatter(order_sales_rate)}</h4>
                             </div>
                             <div className={`${styles.col}`}>
-                                <h4>{numberFormat(order_sales_value/100)}</h4>
+                                <h4>{numberFormat(osv)}</h4>
                             </div>
                         </div>
                         <div className={`${styles.row}`} style={{background: "rgb(157 215 169)"}}>
                             <div className={`${styles.col}`}>
-                                <h4>{upsell_sales_count}</h4>
+                                <h4>{upsell_sales_count ? upsell_sales_count : "0"}</h4>
                             </div>
                             <div className={`${styles.col}`}>
-                                <h4>{percentageFormatter(upsell_sales_rate)}</h4>
+                                <h4>{percentageFormatter(usr)}</h4>
                             </div>
                             <div className={`${styles.col}`}>
-                                <h4>{numberFormat(upsell_sales_value/100)}</h4>
+                                <h4>{numberFormat(usv)}</h4>
                             </div>
                         </div>
                         <div className={`${styles.row}`} style={{background: "rgb(157 215 169)"}}>
@@ -214,18 +223,18 @@ export const FunnelStats: FunctionComponent<Props> = ({ANALYTICS}) => {
                         </div>
                         <div className={`${styles.row}`} style={{background: "rgb(168 255 216)"}}>
                             <div className={`${styles.col}`}>
-                                <h4>{order_recurring_count}</h4>
+                                <h4>{order_recurring_count ? order_recurring_count : "0"}</h4>
                             </div>
                             <div className={`${styles.col}`}>
-                                <h4>{numberFormat(order_recurring_value)}</h4>
+                                <h4>{numberFormat(orr)}</h4>
                             </div>
                         </div>
                         <div className={`${styles.row}`} style={{background: "rgb(168 255 216)"}}>
                             <div className={`${styles.col}`}>
-                                <h4>{upsell_recurring_count}</h4>
+                                <h4>{upsell_recurring_count ? upsell_recurring_count : "0"}</h4>
                             </div>
                             <div className={`${styles.col}`}>
-                                <h4>{numberFormat(upsell_recurring_value/100)}</h4>
+                                <h4>{numberFormat(urr)}</h4>
                             </div>
                         </div>
                         <div className={`${styles.row}`} style={{background: "rgb(168 255 216)"}}>
