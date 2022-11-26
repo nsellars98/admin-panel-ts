@@ -18,7 +18,7 @@ type Props = {
     children: JSX.Element,
     header: string,
     subHeader?: string,
-    width: number,
+    width?: number,
     card_type?: "ORDER" | "DEFAULT" | "INFO" | "PAYMENT",
     status?: boolean,
 };
