@@ -52,7 +52,7 @@ export interface HeaderProps {
     title: string
     header: string
     subHeader: string
-    width: number,
+    width?: number,
     status?: boolean,
     id?: string,
     card_type?: "ORDER" | "DEFAULT" | "INFO" | "PAYMENT",
@@ -73,7 +73,7 @@ export const DefaultHeader: React.FC<HeaderProps> = ({
                 {subHeader == "" ? "" : <span style={{fontSize: "12px"}}> {subHeader}</span> }
             </h1>
             </div>
-            <Underline  width={width}/>
+            <Underline  width={width  as number}/>
       </header>
     )
 }
@@ -149,7 +149,7 @@ export const OrderHeader: React.FC<HeaderProps> = ({
                         fontWeight: 100}}> {subHeader}</span> }
                 </h1>
             </div>
-            <Underline width={width} />
+            <Underline width={width as number} />
       </header>
     )
 };
@@ -203,7 +203,7 @@ export const InfoHeader: React.FC<HeaderProps> = ({
                     {subHeader == "" ? "" : <span style={{fontSize: "0.7vw"}}> {subHeader}</span> }
                 </h1>
             </div>
-            <Underline width={width} />
+            <Underline width={width  as number} />
       </header>
     )
 };
