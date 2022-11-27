@@ -74,7 +74,7 @@ export const FunnelStats: FunctionComponent<Props> = ({ANALYTICS}) => {
     const uor = upsell_opt_in_rate != undefined ? (upsell_opt_in_rate/100) : 0;
 
     return (
-        <div style={{ marginTop: "1rem" }} className={`${styles.col} ${styles.card}`}>
+        <div style={{ marginTop: "1rem", overflowX: "scroll" }} className={`${styles.col} ${styles.card}`}>
             <header className={`${styles.row}`}>
                 <section style={{ width: "20%", justifyContent: "flex-end", height: "100%"}} className={`${styles.col}`}>
                     <div style={{padding: "1rem"}}  className={`${styles.row}`}>

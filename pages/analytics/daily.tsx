@@ -74,7 +74,7 @@ export default function Daily() {
         <AnalyticsHeader title="Analytics" createTxt="" createPage=""/> 
             <main className={`${styles.col}`}>
                 <div className={`${styles.col} ${styles.container}`}>
-                    <div className={`${styles.row}`}>
+                    <div className={`${styles.row} ${styles.mobileContainer}`}>
                         <div className={`${styles.col} ${styles.oneThird}`}>
                             <Card title='Sales Breakdown' header={numberFormat(Number(TOTAL_SALES))} subHeader={ T_SALES_DIFF > 0 ? " ⬆️ " + T_SALES_DIFF +"%" : " ⬇️ " + T_SALES_DIFF +"%"}>
                                 <div className={styles.col}>
@@ -138,7 +138,7 @@ export default function Daily() {
                         </div>
                     </div>
 
-                    <div style={{paddingTop: "1rem"}} className={`${styles.row}`}>
+                    <div style={{paddingTop: "1rem"}} className={`${styles.row} ${styles.mobileContainer}`}>
                         <div className={`${styles.col} ${styles.oneThird}`}>
                         <Card title='Viewed The Most' header={TOP_SELLERS[0].title}>
                             <div className={styles.col}>

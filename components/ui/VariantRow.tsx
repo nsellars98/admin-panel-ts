@@ -16,14 +16,26 @@ export const VariantRow: React.FC<Props> = ({
     return (
         <>
         <div
-            className={`${styles.imgPlaceHolder}`}>
-            <Image 
-                src={"https://boltagency.ca/content/images/2020/03/placeholder-images-product-1_large.png"} 
-                alt=""
-                width={60}
-                height={60} />
+            className={`${styles.row}`}
+            style={{
+                width: "20%",
+                justifyContent: "center"
+            }}>
+                <div >
+                <Image 
+                    src={"https://boltagency.ca/content/images/2020/03/placeholder-images-product-1_large.png"} 
+                    alt=""
+                    width={60}
+                    height={60} />
+                </div>
         </div>
-        <div className={`${styles.col}`}>
+        <div 
+            style={{
+                width: "40%",
+                overflowX: "hidden",
+                textOverflow: "ellipsis"
+            }}
+            className={`${styles.col}`}>
             <h4>{item.title}</h4>
             <p style={{
                 paddingTop: "0.5rem",
@@ -34,15 +46,19 @@ export const VariantRow: React.FC<Props> = ({
                 {item.option3 != "" ? " / " + item.option3 : ""}
             </p>
         </div>
-        <div style={{
-            alignItems: "flex-end" 
-        }} className={`${styles.col}`}>
+        <div 
+            style={{
+                width: "10%",
+                alignItems: "flex-end" 
+            }}
+            className={`${styles.col}`}>
             <h4>{item.quantity > 0 ? item.quantity : 1}x</h4>
             
         </div>
         <div style={{
-            alignItems: "flex-end" 
-        }} className={`${styles.col}`}>
+                width: "25%",
+                alignItems: "flex-end" 
+            }} className={`${styles.col}`}>
             <h4>{numberFormat(Number(item.price)/100)}</h4>
             <p style={{
                 paddingTop: "0.5rem",

@@ -290,18 +290,23 @@
         font-weight: bold;
         background: var(--lightBackground);
         padding: 0 10px;
-        color: rgb(38 38 38 / 56%);
+        color: var(--darkBackground);
         transition: all .3s ease
+    }
+    .card .formItem label{
+      background: var(--darkBackground);
+      color: var(--lightBackground);
     }
     .formItem input:active + label,
     .formItem input:focus-visible + label,
     .formItem input:visited + label,
     .formItem input:focus + label{
         color: var(--accent);
-        background: var(--lightBackground);
+        background: var(--darkBackground);
         top: -5px;
         font-size: 10px;
     }
+
 
   .underlineAnimate:hover {
     animation: underLine 1s ease-in-out;
@@ -397,12 +402,16 @@
     margin: 0px 0px 1rem 0px;
     padding: 1.5rem;
     text-align: left;
-    color: var(--darkBackground);
+    /* color: var(--darkBackground); */
+    background-color: var(--darkBackground);
+    color: var(--lightBackground);
     text-decoration: none;
-    border: 1px solid #eaeaea;
+    /* border: 1px solid #eaeaea; */
+    border: 1px solid black;
     border-radius: 10px;
     transition: color 0.15s ease, border-color 0.15s ease;
-    box-shadow: 0px 0px 6px #22222223;
+    /* box-shadow: 0px 0px 6px #22222223; */
+    box-shadow: 0px 0px 10px 6px #3232326e;
   }
 
   .cardMain p {
@@ -412,20 +421,23 @@
   .card:hover,
   .card:focus,
   .card:active {
-    color: var(--darkBackground);
-    text-shadow: 1px 1px 6px #22222223;
-    border-color: rgba(245, 89, 81, 0.038);
-    /* box-shadow: 0px 0px 16px 0px #3f3f3f1a; */
+    /* color: var(--darkBackground); */
+    /* text-shadow: 1px 1px 6px #22222223; */
+    /* border-color: rgba(245, 89, 81, 0.038); */
+    color: var(--lightBackground);
+    border: 1px solid black;
+    box-shadow: 0px 0px 16px 0px #3f3f3f1a;
   }
   
   .card h5 {
     margin: 0rem 0;
-    font-size: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 100;
   }
   
   .card h4 {
     margin: 0rem 0;
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
   .card h3 {
     margin: 0rem 0;
@@ -452,8 +464,8 @@
   
   .card p {
     margin: 0;
-    font-size: 0.8rem;
-    line-height: 1.5;
+    font-size: 1rem;
+    line-height: 1rem;
   }
 
   .varRowContainer:hover {
@@ -485,6 +497,9 @@
     background: rgb(255, 255, 255);
     border: 0.5px solid rgb(208, 208, 208);
     cursor: pointer;
+  }
+  .itemsCardHeader > div h5 {
+    color:  var(--lightBackground) !important;
   }
   .itemsCardHeader > div:hover h5 {
     color:  var(--darkBackground) !important;
@@ -635,12 +650,23 @@
   }
   .itemRow:hover p,
   .itemRow:hover span {
-    color:rgba(0, 0, 0, 0.595)
+    color:rgba(0, 0, 0, 0.595);
+    color:var(--lightBackground);
   }
   .itemRow:hover .statusSubHead {
     color:rgba(255, 255, 255, 1) !important
   }
 
+
+  .timeline {
+    display: block;
+    width: 100%;
+    height: 100px;
+    border-radius: 4px;
+    background: transparent;
+    transition: all .3s ease;
+    padding: 0 15px
+  }
 
 
 
@@ -696,6 +722,45 @@
       width: 100% !important;
       padding: 0.5rem 0 !important;
     }
+
+
+    .oneThird {
+      padding: 0rem 0 !important;
+    }
+
+    .allItemHeader > div:nth-last-child(2) {
+      width: 100%;
+    }
+    
+    .allItemHeader > div:nth-last-child(1) {
+      width: 100%;
+    }
+
+    .analytics  input {
+      width: 150px !important;
+    }
+    .analytics  label {
+      background-color: white !important;
+    }
+
+    .card p {
+      font-size: 0.8rem
+    }
+
+    .card > header div,
+    .card > header {
+      /* width: auto !important; */
+    }
+
+    .card > header > section > div > div > div{
+      padding: 0 10px;
+    }
+
+    .card > header > section > div > div {
+
+    width: 100% !important;
+    }
+    
 
     .linkText {
       color: coral;
@@ -775,6 +840,14 @@
 
     .formItem input:focus + label{
       background-color: #ffffff;
+      /* background-color: var(--darkBackground); */
+    }
+
+
+
+    .card .formItem input:focus + label{
+      /* background-color: #ffffff; */
+      background-color: var(--darkBackground);
     }
 
     .mobileLogout {
@@ -807,7 +880,7 @@
       width: 70%;
     }
     .itemsCardSearch > div label {
-      background-color: white;
+      background-color: var(--darkBackground);
     }
     .itemRowHContainer {
       flex-direction: column;

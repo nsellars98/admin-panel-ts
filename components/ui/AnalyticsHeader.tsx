@@ -27,17 +27,20 @@ export const AnalyticsHeader: FunctionComponent<Props> = ({
     const [start, setStart] = useState("");
     const [end, setEnd] = useState("");
     return (
-        <header className={`${styles.row} ${styles.allItemHeader}`}>
+        <header className={`${styles.row} ${styles.allItemHeader} ${styles.mobileContainer}`}>
             <div className={`${styles.row}`}>
                 <h2 className={`${saira.className} ${styles.allItemHeaderText}`}>{title}</h2>
             </div>
             <div className={`${styles.row}`}
                     style={{
-                        width: "30%",
                         overflow: "hidden",
-                        padding: "2.3rem 1.5rem 0 0"
+                        padding: window.innerWidth > 720 ? "2.3rem 1.5rem 0 0" : "0",
+                        margin: window.innerWidth > 720 ? "" : "0",                        
                     }}>
                 <div 
+                    style={{
+                        margin: window.innerWidth > 720 ? "" : "0",                        
+                    }}
                     className={`${styles.row} ${styles.analytics}`}>
                     {/* DATE PICKERS -> Lib? */}
                     <label 

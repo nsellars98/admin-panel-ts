@@ -19,17 +19,17 @@ export const MainRowContainerHeader: FunctionComponent<Props> = ({
     return (
         <div  className={`${styles.row} ${styles.itemsCardHeader}`}>
             <div 
-                style={{ background: type == "" ? "white" : "" }}
+                style={{ background: type == "" ? "black" : "" }}
                 onClick={() => filterAll(list, setState, setFilter)}>
                     <h5>ALL</h5>
             </div>
             <div 
-                style={{ background: type == "INACTIVE" ? "white" : "" }}
+                style={{ background: type == "INACTIVE" ? "black" : "" }}
                 onClick={() => filterActive(list, "INACTIVE", setState, setFilter)}>
                     <h5>Draft</h5>
             </div>
             <div
-                style={{ background: type == "ACTIVE" ? "white" : "" }}
+                style={{ background: type == "ACTIVE" ? "black" : "" }}
                 onClick={() => filterActive(list, "ACTIVE", setState, setFilter)}>
                     <h5>Active</h5>
             </div>

@@ -99,16 +99,15 @@ export const OrderHeader: React.FC<HeaderProps> = ({
                 <div className={`${styles.row}`}>
                     <div 
                         style={{
-                            width: "75%",
+                            width: "85%",
                             justifyContent: "flex-start"
                         }}
                         className={`${styles.row}`} >
-                        <p 
-                        className={`${saira.className}`}
+                        <h5 
                         style={{
-                            fontSize: window.innerWidth > 720 ? 20 : "3vh",
-                            lineHeight: window.innerWidth > 720 ? "" : "20px",
-                        }}>{title}</p>
+                            fontSize: window.innerWidth > 720 ? 25 : "3vh",
+                            lineHeight: window.innerWidth > 720 ? "" : "",
+                        }}>{title}</h5>
                         { card_type !== "ORDER" ? <p 
                             style={{
                                 marginLeft: "0.5rem",
@@ -127,7 +126,7 @@ export const OrderHeader: React.FC<HeaderProps> = ({
                     </div>
                     <div 
                         style={{
-                            width: "25%",
+                            width: "15%",
                             justifyContent: "flex-end"
                         }}
                         className={`${styles.row}`} >
@@ -136,20 +135,29 @@ export const OrderHeader: React.FC<HeaderProps> = ({
                         }}>. . .</p>
                     </div>
                 </div>
+                {
+                    subHeader == "" ? "" : <span style={{
+                        marginTop: "0.5rem",
+                        fontSize: window.innerWidth > 720 ? "0.5vw" : "0.7vh",
+                        fontWeight: 100}}> {subHeader}</span>
+                }
+            </div>
+            <div className={`${styles.col}`} style={{
+                marginTop: "1rem"
+            }}>
+            <Underline width={width as number} />
+
                 <h1 className={`${styles.col}`}>
                     {header == "" ? "" : <span style={{
                         fontWeight: 100,
-                        fontSize: window.innerWidth > 720 ? "0.7vw" : "1.5vh"
+                        marginTop: "4px",
+                        fontSize: window.innerWidth > 720 ? "18px" : "14px"
                     }}> <b style={{
                         fontWeight: "bold",
-                        fontSize: window.innerWidth > 720 ? "0.7vw" : "1.5vh"
+                        fontSize: window.innerWidth > 720 ? "18px" : "14px"
                     }}>Tracking: </b>{header}</span>}
-                    {subHeader == "" ? "" : <span style={{
-                        fontSize: window.innerWidth > 720 ? "0.5vw" : "0.7vh",
-                        fontWeight: 100}}> {subHeader}</span> }
                 </h1>
             </div>
-            <Underline width={width as number} />
       </header>
     )
 };
@@ -174,16 +182,18 @@ export const InfoHeader: React.FC<HeaderProps> = ({
                 <div className={`${styles.row}`}>
                     <div 
                         style={{
+                            width: "85%",
                             justifyContent: "flex-start"
                         }}
                         className={`${styles.row}`} >
-                        <p 
+                        <h5 
                         style={{
-                            fontSize: 20
-                        }}>{title}</p>
+                            fontSize: 25
+                        }}>{title}</h5>
                     </div>
                     <div 
                         style={{
+                            width: "15%",
                             justifyContent: "flex-end"
                         }}
                         className={`${styles.row}`} >
@@ -203,7 +213,11 @@ export const InfoHeader: React.FC<HeaderProps> = ({
                     {subHeader == "" ? "" : <span style={{fontSize: "0.7vw"}}> {subHeader}</span> }
                 </h1>
             </div>
-            <Underline width={width  as number} />
+            <div className={`${styles.col}`} style={{
+                marginTop: "1rem"
+            }}>
+            <Underline width={width as number} />
+            </div>
       </header>
     )
 };
