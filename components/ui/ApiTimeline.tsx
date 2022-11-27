@@ -3,10 +3,6 @@ import {FunctionComponent, useState} from "react";
 import styles from "../../styles/Main.module.css";
 import Underline from "./Underline";
 
-interface Props {
-    list: any[],
-}
-
 const comments = [
     {
         content: "Order Created",
@@ -14,7 +10,7 @@ const comments = [
     }
 ]
 
-export const ApiTimeline: FunctionComponent<Props> = ({
+export const ApiTimeline: FunctionComponent<any> = ({
 
 }) => {
     const [comment, makeComment] = useState("");
