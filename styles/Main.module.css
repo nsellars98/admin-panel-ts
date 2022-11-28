@@ -49,8 +49,8 @@
 .mainContainer {
   background-color: var(--lightBackground);
   min-height: 100vh;
-  overflow-x: hidden;
-  overflow-y: scroll;
+  /* overflow-x: hidden;
+  overflow-y: scroll; */
   width: 80%;
 }
 .mainContainer {
