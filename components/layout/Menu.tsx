@@ -50,7 +50,8 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
             className={`${styles.col} ${styles.sideBar} `} 
             style={{
                 marginLeft: openState ? "-600px" : "0",
-                height: "" + window.innerHeight + "px"
+                height: window.innerHeight < 720 ? "" + (window.innerHeight + 200) + "px" : "" + (window.innerHeight) + "px",
+                minHeight: "" + window.innerHeight + "px",
             }}>
             <header className={`${styles.col} ${styles.topHeaderMobile}`}>
                 <div className={`${styles.row}`}>
@@ -98,18 +99,18 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                         <Link  
                             className={`${styles.row}`}
                             style={{
-                                borderLeft: router.pathname.includes("/analytics") ? "4px solid white" : "4px solid transparent",
+                                borderLeft: router.pathname == "/analytics/daily" ? "4px solid white" : "4px solid transparent",
                             }}
                             href={'/analytics/daily'}>
                             <div className={`${styles.row} ${styles.menuItem} `}>
                                 <i 
                                     style={{
-                                        color: router.pathname.includes("/analytics") ? "" : ""
+                                        color: router.pathname == "/analytics/daily" ? "white" : ""
                                     }}>
                                     <FontAwesomeIcon icon={faMagnifyingGlassChart} /></i>
                                 <span 
                                     style={{
-                                        color: router.pathname.includes("/analytics") ? "" : ""
+                                        color: router.pathname == "/analytics/daily" ? "white" : ""
                                     }}>Analytics</span>
                             </div>
                         </Link>
@@ -121,13 +122,13 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                                     <div className={`${styles.row} ${styles.menuItem} `}>
                                         <i
                                             style={{
-                                                color: router.pathname == "/" ? "" : "",
+                                                color: router.pathname.includes("/analytics/funnels") ? "white" : "",
                                                 fontSize: "0.8rem",
                                                 padding: "0.1rem 0",
                                             }}><FontAwesomeIcon icon={faGauge}/></i>
                                         <span 
                                             style={{
-                                                color: router.pathname == "/" ? "" : ""
+                                                color: router.pathname.includes("/analytics/funnels/all") ? "white" : ""
                                             }}>Funnel</span>
                                     </div>
                                 </Link>
@@ -144,11 +145,11 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                             <div className={`${styles.row} ${styles.menuItem} `}>
                                 <i
                                     style={{
-                                        color: router.pathname.includes("/discounts") ? "white" : ""
+                                        color: router.pathname == "/discounts/all" ? "white" : ""
                                     }}><FontAwesomeIcon icon={faPercent} /></i>
                                 <span
                                     style={{
-                                        color: router.pathname.includes("/discounts") ? "white" : ""
+                                        color: router.pathname == "/discounts/all" ? "white" : ""
                                     }}>Discounts</span>
                             </div>
                         </Link>
@@ -163,11 +164,11 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                             <div className={`${styles.row} ${styles.menuItem} `}>
                                 <i
                                     style={{
-                                        color: router.pathname.includes("/products") ? "white" : ""
+                                        color: router.pathname == "/products/all" ? "white" : ""
                                     }}><FontAwesomeIcon icon={faBasketShopping} /></i>
                                 <span
                                     style={{
-                                        color: router.pathname.includes("/products") ? "white" : ""
+                                        color: router.pathname == "/products/all" ? "white" : ""
                                     }}>Products</span>
                             </div>
                         </Link>
@@ -179,13 +180,13 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                                     <div className={`${styles.row} ${styles.menuItem} `}>
                                         <i
                                             style={{
-                                                color: router.pathname == "/" ? "" : "",
+                                                color: router.pathname.includes("/products/subscriptions") ? "white" : "",
                                                 fontSize: "0.8rem",
                                                 padding: "0.1rem 0",
                                             }}><FontAwesomeIcon icon={faGauge}/></i>
                                         <span 
                                             style={{
-                                                color: router.pathname == "/" ? "" : ""
+                                                color: router.pathname.includes("/products/subscriptions") ? "white" : "",
                                             }}>Subscriptions</span>
                                     </div>
                                 </Link>
@@ -197,13 +198,13 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                                     <div className={`${styles.row} ${styles.menuItem} `}>
                                         <i
                                             style={{
-                                                color: router.pathname == "/" ? "" : "",
+                                                color: router.pathname.includes("/products/bundles") ? "white" : "",
                                                 fontSize: "0.8rem",
                                                 padding: "0.1rem 0",
                                             }}><FontAwesomeIcon icon={faGauge}/></i>
                                         <span 
                                             style={{
-                                                color: router.pathname == "/" ? "" : ""
+                                                color: router.pathname.includes("/products/bundles") ? "white" : "",
                                             }}>Bundles</span>
                                     </div>
                                 </Link>
@@ -215,13 +216,13 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                                     <div className={`${styles.row} ${styles.menuItem} `}>
                                         <i
                                             style={{
-                                                color: router.pathname == "/" ? "" : "",
+                                                color: router.pathname.includes("/products/collections") ? "white" : "",
                                                 fontSize: "0.8rem",
                                                 padding: "0.1rem 0",
                                             }}><FontAwesomeIcon icon={faGauge}/></i>
                                         <span 
                                             style={{
-                                                color: router.pathname == "/" ? "" : ""
+                                                color: router.pathname.includes("/products/collections") ? "white" : "",
                                             }}>Collections</span>
                                     </div>
                                 </Link>
@@ -233,13 +234,13 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                                     <div className={`${styles.row} ${styles.menuItem} `}>
                                         <i
                                             style={{
-                                                color: router.pathname == "/" ? "" : "",
+                                                color: router.pathname.includes("/products/gift_cards") ? "white" : "",
                                                 fontSize: "0.8rem",
                                                 padding: "0.1rem 0",
                                             }}><FontAwesomeIcon icon={faGauge}/></i>
                                         <span 
                                             style={{
-                                                color: router.pathname == "/" ? "" : ""
+                                                color: router.pathname.includes("/products/bungift_cardsdles") ? "white" : "",
                                             }}>Gift Cards</span>
                                     </div>
                                 </Link>
@@ -275,11 +276,11 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                             <div className={`${styles.row} ${styles.menuItem} `}>
                                 <i
                                     style={{
-                                        color: router.pathname.includes("/orders") ? "white" : ""
+                                        color: router.pathname.includes("/orders/all") ? "white" : ""
                                     }}><FontAwesomeIcon icon={faMoneyBillTransfer} /></i>
                                 <span
                                     style={{
-                                        color: router.pathname.includes("/orders") ? "white" : ""
+                                        color: router.pathname.includes("/orders/all") ? "white" : ""
                                     }}>Orders</span>
                             </div>
                         </Link>
@@ -291,13 +292,13 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                                     <div className={`${styles.row} ${styles.menuItem} `}>
                                         <i
                                             style={{
-                                                color: router.pathname == "/" ? "" : "",
+                                                color: router.pathname.includes("/orders/carts") ? "white" : "",
                                                 fontSize: "0.8rem",
                                                 padding: "0.1rem 0",
                                             }}><FontAwesomeIcon icon={faGauge}/></i>
                                         <span 
                                             style={{
-                                                color: router.pathname == "/" ? "" : ""
+                                                color: router.pathname.includes("/orders/carts") ? "white" : ""
                                             }}>Carts</span>
                                     </div>
                                 </Link>
@@ -309,13 +310,13 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                                     <div className={`${styles.row} ${styles.menuItem} `}>
                                         <i
                                             style={{
-                                                color: router.pathname == "/" ? "" : "",
+                                                color: router.pathname.includes("/orders/draft_orders") ? "white" : "",
                                                 fontSize: "0.8rem",
                                                 padding: "0.1rem 0",
                                             }}><FontAwesomeIcon icon={faGauge}/></i>
                                         <span 
                                             style={{
-                                                color: router.pathname == "/" ? "" : ""
+                                                color: router.pathname.includes("/orders/draft_orders") ? "white" : ""
                                             }}>Draft Orders</span>
                                     </div>
                                 </Link>
@@ -363,7 +364,7 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                                 <div className={`${styles.row} ${styles.menuItem} `}>
                                     <i
                                         style={{
-                                            color: router.pathname == "/" ? "" : "",
+                                            color: router.pathname.includes("/settings") ? "white" : "",
                                             fontSize: "0.8rem",
                                             padding: "0.1rem 0",
                                         }}><FontAwesomeIcon icon={faSliders}/></i>
@@ -380,7 +381,7 @@ export const Menu: FunctionComponent<Props> = ({openState, toggleMenu}) => {
                             <div className={`${styles.row} ${styles.menuItem} `}>
                                 <i
                                     style={{
-                                        color: router.pathname == "/" ? "" : "",
+                                        color: router.pathname.includes("/settings") ? "white" : "",
                                         fontSize: "0.8rem",
                                         padding: "0.1rem 0",
                                     }}><FontAwesomeIcon icon={faPersonThroughWindow}/></i>

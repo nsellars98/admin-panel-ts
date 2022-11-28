@@ -7,6 +7,7 @@ import React from "react";
 import { 
     Saira_Extra_Condensed,
 } from '@next/font/google';
+import { numberFormat, percentageFormatter } from "../../lib/helpers/formatters";
 
 
 const saira = Saira_Extra_Condensed({
@@ -17,7 +18,7 @@ type Props = {
     title: string,
     children: JSX.Element,
     header: string,
-    subHeader?: string,
+    subHeader?: string | number,
     width?: number,
     card_type?: "ORDER" | "DEFAULT" | "INFO" | "PAYMENT",
     status?: boolean,
@@ -51,7 +52,7 @@ export const Card: React.FC<Props> = ({
 export interface HeaderProps {
     title: string
     header: string
-    subHeader: string
+    subHeader: string | number
     width?: number,
     status?: boolean,
     id?: string,
@@ -64,14 +65,50 @@ export const DefaultHeader: React.FC<HeaderProps> = ({
     subHeader,
     width
 }) => {
+    console.log(typeof(subHeader))
     return (
         <header className={`${styles.col}`}>
             <div className={`${styles.col}`}>
-                <p>{title}</p>
-                <h1 className={`${saira.className}`}>
-                {header}
-                {subHeader == "" ? "" : <span style={{fontSize: "12px"}}> {subHeader}</span> }
-            </h1>
+                <h5 
+                style={{
+                    fontSize: window.innerWidth > 720 ? 15 : "1.3vh",
+                    lineHeight: window.innerWidth > 720 ? "" : "",
+                }}>{title + ""} </h5>
+                <div 
+                    style={{
+                        justifyContent: "flex-start",
+                        alignItems: "flex-end",
+                        marginTop: "1.5rem",
+                        marginBottom: "2.4rem",
+                    }}
+                    className={`${styles.row}`}>
+                    <h1 
+                        style={{
+                            lineHeight: window.innerWidth > 720 ? "25px" : "30px",
+                        }}>
+                    {header}
+                    </h1>
+                    {
+                        typeof(subHeader) == "number" ?  
+                            <p 
+                                style={{
+                                    marginLeft: "0.5rem",
+                                    backgroundColor: subHeader > 0 ? "rgb(138, 242, 138)" : "",
+                                    color: subHeader > 0 ? "rgb(56, 56, 56)" : "",
+                                    lineHeight: window.innerWidth > 720 ? "" : "",
+                                }}  
+                                className={`${styles.tag}`}>{percentageFormatter(subHeader)}</p> : 
+                                typeof(subHeader) == "string" && subHeader !== "" ? 
+                                <p 
+                                style={{
+                                    margin: "0 0 0 0.5rem",
+                                    // backgroundColor: subHeader > 0 ? "rgb(138, 242, 138)" : "",
+                                    // color: subHeader > 0 ? "rgb(56, 56, 56)" : "",
+                                    lineHeight: window.innerWidth > 720 ? "" : "",
+                                }}  
+                                className={``}>{subHeader}</p> : ""
+                    }
+                </div>
             </div>
             <Underline  width={width  as number}/>
       </header>
@@ -170,7 +207,6 @@ export const InfoHeader: React.FC<HeaderProps> = ({
     width,
     header
 }) => {
-
     console.log(header);
     return (
         <header 
@@ -188,8 +224,9 @@ export const InfoHeader: React.FC<HeaderProps> = ({
                         className={`${styles.row}`} >
                         <h5 
                         style={{
-                            fontSize: 25
-                        }}>{title}</h5>
+                            fontSize: window.innerWidth > 720 ? 25 : "3vh",
+                            lineHeight: window.innerWidth > 720 ? "" : "",
+                        }}>{title + " <--- "} </h5>
                     </div>
                     <div 
                         style={{

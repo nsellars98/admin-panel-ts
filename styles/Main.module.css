@@ -668,7 +668,13 @@
     padding: 0 15px
   }
 
+  .analyticCard p {
+    font-size: 15px;
+  }
 
+  .topSellers:hover {
+    color: var(--accent);
+  }
 
 
 
@@ -705,7 +711,6 @@
   align-content: center;
   flex-direction: row;
  }
-
   /* 
     =============================================================================================================
       MOBILE
@@ -737,7 +742,7 @@
     }
 
     .analytics  input {
-      width: 150px !important;
+      width: 100% !important;
     }
     .analytics  label {
       background-color: white !important;
@@ -747,9 +752,23 @@
       font-size: 0.8rem
     }
 
-    .card > header div,
-    .card > header {
+    .funnelDetailStats > header div,
+    .funnelDetailStats > header {
       /* width: auto !important; */
+    }
+    .funnelDetailStats > header,
+    .funnelDetailStats > header > section > div {
+      width: auto !important;
+    }
+
+    .funnelDetailStats > header {
+      margin-right: 1rem;
+    }
+
+
+    .funnelDetailStats > header h4,
+    .funnelDetailStats > header h5 {
+      padding: 5px;
     }
 
     .card > header > section > div > div > div{

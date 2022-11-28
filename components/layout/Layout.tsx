@@ -18,15 +18,20 @@ export const Layout: FunctionComponent<Props> = (props) => {
     return (
         <div style={{
             minHeight: "100vh",
+            background: "var(--darkBackground)"
         }} className={`${styles.row} `}>
             <div
                 style={{
-                    display: !openState ? "" : "none"
+                    display: !openState ? "" : "none",
+                    height: window.innerWidth < 720 ? "" + (window.innerHeight + 200) + "px" : "" + (window.innerHeight) + "px",
+                    minHeight: "" + window.innerHeight + "px",
                 }} 
                 className={styles.mainLayout}></div>
             <div
                 style={{
-                    display: !openState ? "" : "none"
+                    display: !openState ? "" : "none",
+                    height: window.innerWidth < 720 ? "" + (window.innerHeight + 200) + "px" : "" + (window.innerHeight) + "px",
+                    minHeight: "" + window.innerHeight + "px",
                 }} 
                 className={styles.blur}></div>
 
@@ -47,7 +52,7 @@ export const Layout: FunctionComponent<Props> = (props) => {
                     <TopBar openState={openState} toggleMenu={toggleMenu} state={props.state} />
                     {props.children}
                 </div>
-                {/* <footer  className={`${styles.row} ${styles.footer}`}>
+                {/* <footer  className={`${styles.row} ${styles.footer}`}>`
                     Bigly 
                 </footer> */}
             </main>

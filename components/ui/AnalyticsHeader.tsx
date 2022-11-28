@@ -33,7 +33,7 @@ export const AnalyticsHeader: FunctionComponent<Props> = ({
             </div>
             <div className={`${styles.row}`}
                     style={{
-                        overflow: "hidden",
+                        overflow: "visible",
                         padding: window.innerWidth > 720 ? "2.3rem 1.5rem 0 0" : "0",
                         margin: window.innerWidth > 720 ? "" : "0",                        
                     }}>

@@ -9,6 +9,7 @@ import {
 import * as crypto from 'crypto';
 import Link from 'next/link';
 import { Card } from '../components/ui/Card';
+import { numberFormat } from '../lib/helpers/formatters';
 
 const saira = Saira_Extra_Condensed({
   weight: "400",
@@ -21,7 +22,7 @@ const TOTAL_SESSIONS = "750";
 const TOTAL_CARTS = "234";
 const TOTAL_CHECKOUTS = TOTAL_ORDERS;
 
-const RETURNS = "173.31"
+const RETURNS = "-173.31"
 
 const TOTAL_ORDERS_ONLINE = "98";
 const TOTAL_SALES_ONLINE = "$23,150.93";
@@ -56,10 +57,16 @@ const TOP_SELLERS = [
   }
 ]
 
+
+const PREV_TOTAL_CHECKOUTS = "706";
+const PREV_TOTAL_SESSIONS = "12000";
+
 export default function Home() {
 
   const cartRate = Math.round((Number(TOTAL_CARTS) / Number(TOTAL_SESSIONS))*1000) / 100;
   const SALE_RATE = Math.round((Number(TOTAL_CHECKOUTS) / Number(TOTAL_SESSIONS))*1000) / 100;
+
+  const PREV_SALE_RATE = Number(PREV_TOTAL_CHECKOUTS) / Number(PREV_TOTAL_SESSIONS);
 
   return (
     <div className={`${styles.col}`}>
@@ -75,9 +82,15 @@ export default function Home() {
           />
 
       <main className={`${styles.col} ${styles.container}`}>
-        <div className={`${styles.row} ${styles.mobileContainer}`}>
+        <div className={`${styles.row} ${styles.mobileContainer} ${styles.analyticCard}`}>
           <section className={`${styles.col} ${styles.oneThird}`}>
-            <Card title='Total Sales' header={TOTAL_SALES}>
+
+            <Card 
+            
+              card_type={"DEFAULT"}
+              title='Total Sales'
+              header={TOTAL_SALES}
+              subHeader={PREV_SALE_RATE > 0 ? Number(PREV_SALE_RATE)  :  Number(PREV_SALE_RATE) }>
               <div className={`${styles.row}`}>
                 <p>Total Orders: <b>{TOTAL_ORDERS}</b></p>
                 <Link className={styles.linkText} href={"/analytics/daily"}><p>View Details</p></Link>
@@ -85,12 +98,21 @@ export default function Home() {
             </Card>
           </section>
           <section className={`${styles.col} ${styles.oneThird}`}>
-            <Card title='Current Conversions' header={SALE_RATE + "% Sale Rate"}>
+            <Card 
+              title='Current Conversions'
+              header={"" + SALE_RATE + "%"}
+              subHeader={"Sales Conversions"}>
               <div className={styles.col}>
                 <div className={`${styles.row}`}>
-                  <p style={{width: "50%"}}>Name </p>
-                  <p style={{width: "20%"}}>Rate</p>
-                  <p style={{width: "20%"}}><b>Figure</b></p>
+                    <p style={{width: "50%", fontWeight: "100"}}>
+                    Figure
+                    </p>
+                    <p style={{width: "20%", fontWeight: "100"}}>
+                    Rate
+                    </p>
+                    <p style={{width: "20%", fontWeight: "100"}}>
+                    Name
+                    </p>
                 </div>
                 <div className={`${styles.row}`}>
                   <p style={{width: "50%"}}>Total Sessions: </p>
@@ -111,12 +133,21 @@ export default function Home() {
             </Card>
           </section>
           <section className={`${styles.col} ${styles.oneThird}`}>
-            <Card title='Sales Breakdown' header={"-$" + RETURNS + " Returns"}>
+            <Card
+              title='Sales Breakdown'
+              header={numberFormat(Number(RETURNS))}
+              subHeader={"Returns"}>
               <div className={styles.col}>
                 <div className={`${styles.row}`}>
-                  <p style={{width: "50%"}}>Channel </p>
-                  <p style={{width: "20%"}}>Total</p>
-                  <p style={{width: "20%"}}><b>Sales</b></p>
+                  <p style={{width: "50%", fontWeight: "100"}}>
+                    Channel
+                  </p>
+                  <p style={{width: "20%", fontWeight: "100"}}>
+                    Total
+                  </p>
+                  <p style={{width: "20%", fontWeight: "100"}}>
+                    Sales
+                  </p>
                 </div>
                 <div className={`${styles.row}`}>
                   <p style={{width: "50%"}}>Online Store </p>
@@ -137,19 +168,25 @@ export default function Home() {
             </Card>
           </section>
         </div>
-        <div className={`${styles.row} ${styles.mobileContainer}`}>
+        <div className={`${styles.row} ${styles.mobileContainer} ${styles.analyticCard}`}>
           <section className={`${styles.col} ${styles.oneThird}`}></section>
           <section style={{width: "66%"}} className={`${styles.col} ${styles.twoThird}`}>
             <Card title='Viewed The Most' header={"-"}>
               <div className={styles.col}>
                 <div className={`${styles.row}`}>
-                  <p style={{width: "50%"}}>Title</p>
-                  <p style={{width: "20%"}}>Total View</p>
-                  <p style={{width: "20%"}}><b>Total Orders</b></p>
+                  <p style={{width: "50%", fontWeight: "100"}}>
+                      Title
+                  </p>
+                  <p style={{width: "20%", fontWeight: "100"}}>
+                      Total View
+                  </p>
+                  <p style={{width: "20%", fontWeight: "100"}}>
+                      Total Orders
+                  </p>
                 </div>
                 {TOP_SELLERS && TOP_SELLERS.map(product => {
                   return (
-                    <div key={product.id} className={`${styles.row}`}>
+                    <div key={product.id} className={`${styles.row}  ${styles.topSellers}`}>
                       <Link href={`/products/${product.id}`} className={`${styles.row}`}>
                         <p style={{width: "50%"}}>{product.title}</p>
                         <p style={{width: "20%"}}>{product.view_count}</p>

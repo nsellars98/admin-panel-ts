@@ -7,7 +7,7 @@ import styles from "../../styles/Main.module.css";
 const TOTAL_SALES = "420069.89";
 const PREV_TOTAL_SALES = "410000.89";
 let T_SALES_DIFF = 1 - (Number(PREV_TOTAL_SALES) / Number(TOTAL_SALES));
-T_SALES_DIFF = Number(percentageFormatter(T_SALES_DIFF));
+T_SALES_DIFF = Number((T_SALES_DIFF));
 
 
 const TOTAL_ORDERS = "159";
@@ -23,7 +23,7 @@ const RETURNS = "-173.31"
 const TOTAL_AOV = "28.78"
 const PREV_TOTAL_AOV = "36.56"
 let T_AOV_DIFF = 1 - (Number(PREV_TOTAL_AOV) / Number(TOTAL_AOV));
-T_AOV_DIFF = Number(percentageFormatter(T_AOV_DIFF));
+T_AOV_DIFF = Number((T_AOV_DIFF));
 
 const TOTAL_ORDERS_ONLINE = "98";
 const TOTAL_SALES_ONLINE = "23150.93";
@@ -37,6 +37,7 @@ const TOTAL_CHECKOUTS_TAPCART = "2123.04";
 
 import * as crypto from "crypto";
 import { AnalyticsHeader } from "../../components/ui/AnalyticsHeader";
+import Underline from "../../components/ui/Underline";
 
 const TOP_SELLERS = [
   {
@@ -67,21 +68,31 @@ export default function Daily() {
   const cartRate = Math.round((Number(TOTAL_CARTS) / Number(TOTAL_SESSIONS))*1000) / 100;
   const SALE_RATE = Math.round((Number(TOTAL_CHECKOUTS) / Number(TOTAL_SESSIONS))*1000) / 100;
 
-  const PREV_SALE_RATE = Math.round((Number(PREV_TOTAL_CHECKOUTS) / Number(PREV_TOTAL_SESSIONS))*1000) / 100;
+  const PREV_SALE_RATE = Number(PREV_TOTAL_CHECKOUTS) / Number(PREV_TOTAL_SESSIONS);
 
     return (
         <div className={`${styles.col}`}>
         <AnalyticsHeader title="Analytics" createTxt="" createPage=""/> 
             <main className={`${styles.col}`}>
                 <div className={`${styles.col} ${styles.container}`}>
-                    <div className={`${styles.row} ${styles.mobileContainer}`}>
+                    <div className={`${styles.row} ${styles.mobileContainer} ${styles.analyticCard}`}>
                         <div className={`${styles.col} ${styles.oneThird}`}>
-                            <Card title='Sales Breakdown' header={numberFormat(Number(TOTAL_SALES))} subHeader={ T_SALES_DIFF > 0 ? " ⬆️ " + T_SALES_DIFF +"%" : " ⬇️ " + T_SALES_DIFF +"%"}>
+                            <Card
+                                card_type={"DEFAULT"}
+                                title='Sales Breakdown'
+                                header={numberFormat(Number(TOTAL_SALES))}
+                                subHeader={ T_SALES_DIFF > 0 ?  Number(T_SALES_DIFF) :  Number(T_SALES_DIFF) }>
                                 <div className={styles.col}>
                                     <div className={`${styles.row}`}>
-                                    <p style={{width: "50%"}}>Channel </p>
-                                    <p style={{width: "20%"}}>Total</p>
-                                    <p style={{width: "20%"}}><b>Sales</b></p>
+                                        <p style={{width: "50%", fontWeight: "100"}}>
+                                            Channel
+                                        </p>
+                                        <p style={{width: "20%", fontWeight: "100"}}>
+                                            Total
+                                        </p>
+                                        <p style={{width: "20%", fontWeight: "100"}}>
+                                            Sales
+                                        </p>
                                     </div>
                                     <div className={`${styles.row}`}>
                                     <p style={{width: "50%"}}>Online Store </p>
@@ -102,7 +113,11 @@ export default function Daily() {
                             </Card>     
                         </div>
                         <div  className={`${styles.col} ${styles.oneThird}`}>
-                            <Card title='Average Order Value' header={numberFormat(Number(TOTAL_AOV))} subHeader={ T_AOV_DIFF > 0 ? " ⬆️ " + T_AOV_DIFF +"%" : " ⬇️ " + T_AOV_DIFF +"%"}>
+                            <Card 
+                                card_type={"DEFAULT"}
+                                title='Average Order Value'
+                                header={numberFormat(Number(TOTAL_AOV))}
+                                subHeader={ T_AOV_DIFF > 0 ?  Number(T_AOV_DIFF) :  Number(T_AOV_DIFF) }>
                                 <div className={`${styles.col}`}>
                                     <div className={`${styles.row}`}>
                                         <p>Total Orders: <b>{TOTAL_ORDERS}</b></p>
@@ -111,12 +126,22 @@ export default function Daily() {
                             </Card>
                         </div>
                         <div className={`${styles.col} ${styles.oneThird}`}>
-                            <Card title='Current Conversions' header={"" + SALE_RATE + "%"}  subHeader={PREV_SALE_RATE > 0 ? " ⬆️ " + PREV_SALE_RATE +"%" : " ⬇️ " + PREV_SALE_RATE +"%"}>
+                            <Card 
+                                card_type={"DEFAULT"}
+                                title='Current Conversions'
+                                header={"" + SALE_RATE + "%"} 
+                                subHeader={PREV_SALE_RATE > 0 ? Number(PREV_SALE_RATE)  :  Number(PREV_SALE_RATE) }>
                             <div className={styles.col}>
                                 <div className={`${styles.row}`}>
-                                <p style={{width: "50%"}}>Name </p>
-                                <p style={{width: "20%"}}>Rate</p>
-                                <p style={{width: "20%"}}><b>Figure</b></p>
+                                    <p style={{width: "50%", fontWeight: "100"}}>
+                                        Name
+                                    </p>
+                                    <p style={{width: "20%", fontWeight: "100"}}>
+                                        Rate
+                                    </p>
+                                    <p style={{width: "20%", fontWeight: "100"}}>
+                                        Figure
+                                    </p>
                                 </div>
                                 <div className={`${styles.row}`}>
                                 <p style={{width: "50%"}}>Total Sessions: </p>
@@ -138,22 +163,28 @@ export default function Daily() {
                         </div>
                     </div>
 
-                    <div style={{paddingTop: "1rem"}} className={`${styles.row} ${styles.mobileContainer}`}>
+                    <div style={{paddingTop: "1rem"}} className={`${styles.row} ${styles.mobileContainer} ${styles.analyticCard}`}>
                         <div className={`${styles.col} ${styles.oneThird}`}>
                         <Card title='Viewed The Most' header={TOP_SELLERS[0].title}>
                             <div className={styles.col}>
-                            <div className={`${styles.row}`}>
-                                <p style={{width: "50%"}}>Title</p>
-                                <p style={{width: "20%"}}>Total View</p>
-                                <p style={{width: "20%"}}><b>Total Orders</b></p>
+                            <div style={{paddingTop: "1rem", alignItems: "flex-end"}} className={`${styles.row}`}>
+                                <p style={{width: "50%", fontWeight: "100"}}>
+                                    Title
+                                </p>
+                                <p style={{width: "20%", fontWeight: "100"}}>
+                                    Total View
+                                </p>
+                                <p style={{width: "20%", fontWeight: "100"}}>
+                                    Total Orders
+                                </p>
                             </div>
                             {TOP_SELLERS && TOP_SELLERS.map(product => {
                                 return (
-                                <div key={product.id} className={`${styles.row}`}>
+                                <div key={product.id} className={`${styles.row} ${styles.topSellers}`}>
                                     <Link href={`/products/${product.id}`} className={`${styles.row}`}>
-                                    <p style={{width: "50%"}}>{product.title}</p>
-                                    <p style={{width: "20%"}}>{product.view_count}</p>
-                                    <p style={{width: "20%"}}><b>{product.order_count}</b></p>
+                                        <p style={{width: "50%"}}>{product.title}</p>
+                                        <p style={{width: "20%"}}>{product.view_count}</p>
+                                        <p style={{width: "20%"}}><b>{product.order_count}</b></p>
                                     </Link>
                                 </div>
                                 )
