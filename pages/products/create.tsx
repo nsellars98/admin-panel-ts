@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Dispatch, FunctionComponent, SetStateAction, useState } from "react";
+import React, { Dispatch, FunctionComponent, SetStateAction, useState } from "react";
 import { Card } from "../../components/ui/Card";
 import FormProgress from "../../components/ui/FormProgress";
 import RichTextEditor from "../../components/ui/RichTextEditor";
@@ -661,6 +661,7 @@ export const ProductText: FunctionComponent<Props> = ({
     setIndex,
     steps
 }) => {
+    const [content, setContent] = React.useState("");
     return (
         <Card 
             card_type="CREATE"
@@ -747,7 +748,7 @@ export const ProductText: FunctionComponent<Props> = ({
                         style={{
                             width: "100%"
                         }}>
-                        <RichTextEditor />
+                        <RichTextEditor content={content} setContent={setContent} />
                         {/* <textarea
                             style={{
                                 color: "white",

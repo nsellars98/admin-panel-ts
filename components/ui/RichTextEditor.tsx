@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Dispatch } from "react";
 import { useEditor, EditorContent, Editor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import styles from "../../styles/RichText.module.css";
@@ -21,6 +21,12 @@ import styles from "../../styles/RichText.module.css";
 
 type Props = {
   editor: Editor | null;
+}
+
+type RichTextEditor = {
+  editor: Editor | null;
+  content: string
+  setContent: React.Dispatch<React.SetStateAction<string>>
 }
 
 const MenuBar: React.FC<Props> = ({ editor }) => {
@@ -359,20 +365,48 @@ const MenuBar: React.FC<Props> = ({ editor }) => {
   )
 }
 
-export default () => {
+const SaveButton: React.FC<RichTextEditor> = ({ editor, content }) => {
+  if (!editor) {
+    return null
+  }
+
+  return (
+    <div className={styles.saveButtonWrapper}>
+      <button 
+        onClick={() => {}}
+        className={styles.saveButton}>
+        Save
+      </button>
+      <div className={styles.content} dangerouslySetInnerHTML={{ __html: ""+content }}></div>
+    </div>
+  )
+}
+
+export const RichTextEditor: React.FC<RichTextEditor> = ({content, setContent}) => {
+  //const [content, setContent] = React.useState("");
+
   const editor = useEditor({
     extensions: [
       StarterKit,
     ],
     content: `
-      <p>Add a comment...</p>
+    <p>Add a comment...</p>
     `,
+    onUpdate({ editor }) {
+      setContent(editor.getHTML())
+    },
+    onSelectionUpdate({ editor }) {
+      setContent(editor.getHTML())
+    },
   })
-
+  
   return (
     <div>
       <MenuBar editor={editor} />
       <EditorContent editor={editor} />
+      <SaveButton editor={editor} content={content} setContent={setContent} />
     </div>
   )
 }
+
+export default RichTextEditor;

@@ -1,7 +1,8 @@
 import Image from "next/image";
-import { FunctionComponent, useState } from "react";
+import React, { FunctionComponent, useState } from "react";
 import { Card } from "../../../components/ui/Card";
 import { DetailPageHeader } from "../../../components/ui/headers/DetailPageHeader";
+import RichTextEditor from "../../../components/ui/RichTextEditor";
 import Underline from "../../../components/ui/Underline";
 import { numberFormat } from "../../../lib/helpers/formatters";
 import { deleteTag } from "../../../lib/helpers/tags";
@@ -676,6 +677,7 @@ export const OptionsVariants: FunctionComponent<TagProps> = ({
 export const TitleDescription: FunctionComponent<TagProps> = ({
     setProduct,
 }) => {
+    const [content, setContent] = React.useState("");
     return (
         <Card 
             card_type="INFO"
@@ -758,7 +760,8 @@ export const TitleDescription: FunctionComponent<TagProps> = ({
                         style={{
                             width: "100%"
                         }}>
-                        <textarea
+                        <RichTextEditor content={content} setContent={setContent} />
+                        {/* <textarea
                             style={{
                                 color: "white",
                                 width: "100%",
@@ -772,7 +775,7 @@ export const TitleDescription: FunctionComponent<TagProps> = ({
                                 description: e.target.value
                             })}
                             value={product.description}
-                            name="title" />
+                            name="title" /> */}
                         <label style={{ 
                             top: product.description != "" ? "-5px" : "", 
                             fontSize: product.description != "" ? "10px" : ""}}>Title</label>
