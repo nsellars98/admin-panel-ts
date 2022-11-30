@@ -125,7 +125,7 @@ export const createProduct: FunctionComponent<Prop> = (props) => {
                     {steps && steps.map(s => { 
                         if (s.step == "STEP_ONE" && s.active ){
                             return (
-                                <StepOne setProduct={setProduct as Dispatch<SetStateAction<any>>} product={product} navForm={navForm} setIndex={setIndex} steps={steps} /> 
+                                <ProductText setProduct={setProduct as Dispatch<SetStateAction<any>>} product={product} navForm={navForm} setIndex={setIndex} steps={steps} /> 
                             )
                         }
                         if (s.step == "STEP_TWO" && s.active){
@@ -654,7 +654,7 @@ export const StepTwo: FunctionComponent<Props> = ({
 }
 
 
-export const StepOne: FunctionComponent<Props> = ({
+export const ProductText: FunctionComponent<Props> = ({
     setProduct,
     product,
     navForm,
@@ -737,6 +737,8 @@ export const StepOne: FunctionComponent<Props> = ({
                         </div>
                     </div>
                 </div>
+
+                {/* INSERT RICH TEXT EDITOR */}
                 <div className={`${styles.row}`}
                     style={{
                         marginTop: "1.5rem"
