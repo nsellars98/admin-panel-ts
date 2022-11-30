@@ -3,7 +3,7 @@ import Link from "next/link";
 import { FunctionComponent } from "react";
 import { numberFormat } from "../../../lib/helpers/formatters";
 import { Customer } from "../../../lib/types/customers";
-import styles from "../../styles/Main.module.css";
+import styles from "../../../styles/Main.module.css";
 
 export const CustomerContainerRow: FunctionComponent<any> = ({c}) => {
     const CUSTOMER: Customer = c;
