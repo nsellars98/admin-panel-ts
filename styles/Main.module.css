@@ -672,10 +672,17 @@
     font-size: 15px;
   }
 
+  .links:hover,
   .topSellers:hover {
     color: var(--accent);
   }
 
+  .links:hover {
+    color: var(--accent) !important;
+  }
+  .links {
+    cursor: pointer;
+  }
 
 
 
@@ -684,6 +691,10 @@
     .sideBar {
       display: flex !important;
     }
+  }
+
+  .reverseCol {
+    flex-direction: column-reverse;
   }
 
   .grid {

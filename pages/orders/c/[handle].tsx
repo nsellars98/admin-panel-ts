@@ -68,15 +68,15 @@ const discount_value = 0;
 
 const payment_status = false;
 
-export const OrderDetail: FunctionComponent = () => {
+export const CartDetail: FunctionComponent = () => {
     return (
         <div className={`${styles.col}`}>
             {/* Sub Header - page specific */}
             <DetailPageHeader 
-                back_route={"/orders/all"}
-                title={"Orders"}
-                special_btn={"Refund"}
-                special_btn_route={"/orders/refund"} />
+                back_route={"/carts/all"}
+                title={"Carts"}
+                special_btn={""}
+                special_btn_route={"/"} />
             
             {/* Main container */}
             <main className={`${styles.col} ${styles.container}`}>
@@ -235,4 +235,4 @@ export const OrderDetail: FunctionComponent = () => {
     )
 }
 
-export default OrderDetail;
+export default CartDetail;

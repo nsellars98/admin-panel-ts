@@ -447,7 +447,7 @@ export const InfoHeader: React.FC<CardHeaderProps> = ({
                         style={{
                             fontSize: window.innerWidth > 720 ? 25 : "3vh",
                             lineHeight: window.innerWidth > 720 ? "" : "",
-                        }}>{title + " <--- "} </h5>
+                        }}>{title + ""} </h5>
                     </div>
                     <div 
                         style={{

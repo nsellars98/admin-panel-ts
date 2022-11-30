@@ -1,5 +1,5 @@
 import styles from "../../../styles/Main.module.css";
-import AllItemHeader from "../../../components/ui/AllItemHeader";
+import AllItemHeader from "../../../components/ui/headers/AllItemHeader";
 import { FunctionComponent, useState } from "react";
 import {
     faFilter,
@@ -7,15 +7,15 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     ProductContainerRow
-} from "../../../components/ui/ProductContainerRow";
+} from "../../../components/ui/rows/ProductContainerRow";
 import {
     ItemContainerHeader
-} from "../../../components/ui/ItemContainerHeader";
+} from "../../../components/ui/headers/ItemContainerHeader";
 import { Product } from "../../../lib/types/products";
 import Underline from "../../../components/ui/Underline";
 import * as crypto from "crypto"
-import { AnalyticsContainerRow } from "../../../components/ui/AnalyticsContainerRow";
-import { MainRowContainerHeader } from "../../../components/ui/MainRowContainerHeader";
+import { AnalyticsContainerRow } from "../../../components/ui/rows/AnalyticsContainerRow";
+import { MainRowContainerHeader } from "../../../components/ui/headers/MainRowContainerHeader";
 
 const funnels = [
     {

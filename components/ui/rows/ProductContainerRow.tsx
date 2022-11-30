@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { FunctionComponent } from "react";
-import { numberFormat } from "../../lib/helpers/formatters";
-import { Product } from "../../lib/types/products";
+import { numberFormat } from "../../../lib/helpers/formatters";
+import { Product } from "../../../lib/types/products";
 
 // styling
-import styles from "../../styles/Main.module.css";
-import Underline from "./Underline";
+import styles from "../../../styles/Main.module.css";
+import Underline from "../Underline";
 
 export interface ColFromList {
     width: string,
@@ -28,7 +28,7 @@ export const ProductContainerRow: FunctionComponent<any>  = ({p}) => {
             }}
             key={p.id}
             className={`${styles.row}`}
-            href={`/products/${p.id}`}>
+            href={`/products/p/${p.id}`}>
             <div 
                 style={{
                     justifyContent: "flex-start",
