@@ -1,7 +1,6 @@
 import Link from "next/link";
-import AllItemHeader from "../../components/ui/headers/AllItemHeader";
 import { Card } from "../../components/ui/Card";
-import { numberFormat, percentageFormatter } from "../../lib/helpers/formatters";
+import { numberFormat } from "../../lib/helpers/formatters";
 import styles from "../../styles/Main.module.css";
 
 const TOTAL_SALES = "420069.89";

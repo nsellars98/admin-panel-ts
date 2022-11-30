@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { FunctionComponent } from "react";
-import { Product } from "../../../lib/types/products";
+// import { Product } from "../../../lib/types/products";
 
 // styling
-import styles from "../../styles/Main.module.css";
-import Underline from "../Underline";
+import styles from "../../../styles/Main.module.css";
+// import Underline from "../Underline";
 
 export interface Props {
     colOneTop: string,

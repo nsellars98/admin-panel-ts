@@ -1,13 +1,10 @@
 import styles from "../../../styles/Main.module.css";
 import AllItemHeader from "../../../components/ui/headers/AllItemHeader";
-import { FunctionComponent, useState } from "react";
+import { useState } from "react";
 import {
     faFilter,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    ProductContainerRow
-} from "../../../components/ui/rows/ProductContainerRow";
 import {
     ItemContainerHeader
 } from "../../../components/ui/headers/ItemContainerHeader";
