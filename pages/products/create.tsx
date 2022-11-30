@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Dispatch, FunctionComponent, SetStateAction, useState } from "react";
 import { Card } from "../../components/ui/Card";
 import FormProgress from "../../components/ui/FormProgress";
+import RichTextEditor from "../../components/ui/RichTextEditor";
 import Underline from "../../components/ui/Underline";
 import { numberFormat } from "../../lib/helpers/formatters";
 import { deleteTag } from "../../lib/helpers/tags";
@@ -744,7 +745,8 @@ export const StepOne: FunctionComponent<Props> = ({
                         style={{
                             width: "100%"
                         }}>
-                        <textarea
+                        <RichTextEditor />
+                        {/* <textarea
                             style={{
                                 color: "white",
                                 width: "100%",
@@ -758,7 +760,7 @@ export const StepOne: FunctionComponent<Props> = ({
                                 description: e.target.value
                             })}
                             value={product.description}
-                            name="title" />
+                            name="title" /> */}
                         <label style={{ 
                             top: product.description != "" ? "-5px" : "", 
                             fontSize: product.description != "" ? "10px" : ""}}>Title</label>
