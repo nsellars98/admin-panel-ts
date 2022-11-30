@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { FunctionComponent, useState } from "react";
 import { Card } from "../../../components/ui/Card";
+import * as crypto from "crypto";
 import { DetailPageHeader } from "../../../components/ui/headers/DetailPageHeader";
 import Underline from "../../../components/ui/Underline";
 import { numberFormat } from "../../../lib/helpers/formatters";
@@ -14,7 +15,14 @@ const product = {
     compare_at_price: 0,
     description: `<p>1123123<p>`,
     quantity: 1,
-    weight: 0.5
+    weight: 0.5,
+    videos: [
+        {
+            id: "vid_" + crypto.randomBytes(10).toString("hex"),
+            url: "",
+            type: "YOUTUBE"
+        }
+    ]
 }
 
 const t = [
@@ -36,7 +44,7 @@ export const ProductDetail = () => {
         <div className={`${styles.col}`}>
             {/* Sub Header - page specific */}
             <DetailPageHeader 
-                back_route={"/carts/all"}
+                back_route={"/products/all"}
                 title={title}
                 special_btn={"Delete Product"}
                 special_btn_route={"/products/all"} />
@@ -45,100 +53,105 @@ export const ProductDetail = () => {
             <main className={`${styles.col} ${styles.container}`}>
                 <div className={`${styles.row} ${styles.mobileContainer}`}>
                     <div className={`${styles.col} ${styles.oneThird}`}>
-                    <TagAdvanced setProduct={setProduct} setTags={setTags} setTagState={setTagState} tags={tags} />
-                    <Card 
-                    card_type="INFO"
-                    title="Manage Images & Videos"
-                    header={""}>
-                    <div className={`${styles.col}`}>
-                        <div className={`${styles.col}`}>
-
-                            {/* TOP */}
-                            <div className={`${styles.col}`}
-                                style={{width: "100%",}}>
-                                <div className={`${styles.row}`}>
-                                    <h3>Images</h3>
-                                </div>
-                                <div className={`${styles.col}`}
-                                        style={{padding: "1rem 0rem 0 0", height: "auto",}}>
-                                    <div className={`${styles.col}`}
-                                        style={{background: "", height: "100%", width: "100%", padding: "1rem 0rem 1rem 0"}}>
-                                        <div className={`${styles.col}`}>
-                                            FILE UPLOADER
-                                        </div>
-                                    </div>
-                                    <div className={`${styles.row}`}
-                                        style={{justifyContent: "space-between", width: "100%", padding: "1rem 0rem 1rem 0", borderRadius: "6px"}}>
-                                        <div className={`${styles.col}`}
-                                            style={{background: "", alignItems: "flex-start", borderRadius: "6px", padding: "0"}}>
-                                            <Image 
-                                                style={{border: "0.4px solid var(--accent)", borderRadius: "6px"}}
-                                                src={"https://boltagency.ca/content/images/2020/03/placeholder-images-product-1_large.png"} 
-                                                alt=""
-                                                width={100}
-                                                height={100} />
-                                        </div>
-
-                                        <div className={`${styles.col}`}
-                                            style={{background: "", alignItems: "center", padding: "0", borderRadius: "6px"}}>
-                                            <Image 
-                                                style={{border: "0.4px solid var(--accent)", borderRadius: "6px"}}
-                                                src={"https://boltagency.ca/content/images/2020/03/placeholder-images-product-1_large.png"} 
-                                                alt=""
-                                                width={100}
-                                                height={100} />
-                                        </div>
-
-                                        <div className={`${styles.col}`}
-                                            style={{background: "", alignItems: "flex-end", borderRadius: "6px", padding: "0", }}>
-                                            <Image 
-                                                style={{border: "0.4px solid var(--accent)", borderRadius: "6px"}}
-                                                src={"https://boltagency.ca/content/images/2020/03/placeholder-images-product-1_large.png"} 
-                                                alt=""
-                                                width={100}
-                                                height={100} />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* BOTTOM */}
-                            <div className={`${styles.col}`}
-                                style={{width: "100%",}}>
-                                <div className={`${styles.row}`}>
-                                    <h3>Video Links</h3>
-                                </div>
-                                <div className={`${styles.formItem} ${styles.row}`}
-                                    style={{
-                                        width: "100%",
-                                        padding: "0px",
-                                        marginTop: "2rem"
-                                    }}>
-                                    <input
-                                        style={{
-                                            color: "white"
-                                        }}
-                                        onChange={(e) => setProduct({
-                                            ...product,
-                                            weight: Number(e.target.value)
-                                        })}
-                                        value={product.weight}
-                                        type="text"
-                                        name="links" />
-                                    <label style={{ 
-                                        top: product.weight  > 0 ? "-5px" : "", 
-                                        fontSize: product.weight  > 0 ? "10px" : ""}}>Video Link</label>
-                                </div>
+                        <TagAdvanced setProduct={setProduct} setTags={setTags} setTagState={setTagState} tags={tags} />
+                        <Card 
+                            card_type="INFO"
+                            title="Manage Images & Videos"
+                            header={""}>
+                            <div className={`${styles.col}`}>
                                 <div className={`${styles.col}`}>
-                                    <p className={`${styles.links}`} style={{marginBottom: "1rem", fontSize: "0.9rem", color: "gray"}}>
-                                        Video Links
-                                    </p>
-                                    <Underline width={100} />
-                                </div>
+
+                                    {/* TOP */}
+                                    <div className={`${styles.col}`}
+                                        style={{width: "100%",}}>
+                                        <div className={`${styles.row}`}>
+                                            <h3>Images</h3>
+                                        </div>
+                                        <div className={`${styles.col}`}
+                                                style={{padding: "1rem 0rem 0 0", height: "auto",}}>
+                                            <div className={`${styles.col}`}
+                                                style={{background: "", height: "100%", width: "100%", padding: "1rem 0rem 1rem 0"}}>
+                                                <div className={`${styles.col}`}>
+                                                    FILE UPLOADER
+                                                </div>
+                                            </div>
+                                            <div className={`${styles.row}`}
+                                                style={{justifyContent: "space-between", width: "100%", padding: "1rem 0rem 1rem 0", borderRadius: "6px"}}>
+                                                <div className={`${styles.col}`}
+                                                    style={{background: "", alignItems: "flex-start", borderRadius: "6px", padding: "0"}}>
+                                                    <Image 
+                                                        style={{border: "0.4px solid var(--accent)", borderRadius: "6px"}}
+                                                        src={"https://boltagency.ca/content/images/2020/03/placeholder-images-product-1_large.png"} 
+                                                        alt=""
+                                                        width={100}
+                                                        height={100} />
+                                                </div>
+
+                                                <div className={`${styles.col}`}
+                                                    style={{background: "", alignItems: "center", padding: "0", borderRadius: "6px"}}>
+                                                    <Image 
+                                                        style={{border: "0.4px solid var(--accent)", borderRadius: "6px"}}
+                                                        src={"https://boltagency.ca/content/images/2020/03/placeholder-images-product-1_large.png"} 
+                                                        alt=""
+                                                        width={100}
+                                                        height={100} />
+                                                </div>
+
+                                                <div className={`${styles.col}`}
+                                                    style={{background: "", alignItems: "flex-end", borderRadius: "6px", padding: "0", }}>
+                                                    <Image 
+                                                        style={{border: "0.4px solid var(--accent)", borderRadius: "6px"}}
+                                                        src={"https://boltagency.ca/content/images/2020/03/placeholder-images-product-1_large.png"} 
+                                                        alt=""
+                                                        width={100}
+                                                        height={100} />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* BOTTOM */}
+                                    <div className={`${styles.col}`}
+                                        style={{width: "100%",}}>
+                                        <div className={`${styles.row}`}>
+                                            <h3>Video Links</h3>
+                                        </div>
+                                        <div className={`${styles.formItem} ${styles.row}`}
+                                            style={{
+                                                width: "100%",
+                                                padding: "0px",
+                                                marginTop: "2rem"
+                                            }}>
+                                            <input
+                                                style={{
+                                                    color: "white"
+                                                }}
+                                                onChange={(e) => setProduct({
+                                                    ...product,
+                                                    videos: {
+                                                        ...product.videos,
+                                                        id: "vid_" + crypto.randomBytes(10).toString("hex"),
+                                                        url: "",
+                                                        type: "YOUTUBE"
+                                                    }
+                                                })}
+                                                value={product.videos[0].id}
+                                                type="text"
+                                                name="links" />
+                                            <label style={{ 
+                                                top: product.videos[0].id  !== "" ? "-5px" : "", 
+                                                fontSize: product.videos[0].id  !== "" ? "10px" : ""}}>Video Link</label>
+                                        </div>
+                                        <div className={`${styles.col}`}>
+                                            <p className={`${styles.links}`} style={{marginBottom: "1rem", fontSize: "0.9rem", color: "gray"}}>
+                                                https://www.youtube.com owjnwhebgkjwe rgkjw ekrjgb wke gk
+                                            </p>
+                                            <Underline width={100} />
+                                        </div>
+                                    </div>
+                                </div>  
                             </div>
-                        </div>  
-                    </div>
-                </Card>
+                        </Card>
                     </div>
                     <div className={`${styles.col} ${styles.twoThird}`}
                         style={{padding: 0}}>
@@ -170,15 +183,23 @@ export const OptionsVariants: FunctionComponent<TagProps> = ({
     let [tags, setTags] = useState(t);
     const [tagText, setTagState] = useState("");
 
+    const [variants, setVariants] = useState([
+        {
+            id: "var_" + crypto.randomBytes(10).toString('hex'),
+            title: "hoodie",
+
+        }
+    ]);
+
     return (
         <>
         <Card 
             card_type="INFO"
-            title="Options & Variants"
+            title="Options"
             header={""}
             next={"OPTIONS"}>
             <div className={`${styles.col}`}>
-                <div className={`${styles.row}  ${styles.mobileContainer}`}
+                <div className={`${styles.row}  ${styles.mobileContainer} ${styles.optionsCol}`}
                     style={{
                         marginTop: "1.5rem"
                     }}>
@@ -191,7 +212,7 @@ export const OptionsVariants: FunctionComponent<TagProps> = ({
                             style={{
                                 color: "white"
                             }}
-                            value={product?.quantity}
+                            value={""}
                             type="text"
                             name="options1" />
                         <label style={{ 
@@ -226,7 +247,7 @@ export const OptionsVariants: FunctionComponent<TagProps> = ({
 
                 <div className={`${styles.row}  ${styles.mobileContainer}`}
                     style={{
-                        marginTop: "1.5rem"
+                        marginTop: window.innerWidth > 720 ? "1.5rem" : "",
                     }}>
                     <div className={`${styles.formItem} ${styles.row}`}
                         style={{
@@ -258,9 +279,9 @@ export const OptionsVariants: FunctionComponent<TagProps> = ({
                     </div>
                 </div>
 
-                <div className={`${styles.row}  ${styles.mobileContainer}`}
+                <div className={`${styles.row}  ${styles.mobileContainer} ${styles.optionsCol}`}
                     style={{
-                        marginTop: "1.5rem"
+                        marginTop: window.innerWidth > 720 ? "1.5rem" : "",
                     }}>
                     <div className={`${styles.formItem} ${styles.row}`}
                         style={{
@@ -307,7 +328,7 @@ export const OptionsVariants: FunctionComponent<TagProps> = ({
 
                 <div className={`${styles.row}  ${styles.mobileContainer}`}
                     style={{
-                        marginTop: "1.5rem"
+                        marginTop:window.innerWidth > 720 ? "1.5rem" : "",
                     }}>
                     <div className={`${styles.formItem} ${styles.row}`}
                         style={{
@@ -339,14 +360,14 @@ export const OptionsVariants: FunctionComponent<TagProps> = ({
                     </div>
                 </div>
 
-                <div className={`${styles.row}  ${styles.mobileContainer}`}
+                <div className={`${styles.row}  ${styles.mobileContainer} ${styles.optionsCol}`}
                     style={{
-                        marginTop: "1.5rem"
+                        marginTop: window.innerWidth > 720 ? "1.5rem" : "",
                     }}>
                     <div className={`${styles.formItem} ${styles.row}`}
                         style={{
                             width: window.innerWidth > 720 ? "33%" : "100%",
-                            padding: "0 5px"
+                            padding: window.innerWidth > 720 ? "0 5px" : ""
                         }}>
                         <input
                             style={{
@@ -362,7 +383,7 @@ export const OptionsVariants: FunctionComponent<TagProps> = ({
                     <div className={`${styles.formItem} ${styles.row}`}
                         style={{
                             width: window.innerWidth > 720 ? "33%" : "100%",
-                            padding: "0 5px"
+                            padding: window.innerWidth > 720 ? "0 5px" : ""
                         }}>
                         <input
                             style={{
@@ -378,7 +399,7 @@ export const OptionsVariants: FunctionComponent<TagProps> = ({
                     <div className={`${styles.formItem} ${styles.row}`}
                         style={{
                             width: "33%",
-                            padding: "0 5px"
+                            padding: window.innerWidth > 720 ? "0 5px" : ""
                         }}>
                         <p style={{padding: 0, width: "90%"}}>Option Three</p>
                         <div  style={{padding: 0, width: "10%"}} id=""> </div>
@@ -387,7 +408,7 @@ export const OptionsVariants: FunctionComponent<TagProps> = ({
 
                 <div className={`${styles.row}  ${styles.mobileContainer}`}
                     style={{
-                        marginTop: "1.5rem"
+                        marginTop: window.innerWidth > 720 ? "1.5rem" : "",
                     }}>
                     <div className={`${styles.formItem} ${styles.row}`}
                         style={{
@@ -420,256 +441,125 @@ export const OptionsVariants: FunctionComponent<TagProps> = ({
                 </div>
             </div>
         </Card>
-
+        
         <Card 
             card_type="INFO"
-            title="Options & Variants"
+            title="Variants"
             header={""}
             next={"OPTIONS"}>
             <div className={`${styles.col}`}>
-                <div className={`${styles.row}  ${styles.mobileContainer}`}
-                    style={{
-                        marginTop: "1.5rem"
-                    }}>
-                    <div className={`${styles.formItem} ${styles.row}`}
-                        style={{
-                            width: window.innerWidth > 720 ? "33%" : "100%",
-                            padding: "0 5px"
-                        }}>
-                        <input
-                            style={{
-                                color: "white"
-                            }}
-                            value={product?.quantity}
-                            type="text"
-                            name="options1" />
-                        <label style={{ 
-                            top: product?.quantity && product?.quantity > 0 ? "-5px" : "", 
-                            fontSize: product?.quantity  && product?.quantity > 0? "10px" : ""}}>Options</label>
-                    </div>
-                    <div className={`${styles.formItem} ${styles.row}`}
-                        style={{
-                            width: window.innerWidth > 720 ? "33%" : "100%",
-                            padding: "0 5px"
-                        }}>
-                        <input
-                            style={{
-                                color: "white"
-                            }}
-                            value={product?.weight}
-                            type="text"
-                            name="options1" />
-                        <label style={{ 
-                            top: product?.weight && product?.weight > 0 ? "-5px" : "", 
-                            fontSize: product?.weight && product?.weight > 0 ? "10px" : ""}}>Option Name</label>
-                    </div>
-                    <div className={`${styles.formItem} ${styles.row}`}
-                        style={{
-                            width: "33%",
-                            padding: "0 5px"
-                        }}>
-                        <p style={{padding: 0, width: "90%"}}>Option One</p>
-                        <div  style={{padding: 0, width: "10%"}} id=""> </div>
-                    </div>
-                </div>
-
-                <div className={`${styles.row}  ${styles.mobileContainer}`}
-                    style={{
-                        marginTop: "1.5rem"
-                    }}>
-                    <div className={`${styles.formItem} ${styles.row}`}
-                        style={{
-                            width: window.innerWidth > 720 ? "33%" : "100%",
-                            padding: "0 5px"
-                        }}>
-                        { 
-                            tags && tags.length > 0 ?  tags.map(v => {
-                            return <p 
-                                key={v}
-                                id={"tags"}
-                                onClick={(e) => deleteTag(e, v, setTags, setTagState,  tags)}
-                                className={`${styles.tagItem}`}>{v} <b>x</b> </p> 
-                            }) : null
-                        }
-                    </div>
-                    <div className={`${styles.formItem} ${styles.row}`}
-                        style={{
-                            width: "33%",
-                            padding: "0 5px"
-                        }}>
-                        {<p style={{padding: 0, width: "90%"}}></p>}
-                    </div>
-                    <div className={`${styles.formItem} ${styles.row}`}
-                        style={{
-                            width: "33%",
-                            padding: "0 5px"
-                        }}>
-                    </div>
-                </div>
-
-                <div className={`${styles.row}  ${styles.mobileContainer}`}
-                    style={{
-                        marginTop: "1.5rem"
-                    }}>
-                    <div className={`${styles.formItem} ${styles.row}`}
-                        style={{
-                            width: window.innerWidth > 720 ? "33%" : "100%",
-                            padding: "0 5px"
-                        }}>
-                        <input
-                            style={{
-                                color: "white"
-                            }}
-                            // onChange={(e) => }
-                            value={product?.quantity}
-                            type="text"
-                            name="options2" />
-                        <label style={{ 
-                            top: product?.quantity && product?.quantity  > 0 ? "-5px" : "", 
-                            fontSize: product?.quantity && product?.quantity > 0? "10px" : ""}}>Options</label>
-                    </div>
-                    <div className={`${styles.formItem} ${styles.row}`}
-                        style={{
-                            width: window.innerWidth > 720 ? "33%" : "100%",
-                            padding: "0 5px"
-                        }}>
-                        <input
-                            style={{
-                                color: "white"
-                            }}
-                            value={product?.weight}
-                            type="text"
-                            name="option2" />
-                        <label style={{ 
-                            top: product?.weight && product?.weight  > 0 ? "-5px" : "", 
-                            fontSize: product?.weight && product?.weight  > 0 ? "10px" : ""}}>Option Name</label>
-                    </div>
-                    <div className={`${styles.formItem} ${styles.row}`}
-                        style={{
-                            width: "33%",
-                            padding: "0 5px"
-                        }}>
-                        <p style={{padding: 0, width: "90%"}}>Option Two</p>
-                        <div  style={{padding: 0, width: "10%"}} id=""> </div>
-                    </div>
-                </div>
-
-                <div className={`${styles.row}  ${styles.mobileContainer}`}
-                    style={{
-                        marginTop: "1.5rem"
-                    }}>
-                    <div className={`${styles.formItem} ${styles.row}`}
-                        style={{
-                            width: window.innerWidth > 720 ? "33%" : "100%",
-                            padding: "0 5px"
-                        }}>
-                        { 
-                            tags && tags.length > 0 ?  tags.map(v => {
-                            return <p 
-                                key={v}
-                                id={"tags"}
-                                onClick={(e) => deleteTag(e, v, setTags, setTagState,  tags)}
-                                className={`${styles.tagItem}`}>{v} <b>x</b> </p> 
-                            }) : null
-                        }
-                    </div>
-                    <div className={`${styles.formItem} ${styles.row}`}
-                        style={{
-                            width: "33%",
-                            padding: "0 5px"
-                        }}>
-                        {<p style={{padding: 0, width: "90%"}}></p>}
-                    </div>
-                    <div className={`${styles.formItem} ${styles.row}`}
-                        style={{
-                            width: "33%",
-                            padding: "0 5px"
-                        }}>
-                    </div>
-                </div>
-
-                <div className={`${styles.row}  ${styles.mobileContainer}`}
-                    style={{
-                        marginTop: "1.5rem"
-                    }}>
-                    <div className={`${styles.formItem} ${styles.row}`}
-                        style={{
-                            width: window.innerWidth > 720 ? "33%" : "100%",
-                            padding: "0 5px"
-                        }}>
-                        <input
-                            style={{
-                                color: "white"
-                            }}
-                            value={product?.quantity}
-                            type="text"
-                            name="options3" />
-                        <label style={{ 
-                            top: product?.quantity && product?.quantity > 0 ? "-5px" : "", 
-                            fontSize: product?.quantity && product?.quantity > 0? "10px" : ""}}>Options</label>
-                    </div>
-                    <div className={`${styles.formItem} ${styles.row}`}
-                        style={{
-                            width: window.innerWidth > 720 ? "33%" : "100%",
-                            padding: "0 5px"
-                        }}>
-                        <input
-                            style={{
-                                color: "white"
-                            }}
-                            value={product?.weight }
-                            type="text"
-                            name="option3" />
-                        <label style={{ 
-                            top: product?.weight  && product?.weight  > 0 ? "-5px" : "", 
-                            fontSize: product?.weight && product?.weight  > 0 ? "10px" : ""}}>Option Name</label>
-                    </div>
-                    <div className={`${styles.formItem} ${styles.row}`}
-                        style={{
-                            width: "33%",
-                            padding: "0 5px"
-                        }}>
-                        <p style={{padding: 0, width: "90%"}}>Option Three</p>
-                        <div  style={{padding: 0, width: "10%"}} id=""> </div>
-                    </div>
-                </div>
-
-                <div className={`${styles.row}  ${styles.mobileContainer}`}
-                    style={{
-                        marginTop: "1.5rem"
-                    }}>
-                    <div className={`${styles.formItem} ${styles.row}`}
-                        style={{
-                            width: "33%",
-                            padding: "0 5px"
-                        }}>
-                        { 
-                            tags && tags.length > 0 ?  tags.map(v => {
-                            return <p 
-                                key={v}
-                                id={"tags"}
-                                onClick={(e) => deleteTag(e, v, setTags, setTagState,  tags)}
-                                className={`${styles.tagItem}`}>{v} <b>x</b> </p> 
-                            }) : null
-                        }
-                    </div>
-                    <div className={`${styles.formItem} ${styles.row}`}
-                        style={{
-                            width: "33%",
-                            padding: "0 5px"
-                        }}>
-                        {<p style={{padding: 0, width: "90%"}}></p>}
-                    </div>
-                    <div className={`${styles.formItem} ${styles.row}`}
-                        style={{
-                            width: "33%",
-                            padding: "0 5px"
-                        }}>
-                    </div>
-                </div>
+                {
+                    variants && variants.map(v => {
+                        return (
+                            <div key={v.id} className={`${styles.col}`}
+                                style={{
+                                    width: "auto",
+                                    minWidth: "100%"
+                                }}>
+                                <ProductVariantRow />
+                                <Underline width={100} />
+                            </div>
+                        )
+                    })
+                }
             </div>
         </Card>
+        
         </>
+    )
+}
+
+export const ProductVariantRow = () => {
+    return (
+        <div className={`${styles.col}`}
+                style={{
+                    width:  window.innerWidth > 720 ? "100%" : "300%",
+                }}>
+            <div className={`${styles.row}`}
+                style={{
+                    marginTop: "1.5rem",
+                    alignItems: "center",
+                    width: "100%"
+                }}>
+                <div className={`${styles.formItem} ${styles.row}`}
+                    style={{
+                        width: "10%",
+                        padding: "0 5px"
+                    }}>
+                    <Image 
+                        style={{border: "0.4px solid var(--accent)", borderRadius: "6px"}}
+                        src={"https://boltagency.ca/content/images/2020/03/placeholder-images-product-1_large.png"} 
+                        alt=""
+                        width={50}
+                        height={50} />
+                </div>
+                <div className={`${styles.formItem} ${styles.row}`}
+                    style={{
+                        width: "35%",
+                        padding: "0 5px"
+                    }}>
+                    <h5>Blue</h5>
+                </div>
+                <div className={`${styles.formItem} ${styles.row}`}
+                    style={{
+                        width: "15%",
+                        padding: "0 5px"
+                    }}>
+                    <input
+                        style={{
+                            color: "white",
+                            width: "100%",
+                        }}
+                        value={product?.quantity}
+                        type="number"
+                        name="var_price" />
+                    <label style={{ 
+                        top: product?.quantity && product?.quantity > 0 ? "-5px" : "", 
+                        fontSize: product?.quantity  && product?.quantity > 0? "10px" : ""}}>Price</label>
+                </div>
+                <div className={`${styles.formItem} ${styles.row}`}
+                    style={{
+                        width: "10%",
+                        padding: "0 5px"
+                    }}>
+                    <input
+                        style={{
+                            color: "white",
+                            width: "100%",
+                        }}
+                        value={product?.quantity}
+                        type="number"
+                        name="var_quantity" />
+                    <label style={{ 
+                        top: product?.quantity && product?.quantity > 0 ? "-5px" : "", 
+                        fontSize: product?.quantity  && product?.quantity > 0? "10px" : ""}}>Quantity</label>
+                </div>
+                <div className={`${styles.formItem} ${styles.row}`}
+                    style={{
+                        width: "35%",
+                        padding: "0 5px"
+                    }}>
+                    <input
+                        style={{
+                            color: "white",
+                            width: "100%",
+                        }}
+                        value={product?.quantity}
+                        type="text"
+                        name="sku" />
+                    <label style={{ 
+                        top: product?.quantity && product?.quantity > 0 ? "-5px" : "", 
+                        fontSize: product?.quantity  && product?.quantity > 0? "10px" : ""}}>SKU</label>
+                </div>
+                <div className={`${styles.formItem} ${styles.row}`}
+                    style={{
+                        width: "5%",
+                        padding: "0 5px"
+                    }}>
+                        <h4>🗑</h4>
+                </div>
+            </div>
+        </div>
     )
 }
 
@@ -824,7 +714,7 @@ export const TitleDescription: FunctionComponent<TagProps> = ({
                     </div>
                     <div className={`${styles.formItem} ${styles.row}`}
                         style={{
-                            width: "33%",
+                            width: window.innerWidth > 720 ? "33%" : "100%",
                             padding: "0 5px"
                         }}>
                         <p style={{padding: 0, width: "90%"}}>Digital Product</p>
@@ -834,7 +724,7 @@ export const TitleDescription: FunctionComponent<TagProps> = ({
 
                 <div className={`${styles.row} ${styles.mobileContainer}`}
                     style={{
-                        marginTop: "1.5rem"
+                        marginTop: window.innerWidth > 720 ? "1.5rem" : "",
                     }}>
                     <div className={`${styles.formItem} ${styles.row}`}
                         style={{
@@ -846,7 +736,7 @@ export const TitleDescription: FunctionComponent<TagProps> = ({
                     </div>
                     <div className={`${styles.formItem} ${styles.row}`}
                         style={{
-                            width: "33%",
+                            width: window.innerWidth > 720 ? "33%" : "100%",
                             padding: "0 5px"
                         }}>
                         <p style={{padding: 0, width: "90%"}}>Requires Shipping</p>
@@ -854,7 +744,7 @@ export const TitleDescription: FunctionComponent<TagProps> = ({
                     </div>
                     <div className={`${styles.formItem} ${styles.row}`}
                         style={{
-                            width: "33%",
+                            width: window.innerWidth > 720 ? "33%" : "100%",
                             padding: "0 5px"
                         }}>
                     </div>
