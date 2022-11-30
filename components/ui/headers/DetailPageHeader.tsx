@@ -34,8 +34,12 @@ export const DetailPageHeader: FunctionComponent<Props> = ({
                 <Link href={back_route}>
                     <h2>🔙</h2>
                 </Link>
-                <div>
-                    <h2 
+                <div style={{
+                    textOverflow: "initial",
+                    whiteSpace: "nowrap",
+                    overflow: "hidden"
+                }}>
+                    <h2 style={{lineHeight:window.innerWidth > 720 ? "60px" : "inherent", textOverflow: "ellipsis"}}
                         className={`${saira.className} ${styles.detailPageItemHeaderText}`}>{title}</h2>
                 </div>
             </div>
